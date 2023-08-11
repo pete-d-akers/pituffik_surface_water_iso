@@ -59,14 +59,6 @@ pfk_isowx_day$daybreak <- as.Date(pfk_isowx_day$daybreak, format= "%d/%m/%Y")
 pfk_isowx_day$doy <- as.numeric(format(pfk_isowx_day$daybreak, "%j"))
 pfk_isowx_day$yr <- get_year(pfk_isowx_day$daybreak)
 
-# Making datasets of only summer weather and vapor iso for 2018 and 2019
-wx18 <- pfk_isowx_day %>%
-  filter(daybreak > "2018-06-01" & daybreak < "2018-09-01")
-wx18$yr <- get_year(wx18$daybreak)
-wx19 <- pfk_isowx_day %>%
-  filter(daybreak > "2019-06-01" & daybreak < "2019-09-01")
-wx19$yr <- get_year(wx19$daybreak)
-
 # Loading PET data from Singer et al., 2021 with nc extent restricted to Pituffik
 pet2018_pfk_brick <- brick("2018_daily_pet_pituffik.nc", varname="pet")
 pet2019_pfk_brick <- brick("2019_daily_pet_pituffik.nc", varname="pet")
