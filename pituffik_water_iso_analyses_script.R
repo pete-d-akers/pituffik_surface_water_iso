@@ -1,0 +1,1624 @@
+#===============================================================================
+#=================Pituffik Surface Waters Script===================================
+#===============================================================================
+# This script is focused on the water isotopes of lakes and streams in Pituffik, Greenland, based
+  # on samples taken in 2018 and 2019.
+# Written Pete D Akers, March 2021-August 2023
+
+# Loading required packages
+library(raster)
+library(ncdf4)
+library(Rmisc)
+library(gridExtra)
+library(cowplot)
+library(tidyverse)
+library(clock)
+library(broom)
+
+#### Additional Functions ####
+lighten <- function(color, factor = 0.5) {
+  if ((factor > 1) | (factor < 0)) stop("factor needs to be within [0,1]")
+  col <- col2rgb(color)
+  col <- col + (255 - col)*factor
+  col <- rgb(t(col), maxColorValue=255)
+  col
+}
+
+darken <- function(color, factor = 0.5) {
+  if ((factor > 1) | (factor < 0)) stop("factor needs to be within [0,1]")
+  col <- col2rgb(color)
+  col <- col - (col)*factor
+  col <- rgb(t(col), maxColorValue=255)
+  col
+}
+#### END Additional Functions ####
+
+# Reading in data
+water_iso_full <- as_tibble(read.csv("pituffik_H2O_iso_2018_2019.csv", header=TRUE, sep=","))
+water_iso_full$date <- as.Date(water_iso_full$date, format= "%d/%m/%Y")
+water_iso_full$year <- get_year(water_iso_full$date) # Extracting year
+water_iso_full$doy <- as.numeric(format(water_iso_full$date, "%j"))
+water_iso_full$type <- factor(water_iso_full$type, levels=c("lake", "pool", "stream", "surface flow", # Making so the order is always correct
+                                                            "snow or ice", "precipitation rain", "precipitation snow"))
+water_iso <- water_iso_full[water_iso_full$qc_flag != 1, ] # Removing data flagged for quality
+water_iso$laketype <- factor(water_iso$laketype, levels=c("endorheic", "headwater", "downstream", # Making so the order is always correct
+                                                          "vale", "proglacial", "altered"))
+
+# Pulling out lakes and pools with observations in all three periods
+water_iso_periodcompare <- water_iso %>%
+  filter(type_number < 3) %>% # Restricting to lake and pool data
+  group_by(site_name) %>%
+  filter(timing > 0) %>%
+  filter(n() == 3) %>% # Only sites with all three periods
+  ungroup()
+#write.csv(water_iso_periodcompare, "water_iso_periodcompare.csv", row.names = FALSE) # Remove comment marker to output file
+
+# Pituffik weather data from Giovanni Muscari and USAF and water vapor isotopes from Akers 2020
+pfk_isowx_day <- as_tibble(read.csv("pfk_iso_wx_day.csv", header=TRUE))
+pfk_isowx_day$daybreak <- as.Date(pfk_isowx_day$daybreak, format= "%d/%m/%Y")
+pfk_isowx_day$doy <- as.numeric(format(pfk_isowx_day$daybreak, "%j"))
+pfk_isowx_day$yr <- get_year(pfk_isowx_day$daybreak)
+
+# Making datasets of only summer weather and vapor iso for 2018 and 2019
+wx18 <- pfk_isowx_day %>%
+  filter(daybreak > "2018-06-01" & daybreak < "2018-09-01")
+wx18$yr <- get_year(wx18$daybreak)
+wx19 <- pfk_isowx_day %>%
+  filter(daybreak > "2019-06-01" & daybreak < "2019-09-01")
+wx19$yr <- get_year(wx19$daybreak)
+
+# Loading PET data from Singer et al., 2021 with nc extent restricted to Pituffik
+pet2018_pfk_brick <- brick("2018_daily_pet_pituffik.nc", varname="pet")
+pet2019_pfk_brick <- brick("2019_daily_pet_pituffik.nc", varname="pet")
+pfk_points <- SpatialPoints(cbind(-68.5, 76.5)) # Data extraction point coordinates
+
+pet_extracted_2018 <- raster::extract(x=pet2018_pfk_brick, y=pfk_points, method="bilinear")
+pfk_pet_2018 <- setNames(as_tibble(t(pet_extracted_2018)), "pet")
+pfk_pet_2018$yr <- "2018"
+pfk_pet_2018$doy <- seq(1,365) # Adding day of year column
+pfk_pet_2018$date <- as.Date(pfk_pet_2018$doy, origin = "2017-12-31")
+pet_extracted_2019 <- raster::extract(x=pet2019_pfk_brick, y=pfk_points, method="bilinear")
+pfk_pet_2019 <- setNames(as_tibble(t(pet_extracted_2019)), "pet")
+pfk_pet_2019$yr <- "2019"
+pfk_pet_2019$doy <- seq(1,365) # Adding day of year column
+pfk_pet_2019$date <- as.Date(pfk_pet_2019$doy, origin = "2018-12-31")
+pfk_pet <- rbind(pfk_pet_2018, pfk_pet_2019)
+pfk_pet$mo <- month(pfk_pet$date)
+sn_index <- c(rep("win",2), rep("spr",3), rep("sum",3), rep("aut",3), "win")
+pfk_pet$sn <- sn_index[pfk_pet$mo]
+
+# Pituffik GNIP precip data for LMWL data
+pfk_gnip <- as_tibble(read.csv("pfk_gnip.csv", header=TRUE, sep=","))
+pfk_gnip <- pfk_gnip[pfk_gnip$qc_flag != 1, ] # Removing data flagged for quality
+pfk_gnip$date_start <- as.Date(pfk_gnip$date_start, format="%d/%m/%Y")
+pfk_gnip$date_end <- as.Date(pfk_gnip$date_end, format="%d/%m/%Y")
+pfk_lmwl_prcp <- lm(pfk_gnip$d2H~pfk_gnip$d18O)
+
+# Adding GNIP data to water iso data for plotting comparisons
+water_iso_plus_gnip <- bind_rows(water_iso, pfk_gnip[c("site", "d18O", "d2H", "dxs", "type")]) # Adding GNIP iso data
+water_iso_plus_gnip$type <- factor(water_iso_plus_gnip$type, levels=c("lake", "pool", "stream", # Making so the order is always correct
+                                                                      "surface flow", "snow or ice",
+                                                                      "precipitation rain", "precipitation snow", "GNIP"))
+
+#Finding unique sampled sites in database
+unique_sites_full <- water_iso_full %>%
+  distinct(latitude, longitude, .keep_all = T)
+unique_sites_bygroup_full <- water_iso_full %>%
+  group_by(type) %>%
+  distinct(latitude, longitude, .keep_all = T)
+unique_sites <- water_iso %>%
+  distinct(latitude, longitude, .keep_all = T)
+unique_sites_bygroup <- water_iso %>%
+  group_by(type) %>%
+  distinct(latitude, longitude, .keep_all = T)
+
+# Setting plotting and analysis variables
+vbl_clm <- c("d18O", "d2H", "dxs") # columns with plotting data
+vbl_clm_index <- NA
+for (i in 1:length(vbl_clm)) {
+  vbl_clm_index[i] <- which(colnames(water_iso) == vbl_clm[i])
+}
+
+# Creating color-iso variable table
+iso_color_names <- c("turquoise3", "firebrick", "mediumorchid4")
+iso_color_index <- data.frame(colnames(water_iso[vbl_clm_index]), iso_color_names[seq(1,length(vbl_clm_index))])
+colnames(iso_color_index) <- c("iso", "color")
+
+lake <- water_iso[water_iso$type == "lake", ]
+pool <- water_iso[water_iso$type == "pool", ]
+surf_flow <- water_iso[water_iso$type == "surface flow", ]
+stream <- water_iso[water_iso$type == "stream", ]
+precip_rain <- water_iso[water_iso$type == "precipitation rain", ]
+precip_snow <- water_iso[water_iso$type == "precipitation snow", ]
+
+####============================####
+####========Basic stats=========####
+####============================####
+nrow(water_iso_full) # Number of total samples, before QC removal
+water_iso_full %>% # Number of samples by category, before QC removal
+  count(type)
+nrow(unique_sites_full) # Number of uniquely sampled sites, before QC removal
+unique_sites_bygroup_full %>% # Number of unique sampling sites by category, before QC removal
+  count(type)
+
+nrow(water_iso) # Number of total samples, after QC removal
+water_iso %>% # Number of samples by category, after QC removal
+  count(type)
+nrow(unique_sites) # Number of uniquely sampled sites, after QC removal
+unique_sites_bygroup %>% # Number of unique sampling sites by category, after QC removal
+  count(type)
+
+# Total isotope means and CI
+water_iso %>%
+  reframe(across(all_of(vbl_clm), CI))
+
+# Total isotope 1*SD
+water_iso %>%
+  summarize(across(all_of(vbl_clm), sd))
+
+# Total isotope 2*SD
+water_iso %>%
+  summarize(across(all_of(vbl_clm), sd))*2
+
+# Sorting sample sites by number of samples
+print(water_iso %>%
+        count(site_name) %>%
+        arrange(desc(n)),
+      n=20)
+
+# Local water line parameters and stat values
+lwl_bytype <- water_iso_plus_gnip %>% # Running regression by type
+  group_by(type) %>%
+  nest() %>%
+  mutate(lwl = map(data, ~lm(d2H~d18O, data=.)))
+
+lwl_slope <- 
+  lwl_bytype %>%
+  mutate(tidyit = map(lwl, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "d18O") %>%
+  dplyr::select(type, estimate, std.error)
+colnames(lwl_slope) <- c("type", "slope", "se.slope")
+
+lwl_intercept <- 
+  lwl_bytype %>%
+  mutate(tidyit = map(lwl, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "(Intercept)") %>%
+  dplyr::select(type, estimate, std.error)
+colnames(lwl_intercept) <- c("type", "intercept", "se.intercept")
+
+lwl_r2 <- 
+  lwl_bytype %>%
+  mutate(glanceit = map(lwl, broom::glance)) %>%
+  unnest(glanceit) %>%
+  dplyr::select(type, r.squared, p.value, nobs)
+
+lwl <- lwl_slope %>% # Combining all data
+  inner_join(lwl_intercept, by="type") %>%
+  inner_join(lwl_r2, by="type")
+print(lwl)
+#write.csv(lwl,"lwl_regression.csv", row.names=FALSE) # Remove comment marker to output file
+
+# GNIP weighted mean isotopic values
+gnip_wtmean <- as_tibble(t(c(weighted.mean(pfk_gnip$d18O, pfk_gnip$precip_amt, na.rm=TRUE),
+                             weighted.mean(pfk_gnip$d2H, pfk_gnip$precip_amt, na.rm=TRUE))), .name_repair = "unique")
+colnames(gnip_wtmean) <- c("d18O", "d2H")
+print(gnip_wtmean)
+
+# Finding intersections between LEL and LMWL
+type_index <- c("lake", "pool", "stream", "surface flow", "snow or ice")
+lwl_intersect <- as_tibble(matrix(nrow=length(type_index),ncol=2), .name_repair = "unique")
+lwl_intersect <- as_tibble(cbind(type_index, lwl_intersect))
+colnames(lwl_intersect) <- c("type", "d18O", "d2H")
+
+for (i in 1:length(type_index)) {
+  coef_iter <- rbind(coef(lwl_bytype$lwl[lwl_bytype$type=="GNIP"][[1]]), # Coefficient matrix
+                     coef(lwl_bytype$lwl[lwl_bytype$type==type_index[i]][[1]]))
+  lwl_intersect[i,c(2,3)] <- t(c(-solve(cbind(coef_iter[,2],-1)) %*% coef_iter[,1]))
+}
+print(lwl_intersect)
+
+####========END BASIC STATS======####
+
+####============================####
+####=====Spatial Analyses ======####
+####============================####
+#==Lake type analysis
+# Making subsets of lake data grouped by sample period and main lake zone
+lakeset <- water_iso %>%
+  filter(type == "lake") %>% # Getting only lakes
+  filter(!is.na(timing)) # Keeping only samples from 3 set periods
+
+lakeset_all_byperiod <- water_iso %>%
+  filter(type == "lake") %>% # Getting only lakes
+  filter(!is.na(timing)) %>% # Keeping only samples from 3 set periods
+  group_by(timing) %>% # Grouping by sampling period
+  nest()
+
+lakeset_main_byperiod <- water_iso %>%
+  filter(type == "lake") %>% # Getting only lakes
+  filter(!is.na(timing)) %>% # Keeping only samples from 3 set periods
+  filter(main_lakes == 1) %>% # Keeping only main lakes
+  group_by(timing) %>% # Grouping by sampling period
+  nest()
+
+lakeset_byperiod <- rbind(lakeset_all_byperiod, lakeset_main_byperiod)
+
+# Lake LEL by laketype for lakes with >=3 samples
+multilake <- water_iso %>% # All lakes with >=3 samples taken
+  filter(type=="lake") %>%
+  group_by(site_name) %>%
+  filter(n() >= 3) %>%
+  filter(is.na(laketype) == FALSE)
+
+lel_lake_bylake <- multilake %>% # Running regression by type
+  group_by(site_name) %>%
+  nest() %>%
+  mutate(lel = map(data, ~lm(d2H~d18O, data=.)))
+
+lel_slope <- 
+  lel_lake_bylake %>%
+  mutate(tidyit = map(lel, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "d18O") %>%
+  dplyr::select(site_name, estimate, std.error)
+colnames(lel_slope) <- c("site_name", "slope", "se.slope")
+
+lel_intercept <- 
+  lel_lake_bylake %>%
+  mutate(tidyit = map(lel, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "(Intercept)") %>%
+  dplyr::select(site_name, estimate, std.error)
+colnames(lel_intercept) <- c("site_name", "intercept", "se.intercept")
+
+lel_r2 <- 
+  lel_lake_bylake %>%
+  mutate(glanceit = map(lel, broom::glance)) %>%
+  unnest(glanceit) %>%
+  dplyr::select(site_name, r.squared, p.value, nobs)
+
+lel_lake_bylake_params <- lel_slope %>% # Combining all data
+  inner_join(lel_intercept, by="site_name") %>%
+  inner_join(lel_r2, by="site_name")
+
+lel_lake_bylake_params$laketype <- distinct(multilake, site_name, .keep_all = TRUE) %>%
+  ungroup() %>%
+  dplyr::pull(laketype)
+print(lel_lake_bylake_params) # Lake LEL parameters by each lake
+
+lel_lake_bylake_bylaketype_slope <- lel_lake_bylake_params %>%
+  group_by(laketype) %>%
+  summarize(count=n(),mean_slope=mean(slope, na.rm=TRUE), st_err_slope=sd(slope)/sqrt(n()))
+print(lel_lake_bylake_bylaketype_slope) # Lake LEL slopes averaged by laketype
+
+# Comparing overall mean LEL to means of individual lakes
+mean_LEL_bylake <- lel_lake_bylake_params %>% # Mean LEL slope of individual lake LELs
+  ungroup() %>%
+  summarize(mean_slope=mean(slope, na.rm=TRUE),
+            st_err_slope=sd(slope, na.rm=TRUE)/sqrt(sum(!is.na(slope))))
+
+multilake_naomit <- multilake %>%
+  filter (site_name != "Interramp Proglacial Lake") # Removing to match bylake slope dataset
+single_LEL <- summary(lm(multilake_naomit$d2H~multilake_naomit$d18O)) # Single LEL for all lake data combined
+
+LEL_method_compare <- rbind(mean_LEL_bylake, single_LEL$coefficients[c(2,4)])
+LEL_method_compare$method <- c("Mean of individual lake LELs", "Single LEL of all lake data combined")
+print(LEL_method_compare) # Comparison of two LEL methods
+
+# Finding intersections between lake LEL and LMWL
+lake_index <- lel_lake_bylake$site_name
+lake_lel_intersect <- as_tibble(matrix(nrow=length(lake_index),ncol=2), .name_repair = "unique")
+lake_lel_intersect <- as_tibble(cbind(lake_index, lake_lel_intersect))
+colnames(lake_lel_intersect) <- c("site_name", "d18O", "d2H")
+
+for (i in 1:length(lake_index)) {
+  coef_iter <- rbind(coef(lwl_bytype$lwl[lwl_bytype$type=="GNIP"][[1]]), # Coefficient matrix
+                     coef(lel_lake_bylake$lel[lel_lake_bylake$site_name==lake_index[i]][[1]]))
+  lake_lel_intersect[i,c(2,3)] <- t(c(-solve(cbind(coef_iter[,2],-1)) %*% coef_iter[,1]))
+}
+lake_lel_intersect$laketype <- lel_lake_bylake_params$laketype
+
+lake_lel_intersect_bylaketype <- lake_lel_intersect %>%
+  group_by(laketype) %>%
+  summarize(count=n(), mean_d18O=mean(d18O, na.rm=TRUE)*1000, st_err_d18O=sd(d18O)/sqrt(n())*1000,
+            mean_d2H=mean(d2H, na.rm=TRUE)*1000, st_err_d2H=sd(d2H)/sqrt(n())*1000)
+print(lake_lel_intersect_bylaketype)
+
+# Dendrogram analysis of lake types
+library(ggdendro)
+library(dendextend)
+library(ape)
+
+# Hierarchical clustering of period 3 lakes based on d18O and dxs
+lake_per3 <- lakeset %>% # Selecting only lakes from period 3
+  filter(timing == 3) 
+lake_isoz_per3 <-lake_per3 %>%
+  dplyr::select(d18O, dxs)
+lake_isoz_per3 <- as.data.frame(lake_isoz_per3) #necessary bc tibbles can't have rownames
+rownames(lake_isoz_per3) <- lake_per3$site_name
+lake_isoz_per3$d18O <- scale(lake_isoz_per3$d18O, center=mean(lake_isoz_per3$d18O), scale=sd(lake_isoz_per3$d18O))
+lake_isoz_per3$dxs <- scale(lake_isoz_per3$dxs, center=mean(lake_isoz_per3$dxs), scale=sd(lake_isoz_per3$dxs))
+lake_isoz_per3_hclust <- hclust(dist(lake_isoz_per3))
+lake_isoz_per3_dendro <- as.dendrogram(lake_isoz_per3_hclust)
+
+#==Lake isotope environmental parameter regression
+# This section uses LASSO regression first to see which environmental parameters
+#   are strongest predictors of isotopic variability in Pituffik lakes, then also
+#   looks at linear regressions for more insight.
+library(glmnet)
+library(gridGraphics)
+library(reshape2)
+
+# Creating list of different headwater-downstream lake sample sets, varying based
+#   on whether from sample period 3 only, from any of the 3 sample periods, or
+#   from all samples, and also whether from the main lake set or full lake set.
+base_headdown <- water_iso %>%
+  filter(type == "lake" | type == "pond") %>%
+  filter(laketype == "headwater" | laketype == "downstream")
+base_headdown$log_area <- log(base_headdown$lake_surface_area) # Log transformation of lake surface area
+base_headdown$log_lakeshed_area <- log(base_headdown$lakeshed_area) # Log transformation of lake watershed area
+envparam_names <- c("elevation", "log_area", "log_lakeshed_area", "dist_gris", "dist_ocean", "doy") # Selected environmental parameters
+
+headdown_list <- list()
+headdown_list_names <- c("Main Period 3", "Main All Periods", "Main Alltime",
+                         "Full Period 3", "Full All Periods", "Full Alltime")
+headdown_list[[1]] <- base_headdown %>%
+  filter(timing == 3 & main_lakes == 1)
+headdown_list[[2]] <- base_headdown %>%
+  filter(!is.na(timing) & main_lakes == 1)
+headdown_list[[3]] <- base_headdown %>%
+  filter(main_lakes == 1)
+headdown_list[[4]] <- base_headdown %>%
+  filter(timing == 3)
+headdown_list[[5]] <- base_headdown %>%
+  filter(!is.na(timing))
+headdown_list[[6]] <- base_headdown
+names(headdown_list) <- headdown_list_names
+
+# Performing analyses where output gives results of LASSO regression, linear regressions
+#   by individual parameters, and multiple regression.
+lasso_headdown_fit <- list()
+lasso_headdown_cvfit <- list()
+lasso_headdown_cvfit_coef <- list()
+lm_headdown_r2 <- list()
+lm_headdown_pval <- list()
+multlm_formula <- paste("iso_iter~",paste(envparam_names,collapse="+"), sep="") # formula for multiple regressions
+multlm_headdown <- list()
+multlm_headdown_beta <- list()
+multlm_headdown_pval <- list()
+for(i in 1:length(headdown_list)) {
+  headdown_envparam_iter <- headdown_list[[i]] %>% # Selecting environmental parameters for regression
+    dplyr::select(all_of(envparam_names))
+  lasso_headdown_fit_iter <- list()
+  lasso_headdown_cvfit_iter <- list()
+  lasso_headdown_cvfit_coef_iter <- list()
+  lm_headdown_r2_iter <- as_tibble(matrix(ncol=length(vbl_clm), nrow=length(envparam_names), dimnames=list(NULL,vbl_clm)))
+  lm_headdown_pval_iter <- as_tibble(matrix(ncol=length(vbl_clm), nrow=length(envparam_names), dimnames=list(NULL,vbl_clm)))
+  multlm_headdown_iter <- list()
+  multlm_headdown_beta_iter <- as_tibble(matrix(ncol=length(vbl_clm), nrow=length(envparam_names), dimnames=list(NULL,vbl_clm)))
+  multlm_headdown_pval_iter <- as_tibble(matrix(ncol=length(vbl_clm), nrow=length(envparam_names), dimnames=list(NULL,vbl_clm)))
+  for(j in 1:length(vbl_clm)){
+    iso_iter <- headdown_list[[i]][[vbl_clm[j]]] # Selecting isotopic variable for regression
+    # LASSO
+    lasso_headdown_fit_iter[[j]] <- glmnet(headdown_envparam_iter, iso_iter)
+    lasso_headdown_cvfit_iter[[j]] <- cv.glmnet(makeX(headdown_envparam_iter), iso_iter)
+    lasso_headdown_cvfit_coef_iter[[j]] <- coef(lasso_headdown_cvfit_iter[[j]], s="lambda.1se")
+    
+    # Linear regression (single)
+    for(k in 1:length(envparam_names)) {
+      lm_headdown_r2_iter[k,j] <- summary(lm(iso_iter~headdown_envparam_iter[[k]]))$r.squared
+      lm_headdown_pval_iter[k,j] <- summary(lm(iso_iter~headdown_envparam_iter[[k]]))$coefficients[8]
+    }
+    
+    # Multiple regression
+    multlm_headdown_iter[[j]] <- lm(as.formula(multlm_formula), data=headdown_envparam_iter)
+    multlm_headdown_beta_iter[j] <- summary(multlm_headdown_iter[[j]])$coefficients[2:(2+length(envparam_names)-1)]
+    multlm_headdown_pval_iter[j] <- summary(multlm_headdown_iter[[j]])$coefficients[23:(23+length(envparam_names)-1)]
+  }
+  names(lasso_headdown_fit_iter) <- vbl_clm
+  names(lasso_headdown_cvfit_iter) <- vbl_clm
+  names(lasso_headdown_cvfit_coef_iter) <- vbl_clm
+  lm_headdown_r2_iter <- signif(lm_headdown_r2_iter,2)
+  lm_headdown_pval_iter <- signif(lm_headdown_pval_iter,1)
+  lm_headdown_r2_iter <- lm_headdown_r2_iter %>%
+    add_column(envparam = envparam_names, .before = 1)
+  lm_headdown_pval_iter <- lm_headdown_pval_iter %>%
+    add_column(envparam = envparam_names, .before = 1)
+  names(multlm_headdown_iter) <- vbl_clm
+  multlm_headdown_beta_iter <- signif(multlm_headdown_beta_iter,2)
+  multlm_headdown_pval_iter <- signif(multlm_headdown_pval_iter,1)
+  multlm_headdown_beta_iter <- multlm_headdown_beta_iter %>%
+    add_column(envparam = envparam_names, .before = 1)
+  multlm_headdown_pval_iter <- multlm_headdown_pval_iter %>%
+    add_column(envparam = envparam_names, .before = 1)
+  
+  # Putting iso variables together in list group by lakeset
+  lasso_headdown_fit[[i]] <- lasso_headdown_fit_iter
+  lasso_headdown_cvfit[[i]] <- lasso_headdown_cvfit_iter
+  lasso_headdown_cvfit_coef[[i]] <- lasso_headdown_cvfit_coef_iter
+  lm_headdown_r2[[i]] <- lm_headdown_r2_iter
+  lm_headdown_pval[[i]] <- lm_headdown_pval_iter
+  multlm_headdown[[i]] <- multlm_headdown_iter
+  multlm_headdown_beta[[i]] <- multlm_headdown_beta_iter
+  multlm_headdown_pval[[i]] <- multlm_headdown_pval_iter
+}
+names(lasso_headdown_fit) <- headdown_list_names
+names(lasso_headdown_cvfit) <- headdown_list_names
+names(lasso_headdown_cvfit_coef) <- headdown_list_names
+names(lm_headdown_r2) <- headdown_list_names
+names(lm_headdown_pval) <- headdown_list_names
+names(multlm_headdown) <- headdown_list_names
+names(multlm_headdown_beta) <- headdown_list_names
+names(multlm_headdown_pval) <- headdown_list_names
+
+# Option to print all six lakeset outputs
+#print(lasso_headdown_cvfit_coef) # LASSO cross-validated coefficients
+#print(lm_headdown_r2) # LM r2
+#print(lm_headdown_pval) # LM p-values
+#print(multlm_headdown_beta) # MultLM beta coefficients
+#print(multlm_headdown_pval) # MultLM p-values
+
+# Pulling out LASSO and linear regression output from only period 3 main lake samples 
+print(lasso_headdown_cvfit_coef[["Main Period 3"]]) # LASSO coefficients
+print(tibble(envparam = lm_headdown_r2[["Main Period 3"]][["envparam"]], # Linear regression r2 and fstat p-values
+             d18O_r2=lm_headdown_r2[["Main Period 3"]][["d18O"]], d18O_pval=lm_headdown_pval[["Main Period 3"]][["d18O"]],
+             d2H_r2=lm_headdown_r2[["Main Period 3"]][["d2H"]], d2H_pval=lm_headdown_pval[["Main Period 3"]][["d2H"]],
+             dxs_r2=lm_headdown_r2[["Main Period 3"]][["dxs"]], dxs_pval=lm_headdown_pval[["Main Period 3"]][["dxs"]]))
+print(tibble(envparam = multlm_headdown_beta[["Main Period 3"]][["envparam"]], # Multiple regression beta coefficients and fstat p-values
+             d18O_beta=multlm_headdown_beta[["Main Period 3"]][["d18O"]], d18O_pval=multlm_headdown_pval[["Main Period 3"]][["d18O"]],
+             d2H_beta=multlm_headdown_beta[["Main Period 3"]][["d2H"]], d2H_pval=multlm_headdown_pval[["Main Period 3"]][["d2H"]],
+             dxs_beta=multlm_headdown_beta[["Main Period 3"]][["dxs"]], dxs_pval=multlm_headdown_pval[["Main Period 3"]][["dxs"]]))
+
+# Extracting multiple regression information from final environmental parameter set
+multlm_final_envparam <- list(d18O=c("elevation", "log_area", "log_lakeshed_area"), # Important parameters based on LASSO & multiple regression
+                              d2H=c("elevation", "log_lakeshed_area"),
+                              dxs=c("elevation", "log_area", "log_lakeshed_area"))
+multlm_final_headdown_coef <- list()
+multlm_final_headdown_strength <- as_tibble(matrix(nrow=length(vbl_clm), ncol=3, dimnames=list(NULL,c("fstat", "fstat_pval", "adj_r2"))))
+for (i in 1:length(vbl_clm)) {
+  iso_iter <- headdown_list[["Main Period 3"]][[vbl_clm[i]]]
+  multlm_formula_iter <- paste("iso_iter~",paste(multlm_final_envparam[[vbl_clm[i]]],collapse="+"), sep="") # formula for multiple regressions
+  multlm_final_headdown_iter <- summary(lm(as.formula(multlm_formula_iter), data=headdown_list[["Main Period 3"]]))
+  multlm_final_headdown_coef[[i]] <- multlm_final_headdown_iter$coefficients
+  multlm_final_headdown_coef[[i]] <- bind_cols(signif(multlm_final_headdown_coef[[i]][,1:3],2), signif(multlm_final_headdown_coef[[i]][,4],1))
+  names(multlm_final_headdown_coef[[i]]) <- c("coef_value", "st_err", "tval", "pval")
+  multlm_final_headdown_coef[[i]] <- multlm_final_headdown_coef[[i]] %>%
+    add_column(parameter = c("intercept", multlm_final_envparam[[i]]), .before = 1)
+  multlm_final_headdown_strength[i,] <- as.list(c(multlm_final_headdown_iter$fstatistic[[1]],
+                                                  pf(multlm_final_headdown_iter$fstatistic[[1]], 
+                                                     multlm_final_headdown_iter$fstatistic[[2]],
+                                                     multlm_final_headdown_iter$fstatistic[[3]],
+                                                     lower.tail = FALSE),
+                                                  multlm_final_headdown_iter$adj.r.squared))
+}
+names(multlm_final_headdown_coef) <- vbl_clm
+multlm_final_headdown_strength <- multlm_final_headdown_strength %>%
+  add_column(iso = vbl_clm, .before = 1)
+
+print(multlm_final_headdown_coef)
+print(multlm_final_headdown_strength)
+
+#==Stream basin analysis
+# Stream LEL by basin for main sampling sites
+stream_spatial_index <- c("North River Mouth", "North River Shelter 2 South Fork", "North River Shelter 5.8",
+                          "South River Mouth", "Fox Canyon Bridge North Fork", "Fox Canyon Bridge South Fork",
+                          "Amitsuarsuk")
+stream_subset_northsouth <- water_iso %>% # Extracting out stream data
+  filter(type == "stream") %>%
+  filter(site_name %in% stream_spatial_index)
+amitsuarsuk_subset<- water_iso %>% # Extracting out stream data
+  filter(type == "stream") %>%
+  filter(basin_name == "Amitsuarsuk")
+amitsuarsuk_subset$site_name <- "Amitsuarsuk" # Renaming all sites along stream to be simply Amitsuarsuk
+stream_subset <- rbind(stream_subset_northsouth, amitsuarsuk_subset) # Putting all desired stream data in one tibble
+stream_subset$site_name <- factor(stream_subset$site_name, levels=stream_spatial_index) # Making so the order is always correct
+
+lel_stream_bystream <- stream_subset %>% # Running regression by type
+  group_by(site_name) %>%
+  nest() %>%
+  mutate(lel = map(data, ~lm(d2H~d18O, data=.)))
+
+lel_slope <- 
+  lel_stream_bystream %>%
+  mutate(tidyit = map(lel, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "d18O") %>%
+  dplyr::select(site_name, estimate, std.error)
+colnames(lel_slope) <- c("site_name", "slope", "se.slope")
+
+lel_intercept <- 
+  lel_stream_bystream %>%
+  mutate(tidyit = map(lel, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "(Intercept)") %>%
+  dplyr::select(site_name, estimate, std.error)
+colnames(lel_intercept) <- c("site_name", "intercept", "se.intercept")
+
+lel_r2 <- 
+  lel_stream_bystream %>%
+  mutate(glanceit = map(lel, broom::glance)) %>%
+  unnest(glanceit) %>%
+  dplyr::select(site_name, r.squared, p.value, nobs)
+
+lel_stream_bystream_params <- lel_slope %>% # Combining all data
+  inner_join(lel_intercept, by="site_name") %>%
+  inner_join(lel_r2, by="site_name")
+
+lel_stream_bystream_params$basin_name <- distinct(stream_subset, site_name, .keep_all = TRUE) %>%
+  ungroup() %>%
+  dplyr::pull(basin_name)
+print(lel_stream_bystream_params)
+
+lel_stream_bystream_bybasin_slope <- lel_stream_bystream_params %>%
+  group_by(basin_name) %>%
+  summarize(count=n(),mean_slope=mean(slope, na.rm=TRUE), st_err_slope=sd(slope, na.rm=TRUE)/sqrt(sum(!is.na(slope))))
+print(lel_stream_bystream_bybasin_slope)
+
+####========END SPATIAL ANALYSIS======####
+
+
+####==================================####
+####=======Temporal Analyses==========####
+####==================================####
+#==Lake temporal analyses
+# Local water line parameters and stat values for 2018 Lake Potato/Power Lake
+lwl_lake18_bytype <- water_iso_plus_gnip %>% # Running regression by type
+  filter(year == 2018) %>%
+  filter(site_name == "Lake Potato" | site_name == "Power Lake") %>%
+  group_by(site_name) %>%
+  nest() %>%
+  mutate(lwl = map(data, ~lm(d2H~d18O, data=.)))
+
+lwl_lake18_slope <- 
+  lwl_lake18_bytype %>%
+  mutate(tidyit = map(lwl, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "d18O") %>%
+  dplyr::select(site_name, estimate, std.error)
+colnames(lwl_lake18_slope) <- c("site_name", "slope", "se.slope")
+
+lwl_lake18_intercept <- 
+  lwl_lake18_bytype %>%
+  mutate(tidyit = map(lwl, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "(Intercept)") %>%
+  dplyr::select(site_name, estimate, std.error)
+colnames(lwl_lake18_intercept) <- c("site_name", "intercept", "se.intercept")
+
+lwl_lake18_r2 <- 
+  lwl_lake18_bytype %>%
+  mutate(glanceit = map(lwl, broom::glance)) %>%
+  unnest(glanceit) %>%
+  dplyr::select(site_name, r.squared, p.value, nobs)
+
+lwl_lake18 <- lwl_lake18_slope %>% # Combining all data
+  inner_join(lwl_lake18_intercept, by="site_name") %>%
+  inner_join(lwl_lake18_r2, by="site_name")
+print(lwl_lake18)
+#write.csv(lwl,"lwl_lake18_regression.csv", row.names=FALSE) # Remove comment marker to output file
+
+# Finding intersections between LEL and LMWL for 2018 Lake Potato/Power Lake
+lake18_index <- c("Lake Potato", "Power Lake")
+lwl_lake18_intersect <- as_tibble(matrix(nrow=length(lake18_index),ncol=2), .name_repair = "unique")
+lwl_lake18_intersect <- as_tibble(cbind(lake18_index, lwl_lake18_intersect))
+colnames(lwl_lake18_intersect) <- c("lake", "d18O", "d2H")
+
+for (i in 1:length(lake18_index)) {
+  coef_iter <- rbind(coef(lwl_bytype$lwl[lwl_bytype$type=="GNIP"][[1]]), # Coefficient matrix
+                     coef(lwl_lake18_bytype$lwl[lwl_lake18_bytype$site_name==lake18_index[i]][[1]]))
+  lwl_lake18_intersect[i,c(2,3)] <- t(c(-solve(cbind(coef_iter[,2],-1)) %*% coef_iter[,1]))
+}
+print(lwl_lake18_intersect)
+
+# Comparing how the isotopic values change between different time periods
+lm_iso_doy <- list()
+lm_iso_doy_means <- list()
+isodiff <- list()
+water_iso_periodcompare_bytiming <- water_iso_periodcompare %>% # Splitting into a list by timing period
+  group_split(timing)
+period_index <- c("x2018a_2018b", "x2018a_2019", "x2018b_2019")
+timing_avoid_index <- c(3, 2, 1)
+diff_index_a <- c(2,3,3)
+diff_index_b <- c(1,1,2)
+# Linear regressions to be used in loop
+iso_doy_func <- list()
+iso_doy_func[[1]] <- function(data) {
+  lm(d18O~doy, data=data)
+}
+iso_doy_func[[2]] <- function(data) {
+  lm(d2H~doy, data=data)
+}
+iso_doy_func[[3]] <- function(data) {
+  lm(dxs~doy, data=data)
+}
+# Loop to calculate slopes between day of year and isotopic values between different periods
+for (j in 1:length(period_index)) { # Looping between time periods comparison pairs
+  lm_iso_doy_iter <- list()
+  lm_iso_doy_means_iter <- as_tibble(data.frame(matrix(nrow=length(vbl_clm), ncol=3)))
+  isodiff_iter <- as_tibble(data.frame(matrix(nrow=length(vbl_clm), ncol=3)))
+  for (i in 1:length(vbl_clm)){ # Looping through isotopic variables
+    lm_iso_doy_iter[[i]] <- water_iso_periodcompare %>%
+      filter(timing != timing_avoid_index[j]) %>%
+      group_by(site_name) %>%
+      nest() %>%
+      mutate(iso_lm = lapply(data, iso_doy_func[[i]])) %>%
+      mutate(tidyit = map(iso_lm, broom::tidy)) %>%
+      unnest(tidyit) 
+    lm_iso_doy_means_iter[i,1] <- vbl_clm[i] # Getting the mean slope and intercept per period compare
+    lm_iso_doy_means_iter[i,2] <- lm_iso_doy_iter[[i]] %>%
+      ungroup() %>%
+      filter(term == "doy") %>%
+      summarize(mean=mean(estimate))
+    lm_iso_doy_means_iter[i,3] <- lm_iso_doy_iter[[i]] %>%
+      ungroup() %>%
+      filter(term == "(Intercept)") %>%
+      summarize(mean=mean(estimate))
+    isodiff_iter[i,1] <- vbl_clm[i] # Getting the difference in mean isotopic value pairwise per period compare
+    isodiff_iter[i,2] <- mean(water_iso_periodcompare_bytiming[[diff_index_a[j]]][[vbl_clm_index[i]]] - 
+                                water_iso_periodcompare_bytiming[[diff_index_b[j]]][[vbl_clm_index[i]]])
+    isodiff_iter[i,3] <- sd(water_iso_periodcompare_bytiming[[diff_index_a[j]]][[vbl_clm_index[i]]] - 
+                              water_iso_periodcompare_bytiming[[diff_index_b[j]]][[vbl_clm_index[i]]])
+  }
+  names(lm_iso_doy_iter) <- vbl_clm
+  colnames(lm_iso_doy_means_iter) <- c("iso", "slope", "yint")
+  colnames(isodiff_iter) <- c("iso", "mean", "sd")
+  lm_iso_doy[[j]] <- lm_iso_doy_iter
+  lm_iso_doy_means[[j]] <- lm_iso_doy_means_iter
+  isodiff[[j]] <- isodiff_iter
+}
+names(lm_iso_doy) <- period_index
+names(lm_iso_doy_means) <- period_index
+names(isodiff) <- period_index
+
+# Predicting what the isotopic values in 2018 would be based on the day of year of 2019 sampling
+predict_iso_2018 <- as_tibble(matrix(nrow=nrow(water_iso_periodcompare_bytiming[[3]]), ncol=2*length(vbl_clm)+1))
+predict_iso_2018[1] <- water_iso_periodcompare_bytiming[[3]]$site_name
+for (i in 1:length(vbl_clm)){ # Looping through isotopic variables
+  predict_iso_2018[i+1] <- water_iso_periodcompare_bytiming[[3]]$doy *
+    lm_iso_doy[[1]][[i]]$estimate[lm_iso_doy[[1]][[i]]$term == "doy"] +
+    lm_iso_doy[[1]][[i]]$estimate[lm_iso_doy[[1]][[i]]$term == "(Intercept)"]
+  predict_iso_2018[i+4] <- water_iso_periodcompare_bytiming[[3]][[vbl_clm[i]]]
+}
+colnames(predict_iso_2018) <- c("site_name", "d18O_predicted", "d2H_predicted", "dxs_predicted",
+                                "d18O_2019", "d2H_2019", "dxs_2019")
+
+t.test(predict_iso_2018$d18O_predicted, predict_iso_2018$d18O_2019)
+t.test(predict_iso_2018$d2H_predicted, predict_iso_2018$d2H_2019)
+t.test(predict_iso_2018$dxs_predicted, predict_iso_2018$dxs_2019)
+
+#### END TEMPORAL ANALYSES ####
+
+####==================================####
+####=======CLIMATE ANALYSES===========####
+####==================================####
+# Climate comparisons between summers 2018 and 2019
+yr_index <- c(2018, 2019)
+wxmeans_index <- c("tavg", "pres", "rh_ice", "nao", "ao", "seaice", "Eness", "wind_sp")
+wxsums_index <- c("prcp_H2O", "prcp_snow")
+
+pfk_isowx_day %>% # Mean summer values for selected climate variables
+  filter(yr %in% yr_index) %>%
+  filter(sn == "sum") %>%
+  group_by(yr) %>%
+  summarize(across(all_of(wxmeans_index), \(x) mean(x, na.rm = TRUE)))
+
+pfk_isowx_day %>% # Median summer values for selected climate variables
+  filter(yr %in% yr_index) %>%
+  filter(sn == "sum") %>%
+  group_by(yr) %>%
+  summarize(across(all_of(wxmeans_index), \(x) median(x, na.rm = TRUE)))
+
+pfk_isowx_day %>% # Summed summer values for precipitation variables
+  filter(yr %in% yr_index) %>%
+  filter(sn == "sum") %>%
+  group_by(yr) %>%
+  summarize(across(all_of(wxsums_index), \(x) sum(x, na.rm = TRUE)))
+
+pfk_pet %>% # Summed summer values for PET
+  filter(yr %in% yr_index) %>%
+  filter(sn == "sum") %>%
+  group_by(yr) %>%
+  summarize(pet=sum(pet, na.rm = TRUE))
+
+#### END CLIMATE ANALYSES ####
+
+
+#=====================================================================#
+####==================Plotting Figures=============================####
+#=====================================================================#
+
+####==================================####
+####====Overall data results plots====####
+####==================================####
+# This makes a plot of the general structure of data sets by the different sample origins.
+overall_mean_iso <- water_iso %>%
+  summarize(across(vbl_clm, mean))
+overall_sd_iso <- water_iso %>%
+  summarize(across(vbl_clm, sd))
+iso_violin_plot <- list()
+colorset <- c("deepskyblue3", "darkgoldenrod2", "violetred4", "springgreen4",
+              "cyan3", "slateblue4", "lightpink2", "gray70")
+type_labels <- c("lake", "pool", "stream", "surface flow", "snow/ice",
+                 "prcp rain", "prcp snow", "GNIP 1966-1971")
+for (i in 1:length(vbl_clm)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    iso_violin_plot[[i]] <<- ggplot(data=water_iso_plus_gnip) +
+      theme_classic() +
+      geom_violin(aes(x=type, y=.data[[vbl_clm[i]]]*1000, color=type, fill=type), scale="width", linetype='dotted', draw_quantiles = c(0.25, 0.75)) +
+      geom_violin(aes(x=type, y=.data[[vbl_clm[i]]]*1000, color=type), scale="width", fill='transparent', draw_quantiles = c(0.5)) +
+      geom_hline(yintercept=overall_mean_iso[[i]]*1000, linetype="dashed", color="gray60") +
+      geom_hline(yintercept=overall_mean_iso[[i]]*1000+overall_sd_iso[[i]]*1000, linetype="dotted", color="gray60") +
+      geom_hline(yintercept=overall_mean_iso[[i]]*1000-overall_sd_iso[[i]]*1000, linetype="dotted", color="gray60") +
+      scale_color_manual(values=colorset) +
+      scale_fill_manual(values=alpha(colorset, 0.4)) +
+      scale_y_continuous(name=paste(vbl_clm[i],"(‰)"), position = "left") +
+      scale_x_discrete(labels=toupper(type_labels), position = "bottom", name=NULL) +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=10, color=colorset, angle=30, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color='gray40'),
+            axis.text.y = element_text(size=14, color='gray40'),
+            axis.ticks.y = element_line(color='gray40'),
+            axis.line.y = element_line(color='gray40'))
+  })
+
+windows(height=8, width=4)
+#pdf("Figures/Iso_Violin_Plot_ByGroup.pdf", height=8, width=4)
+plot_grid(plotlist = iso_violin_plot, ncol=1, align = "hv")
+#ggsave("Figures/Iso_Violin_Plot_ByGroup.png", height=8, width=4, dpi=600)
+#dev.off()
+
+# This makes a plot comparing the LWL of samples by groups
+water_iso_lwl <- subset(water_iso, type != "precipitation rain" & type != "precipitation snow")
+water_iso_lwl$type <- factor(water_iso_lwl$type, levels=c("lake", "pool", "stream", # Making so the order is always correct
+                                                            "surface flow", "snow or ice"))
+colorset_inv <- rev(colorset[seq(1:length(unique(water_iso_lwl$type)))])
+
+# Full LMWL plot
+iso_lwl_plot <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type)), data=water_iso_lwl, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type), fill=fct_rev(type)), data=water_iso_lwl, method="lm") +
+  geom_rect(aes(xmin=-23, xmax=-15, ymin=-170, ymax=-125), color="gray60", fill=alpha("gray", 0))+
+  scale_color_manual(values=colorset_inv, guide=guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=alpha(colorset_inv, 0.4), guide=guide_legend(reverse=TRUE)) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-31,-4), ylim=c(-230,-80)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+# Zoomed in LMWL plot
+iso_lwl_plot_zoom <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type)), data=water_iso_lwl, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type), fill=fct_rev(type)), data=water_iso_lwl, method="lm") +
+  scale_color_manual(values=colorset_inv, guide=guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=alpha(colorset_inv, 0.4), guide=guide_legend(reverse=TRUE)) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-23,-15), ylim=c(-170,-125)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+windows(height=6, width=12)
+#pdf("Figures/pfk_LMWL_plots.pdf", height=6, width=12)
+plot_grid(plotlist = list(iso_lwl_plot, iso_lwl_plot_zoom), ncol=2, align = "hv")
+#ggsave("Figures/pfk_LMWL_plots.png", height=6, width=12, dpi = 600)
+#dev.off()
+
+#### END OVERALL PLOTS ####
+
+####==================================####
+####======Spatial analyses plots======####
+####==================================####
+#====Violin and LEL plots of lakes by the different lake types====#
+laketype_labels <- setNames(c("endorheic", "headwater", "downstream", "vale", "proglacial", "altered"), levels(water_iso$laketype))
+colorset <- setNames(c("violetred", "turquoise4", "yellow3", "orange2", "mediumpurple1", "gray70"), levels(water_iso$laketype))
+period_label <- c("E. Summer 2018: All", "L. Summer 2018: All", "M. Summer 2019: All",
+                  "E. Summer 2018: Main", "L. Summer 2018: Main", "M. Summer 2019: Main") #Seems to be a flaw/bug in getting labeling to work with violin plots
+
+# Calculating overall y limits per variable for group plotting
+ylims <- list()
+for (i in 1:length(vbl_clm)) {
+  ylims[[i]] <- range(lakeset[vbl_clm[i]])
+}
+names(ylims) <- vbl_clm
+
+# Building list of violin plots of lake iso by laketype (Period 1 vs 2 vs 3)
+lake_iso_violin_plot <- list()
+lake_iso_violin_plot_iter <- list()
+for (j in 1:nrow(lakeset_byperiod)) {
+  data_iter <- lakeset_byperiod[[2]][[j]]
+  for (i in 1:length(vbl_clm)) 
+    local({ #Have to do local or else plot later only does each plot in most recent i
+      i <- i
+      lake_iso_violin_plot_iter[[i]] <<- ggplot(data=data_iter) +
+        theme_classic() +
+        geom_violin(aes(x=laketype, y=.data[[vbl_clm[i]]]*1000, color=laketype, fill=laketype), scale="width", linetype='dotted', draw_quantiles = c(0.25, 0.75)) +
+        geom_violin(aes(x=laketype, y=.data[[vbl_clm[i]]]*1000, color=laketype), scale="width", fill='transparent', draw_quantiles = c(0.5)) +
+        scale_color_manual(values=colorset) +
+        scale_fill_manual(values=alpha(colorset, 0.4)) +
+        scale_y_continuous(name=paste(vbl_clm[i],"(‰)"), position = "left", limits=ylims[[vbl_clm[i]]]*1000) +
+        scale_x_discrete(labels=toupper(laketype_labels), position = "bottom", name=NULL) +
+        theme(legend.position = "none",
+              axis.title.x = element_text(size=16, color='gray40'),
+              axis.text.x =  element_text(size=10, color=colorset[unique(data_iter$laketype)[order(unique(data_iter$laketype))]], angle=30, hjust=1),
+              axis.ticks.x = element_line(color='gray40'),
+              axis.line.x = element_line(color='gray40'),
+              axis.title.y = element_text(size=16, color='gray40'),
+              axis.text.y = element_text(size=14, color='gray40'),
+              axis.ticks.y = element_line(color='gray40'),
+              axis.line.y = element_line(color='gray40'))
+    })
+  lake_iso_violin_plot[[j]] <- plot_grid(plotlist=lake_iso_violin_plot_iter, ncol=1,
+                                         align = "hv")
+}
+
+# Violin plots of isotopes by laketype, all 3 periods, all + main lakes, used for broader context
+windows(height=10, width=16)
+#pdf("Figures/Lake_Iso_Violin_Plot_ByType.pdf", height=10, width=16)
+plot_grid(plotlist = lake_iso_violin_plot, ncol=nrow(lakeset_byperiod), align = "hv",
+          labels=c(period_label,period_label), label_fontface="plain", label_size = 12, label_y = 1.03) +
+  theme(plot.margin=unit(c(1.2,0,0,0), "cm"))
+#ggsave("Figures/Lake_Iso_Violin_Plot_ByType.png", height=10, width=16, dpi=600)
+#dev.off()
+
+# Violin plots of isotopes by laketype, only period 3 (midsummer 2019), all lakes
+lake_per3_iso_violin_plot <- lake_iso_violin_plot[[3]]
+
+# A lot of Period 3 lakes all in one violin, used to add to violin plot in final version made in Illustrator
+lake_total_iso_violin_plot_iter <- list()
+for (i in 1:length(vbl_clm)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    lake_total_iso_violin_plot_iter[[i]] <<- ggplot(data=lakeset %>% filter(timing == 3)) +
+      theme_classic() +
+      geom_violin(aes(x=1,y=.data[[vbl_clm[i]]]*1000), scale="width", color="gray30", fill="gray50", linetype='dotted', draw_quantiles = c(0.25, 0.75)) +
+      geom_violin(aes(x=1,y=.data[[vbl_clm[i]]]*1000), scale="width", color="gray30", fill='transparent', draw_quantiles = c(0.5)) +
+      scale_y_continuous(name=paste(vbl_clm[i],"(‰)"), position = "left") +
+      scale_x_discrete(labels=toupper(laketype_labels), position = "bottom", name=NULL) +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=10, color='gray40', angle=30, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color='gray40'),
+            axis.text.y = element_text(size=14, color='gray40'),
+            axis.ticks.y = element_line(color='gray40'),
+            axis.line.y = element_line(color='gray40'))
+  })
+
+lake_total_iso_violin_plot <- plot_grid(plotlist = lake_total_iso_violin_plot_iter, ncol=1, align = "hv")
+
+# Plotting LELs for lakes with more than 3 samples
+colorset <- setNames(c("violetred", "turquoise4", "yellow3", "orange2", "mediumpurple1", "gray70"), levels(water_iso$laketype))
+lake_lel_bylake_plot <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, group=site_name, color=laketype), data=multilake, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, group=site_name, color=laketype), fill=NA, data=multilake, method="lm") +
+  scale_color_manual(values=colorset) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-23,-4), ylim=c(-175,-80)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+
+windows(height=8, width=16)
+#pdf("Figures/lake_violin_lel_bylake_plots.pdf", height=8, width=16)
+plot_grid(plotlist = list(lake_total_iso_violin_plot,lake_per3_iso_violin_plot,
+                          lake_lel_bylake_plot), ncol=3, align = "hv",
+          rel_widths = c(0.4,0.5,1))   
+#ggsave("Figures/lake_violin_lel_bylake_plots.png", height=8, width=16)
+#dev.off()
+
+
+#=========Dendrogram plots=========#
+# Plotting clustering results in dendrogram
+colorbytype <- colorset[lake_per3$laketype_number]
+labels_colors(lake_isoz_per3_dendro) <- colorbytype[order.dendrogram(lake_isoz_per3_dendro)]
+windows(height=8, width=12)
+#pdf("Figures/ptfk_lake_dendro1.pdf", height=8, width=12)
+#png("Figures/ptfk_lake_dendro1.png", height=800, width=1200)
+par(cex=0.7, mar=c(2,2,2,10))
+plot(lake_isoz_per3_dendro, horiz=TRUE)
+#dev.off()
+
+# Plotting same results as unrooted tree
+lake_isoz_per3_hclust_unroot <- lake_isoz_per3_hclust
+labels(lake_isoz_per3_hclust_unroot) <- rep("•", nrow(lake_isoz_per3))
+labels(lake_isoz_per3_hclust_unroot) <- rep("o", nrow(lake_isoz_per3))
+labels(lake_isoz_per3_hclust_unroot) <- rep("–", nrow(lake_isoz_per3))
+windows(height=10, width=10)
+#pdf("Figures/ptfk_lake_dendro2.pdf", height=8, width=8)
+#png("Figures/ptfk_lake_dendro2.png", height=800, width=800)
+plot(as.phylo(lake_isoz_per3_hclust_unroot), type = "unrooted", cex = 1.5,
+     no.margin = TRUE, show.tip.label = FALSE, rotate.tree=78)
+tiplabels(pch=20, col=colorbytype)
+#dev.off()
+
+### Regression plots for Main Lakes, Sample Period 3 ###
+lm_headdown_plots <- list()
+multlm_headdown_addvar_iter <- list()
+multlm_headdown_addvar <- list()
+
+# Function for making added variable plots
+#   From stackoverflow user Ben (3 Dec 2019), with some updating by PDA
+avPlots.invis <- function(MODEL, ...) {
+  
+  ff <- tempfile()
+  png(filename = ff)
+  OUT <- car::avPlots(MODEL, ...)
+  dev.off()
+  unlink(ff)
+  OUT }
+
+gg_avplots  <- function(model_input, ylabel = NULL) {
+  
+  #Extract the information for AV plots
+  avplots_model <- avPlots.invis(model_input)
+  avplots_length <- length(avplots_model)
+  avplots_yrange <- range(bind_rows(lapply(avplots_model, FUN=data.frame))[[2]])
+  #Create the added variable plots using ggplot
+  avplots_ggplot <- vector('list', avplots_length)
+  for (i in 1:avplots_length) {
+    DATA <- data.frame(avplots_model[[i]])
+    avplots_ggplot[[i]] <- ggplot2::ggplot(aes_string(x = colnames(!!DATA)[1],
+                                                      y = colnames(!!DATA)[2]),
+                                           data = DATA) +
+      scale_y_continuous(limits=avplots_yrange, labels=function(y) y*1000) +
+      theme_classic() +
+      geom_point(colour = 'mediumorchid4', alpha=0.5) + 
+      geom_smooth(method = 'lm', color = 'seagreen4', fill='seagreen4', alpha=0.3,
+                  formula = y ~ x, linetype = 'dashed') +
+      xlab(paste0('Predictor Residual \n (', 
+                  names(DATA)[1], ' | others)')) +
+      ylab(paste0('Response Residual \n (',
+                  ifelse(is.null(ylabel), 
+                         paste0(names(DATA)[2], ' | others'), ylabel), ')')) }
+  #Return output object
+  avplots_ggplot }
+# END ADDED VARIABLE PLOT FUNCTION
+
+# Individual and partial regression plot creation
+for (i in 1:length(vbl_clm)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    # Individual regressions of environmental parameters (no multiple regression weighting)
+    lm_headdown_plots[[i]] <<- multlm_headdown[["Main Period 3"]][[vbl_clm[i]]] %>%
+      augment() %>%
+      melt(measure.vars = envparam_names, variable.name = c("envparam")) %>%
+      ggplot(., aes(value, iso_iter)) +
+      theme_classic() +
+      geom_point(color="dodgerblue4", alpha=0.5) +
+      geom_smooth(method = "lm", color="firebrick", fill="firebrick", alpha=0.3) +
+      scale_y_continuous(name=vbl_clm[i]) +
+      theme(plot.title = element_text(hjust=0.5)) +
+      facet_wrap(~envparam, scales = "free_x", ncol=length(envparam_names))
+    
+    # Partial regression (added variable) plots
+    multlm_headdown_addvar_iter <- gg_avplots(multlm_headdown[["Main Period 3"]][[vbl_clm[i]]], ylabel=vbl_clm[i])
+    multlm_headdown_addvar[[i]] <<- plot_grid(plotlist = multlm_headdown_addvar_iter, ncol=length(envparam_names), align = "hv")
+  })
+
+title_lm <- ggdraw() + 
+  draw_label("Individual parameter linear regression plots", x = 0.5, hjust = 0.5, size=18) +
+  theme(plot.margin = margin(0, 0, 0, 4))
+title_multlm <- ggdraw() + 
+  draw_label("Added variable plots of multiple regression", x = 0.5, hjust = 0.5, size=18) +
+  theme(plot.margin = margin(0, 0, 0, 4))
+
+# Individual regression plots for all isotopes
+windows(height=10, width=16)
+#pdf("Figures/lm_headdown_individual_plots.pdf", height=10, width=16)
+plot_grid(title_lm, plotlist = lm_headdown_plots, ncol=1, align = "hv",
+          rel_heights = c(0.1,seq(1,1,length=length(lm_headdown_plots))))   
+#ggsave("Figures/lm_headdown_individual_plots.png", height=10, width=16)
+#dev.off()
+
+# Partial regressions for all isotopes
+windows(height=10, width=16)
+#pdf("Figures/multlm_headdown_partial_plots.pdf", height=10, width=16)
+plot_grid(title_multlm, plotlist = multlm_headdown_addvar, ncol=1, align = "hv",
+          rel_heights = c(0.1,seq(1,1,length=length(lm_headdown_plots))))   
+#ggsave("Figures/multlm_headdown_partial_plots.png", height=10, width=16)
+#dev.off()
+
+#=====Stream spatial plots=====#
+# This makes a violin plot of the general structure of stream isotopes by the different streams.
+overall_mean_iso <- stream_subset %>%
+  summarize(across(vbl_clm, mean))
+overall_sd_iso <- stream_subset %>%
+  summarize(across(vbl_clm, sd))
+stream_violin_plot_iter <- list()
+colorset <- c(rep("deepskyblue3",3), rep("darkgoldenrod2",3), "violetred4")
+stream_spatial_labels <- c("Pituffik: Mouth", "Pituffik: Snoutwash", "Pituffik: Ice Wall",
+                           "Sioraq: Mouth", "Sioraq: Tuto", "Sioraq: Pingorsuit",
+                           "Amitsuarsuk")
+
+for (i in 1:length(vbl_clm)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    stream_violin_plot_iter[[i]] <<- ggplot(data=stream_subset) +
+      theme_classic() +
+      geom_violin(aes(x=site_name, y=.data[[vbl_clm[i]]]*1000, color=site_name, fill=site_name), scale="width", linetype='dotted', draw_quantiles = c(0.25, 0.75)) +
+      geom_violin(aes(x=site_name, y=.data[[vbl_clm[i]]]*1000, color=site_name), scale="width", fill='transparent', draw_quantiles = c(0.5)) +
+      geom_hline(yintercept=overall_mean_iso[[i]]*1000, linetype="dashed", color="gray60") +
+      geom_hline(yintercept=overall_mean_iso[[i]]*1000+overall_sd_iso[[i]]*1000, linetype="dotted", color="gray60") +
+      geom_hline(yintercept=overall_mean_iso[[i]]*1000-overall_sd_iso[[i]]*1000, linetype="dotted", color="gray60") +
+      scale_color_manual(values=colorset) +
+      scale_fill_manual(values=alpha(colorset, 0.4)) +
+      scale_y_continuous(name=paste(vbl_clm[i],"(‰)"), position = "left") +
+      scale_x_discrete(labels=toupper(stream_spatial_labels), position = "bottom", name=NULL) +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=10, color=colorset, angle=30, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color='gray40'),
+            axis.text.y = element_text(size=14, color='gray40'),
+            axis.ticks.y = element_line(color='gray40'),
+            axis.line.y = element_line(color='gray40'))
+  })
+
+stream_violin_plot <- plot_grid(plotlist = stream_violin_plot_iter, ncol=1, align = "hv")
+
+# Plotting LELs for stream sites with more than 3 samples
+stream_subset$basin_name <- factor(stream_subset$basin_name, levels = c("Pituffik", "Sioraq", "Amitsuarsuk"))
+colorset <- setNames(c("deepskyblue3", "darkgoldenrod2", "violetred4"), levels(stream_subset$basin_name))
+stream_lel_bystream_plot <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, group=site_name, color=basin_name), data=stream_subset, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, group=site_name, color=basin_name), fill=NA, data=stream_subset, method="lm") +
+  scale_color_manual(values=colorset) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-25,-16), ylim=c(-182,-138)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+windows(height=8, width=12)
+#pdf("Figures/Stream_Spatial_Violin_Plot.pdf", height=8, width=12)
+plot_grid(plotlist = list(stream_violin_plot, stream_lel_bystream_plot),
+          ncol=2, align = "hv", rel_widths = c(0.5,1))
+#ggsave("Figures/Stream_Spatial_Violin_Plot.png", height=8, width=12, dpi=600)
+#dev.off()
+
+#### END SPATIAL ANALYSES PLOTS ####
+
+####===================================================####
+####=====Times Series of Lake and Stream Isotopes======####
+####===================================================####
+#====Lake temporal plots====#
+# Selected set of lakes with early and late samples
+iso_ts_plot_lakeset <- list()
+ylims <- data.frame(c(-23,-180,-25),c(-8,-100,10))
+colnames(ylims) <- c("ymin", "ymax")
+for (i in 1:length(vbl_clm_index)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    color_select <- as.character(iso_color_index[iso_color_index$iso == colnames(water_iso_periodcompare[vbl_clm_index[i]]),2])
+    iso_ts_plot_lakeset[[i]] <<- ggplot() +
+      theme_classic() +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                    y=.data[[vbl_clm[i]]]*1000, group = factor(site_name)),
+                color=color_select, data=water_iso_periodcompare %>% filter(timing != 3)) +
+      geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                     y=.data[[vbl_clm[i]]]*1000, group = factor(site_name), size=lake_surface_area), shape=21,
+                 color=color_select, fill=alpha(color_select, 0.3), data=water_iso_periodcompare %>% filter(timing != 3)) +
+      scale_size(range = c(1,5)) +
+      scale_y_continuous(name=paste(colnames(water_iso_periodcompare[vbl_clm_index[i]]),"(‰)"), position = "left",
+                         limits = c(ylims[i,1],ylims[i,2])) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+  })
+
+# Focused time series of Lake Potato and Power Lake
+lake_ts_index <- c("Lake Potato", "Power Lake")
+lake_ts_plot <- list()
+title_iter <- list()
+#ylims <- data.frame(c(-23,-180,-10),c(-14,-120,10))
+ylims <- data.frame(c(-23,-180,-25),c(-8,-100,10))
+colnames(ylims) <- c("ymin", "ymax")
+
+data_iter <- water_iso %>%
+  filter(site_name %in% lake_ts_index) %>%
+  filter(year == 2018)
+iso_ts_plot_lake <- list()
+#title_iter <- ggdraw() + 
+#  draw_label("Lakes", x = 0, hjust = 0, size=14) +
+#  theme(plot.margin = margin(0, 0, 0, 4))
+for (i in 1:length(vbl_clm_index)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    color_select <- as.character(iso_color_index[iso_color_index$iso == colnames(data_iter[vbl_clm_index[i]]),2])
+    iso_ts_plot_lake[[i]] <<- ggplot(data=data_iter) +
+      theme_classic() +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                    y=.data[[vbl_clm[i]]]*1000, group = factor(site_name), linetype=factor(site_name)), color=color_select) +
+      geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                     y=.data[[vbl_clm[i]]]*1000, group = factor(site_name), shape=factor(site_name)),
+                 color=color_select, fill=alpha(color_select, 0.3), size=2) + # Scaling to match other plot
+      scale_shape_manual(values=c(21, 23)) +
+      scale_y_continuous(name=paste(colnames(data_iter[vbl_clm_index[i]]),"(‰)"), position = "left",
+                         limits = c(ylims[i,1],ylims[i,2])) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+  })
+
+# Temperature record 2018
+color_select <- "seagreen4"
+  wxdata_select <- pfk_isowx_day %>%
+    filter(yr == 2018)
+  tavg_ts_plot_2018 <- ggplot(data=wxdata_select) +
+    theme_classic() +
+    geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                  y=tavg), color=color_select) +
+    scale_y_continuous(name="Air Temperature (°C)", position = "left", limits = c(-2,15)) +
+    scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                 date_breaks="2 weeks", date_labels = "%d %b") +
+    theme(legend.position = "none",
+          axis.title.x = element_text(size=16, color='gray40'),
+          axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+          axis.ticks.x = element_line(color='gray40'),
+          axis.line.x = element_line(color='gray40'),
+          axis.title.y = element_text(size=16, color=color_select),
+          axis.text.y = element_text(size=14, color=color_select),
+          axis.ticks.y = element_line(color=color_select),
+          axis.line.y = element_line(color=color_select))
+  
+  # Precipitation record 2018
+  color_select <- "navyblue"
+    wxdata_select <- pfk_isowx_day %>%
+      filter(yr == 2018)
+    prcp_ts_plot_2018 <- ggplot(data=wxdata_select) +
+      theme_classic() +
+      geom_col(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                   y=prcp_H2O), fill=color_select) +
+      scale_y_continuous(name="Precipitation (mm)", position = "left", limits = c(0,10.5)) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+    
+    # PET record 2018 (Singer et al. 2021 data)
+    color_select <- "darkorange"
+    wxdata_select <- pfk_pet %>%
+      filter(yr == 2018)
+    pet_ts_plot_2018 <- ggplot(data=wxdata_select) +
+      theme_classic() +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                    y=pet), color=color_select) +
+      scale_y_continuous(name="PET (mm d-1)", position = "left", limits = c(0,3)) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+    
+    iso_ts_plot_lakeset_wx <- append(iso_ts_plot_lakeset, list(tavg_ts_plot_2018, prcp_ts_plot_2018, pet_ts_plot_2018)) # Joining time series to wx data
+    iso_ts_plot_lake_wx <- append(iso_ts_plot_lake, list(tavg_ts_plot_2018, prcp_ts_plot_2018, pet_ts_plot_2018)) # Joining time series to wx data
+    windows(height=10, width=6)
+    #pdf("Figures/TS_lakes_2018.pdf", height=10, width=6)
+    plot_grid(plotlist = append(iso_ts_plot_lakeset_wx, iso_ts_plot_lake_wx),
+              ncol=2, align = "v", byrow = FALSE,
+              rel_heights = c(seq(1,1,length=length(iso_ts_plot_lake)), 0.5, 0.5, 0.5))
+    #ggsave("Figures/TS_lakes_2018.png", height=10, width=6, dpi=600)
+    #dev.off()
+    
+#======Stream temporal plots======#
+river_ts_north_index <- c("North River Mouth", "North River Shelter 2 South Fork", "North River Shelter 5.8")
+river_ts_south_index <- c("South River Mouth", "Fox Canyon Bridge North Fork", "Fox Canyon Bridge South Fork")
+river_ts_index <- list(river_ts_north_index, river_ts_south_index)
+river_ts_label_index <- c("Pituffik River", "Sioraq River")
+yr_index <- c(2018, 2019)
+river_ts_plot <- list()
+river_ts_plot_byyear <- list()
+title_iter <- list()
+ylims <- data.frame(c(-25,-185,6),c(-19,-140,14))
+colnames(ylims) <- c("ymin", "ymax")
+
+for (k in 1:length(yr_index)) {
+  for (j in 1:length(river_ts_index)) {
+    data_iter <- water_iso %>%
+      filter(year == yr_index[k]) %>%
+      filter(site_name %in% river_ts_index[[j]])
+    data_iter$site_name <- factor(data_iter$site_name, levels = river_ts_index[[j]])
+    iso_ts_plot_stream <- list()
+    title_iter <- ggdraw() + 
+      draw_label(river_ts_label_index[j], x = 0, hjust = 0, size=14) +
+      theme(plot.margin = margin(0, 0, 0, 4))
+    for (i in 1:length(vbl_clm_index)) 
+      local({ #Have to do local or else plot later only does each plot in most recent i
+        i <- i
+        color_select <- as.character(iso_color_index[iso_color_index$iso == colnames(data_iter[vbl_clm_index[i]]),2])
+        iso_ts_plot_stream[[i]] <<- ggplot(data=data_iter) +
+          theme_classic() +
+          geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                        y=.data[[vbl_clm[i]]]*1000, group = factor(site_name), linetype=factor(site_name)), color=color_select) +
+          geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                         y=.data[[vbl_clm[i]]]*1000, group = factor(site_name), shape=factor(site_name)), color=color_select) +
+          scale_y_continuous(name=paste(colnames(data_iter[vbl_clm_index[i]]),"(‰)"), position = "left",
+                             limits = c(ylims[i,1],ylims[i,2])) +
+          scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                       date_breaks="2 weeks", date_labels = "%d %b") +
+          theme(legend.position = "none",
+                axis.title.x = element_text(size=16, color='gray40'),
+                axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+                axis.ticks.x = element_line(color='gray40'),
+                axis.line.x = element_line(color='gray40'),
+                axis.title.y = element_text(size=16, color=color_select),
+                axis.text.y = element_text(size=14, color=color_select),
+                axis.ticks.y = element_line(color=color_select),
+                axis.line.y = element_line(color=color_select))
+      })
+    
+    # Temperature record
+    color_select <- "seagreen4"
+    wxdata_select <- pfk_isowx_day %>%
+      filter(yr == yr_index[k])
+    tavg_ts_plot <- ggplot(data=wxdata_select) +
+      theme_classic() +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                    y=tavg), color=color_select) +
+      scale_y_continuous(name="Air Temperature (°C)", position = "left", limits = c(-2,15)) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+    
+    # Precipitation record
+    color_select <- "navyblue"
+    wxdata_select <- pfk_isowx_day %>%
+      filter(yr == yr_index[k])
+    prcp_ts_plot <- ggplot(data=wxdata_select) +
+      theme_classic() +
+      geom_col(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                   y=prcp_H2O), fill=color_select) +
+      scale_y_continuous(name="Precipitation (mm)", position = "left", limits = c(0,10.5)) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+    
+    # PET record 2018 (Singer et al. 2021 data)
+    color_select <- "darkorange"
+    wxdata_select <- pfk_pet %>%
+      filter(yr == yr_index[k])
+    pet_ts_plot <- ggplot(data=wxdata_select) +
+      theme_classic() +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
+                    y=pet), color=color_select) +
+      scale_y_continuous(name="PET (mm d-1)", position = "left", limits = c(0,4)) +
+      scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+                   date_breaks="2 weeks", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+    
+    river_ts_plot[[(k-1)*length(river_ts_index)+j]] <- plot_grid(title_iter,
+                                                                 plotlist=append(iso_ts_plot_stream, list(tavg_ts_plot, prcp_ts_plot, pet_ts_plot)),
+                                                                 ncol=1, align = "v",
+                                                                 rel_heights = c(0.2, seq(1,1,length=length(iso_ts_plot_stream)), 0.5, 0.5, 0.5))
+    
+  }
+}
+windows(height=10, width=14)
+#pdf("Figures/TS_rivers.pdf", height=10, width=14)
+plot_grid(plotlist = river_ts_plot, ncol=4, align = "hv")
+#ggsave("Figures/TS_rivers.png", height=10, width=14, dpi=600)
+#dev.off()
+
+
+#======Lake Interannual Variability plots======#
+# Subplot comparing sample values from all three sampling periods in 2018 and 2019
+iso_lake_3period_plot <- list()
+ylims <- data.frame(c(-20,-155,-43),c(-4,-80,5))
+colnames(ylims) <- c("ymin", "ymax")
+for (i in 1:length(vbl_clm_index)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    color_select <- as.character(iso_color_index[iso_color_index$iso == colnames(water_iso_periodcompare[vbl_clm_index[i]]),2])
+    iso_lake_3period_plot[[i]] <<- ggplot() +
+      theme_classic() +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                    y=.data[[vbl_clm[i]]]*1000, group = factor(site_name)),
+                color=lighten(color_select, factor=0.7), data=water_iso_periodcompare %>% filter(timing != 3)) +
+      geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                     y=.data[[vbl_clm[i]]]*1000, group = factor(site_name), shape=as.factor(timing), size=lake_surface_area),
+                 color=lighten(color_select, factor=0.7), fill=alpha(lighten(color_select, factor=0.7), 0.3),
+                 data=water_iso_periodcompare %>% filter(timing != 3)) +
+      scale_shape_manual(values=c(1,21)) +
+      scale_size(range = c(1,5)) +
+      geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                    y=.data[[vbl_clm[i]]]*1000, group = factor(site_name)),
+                linetype = "dashed", color=darken(color_select, factor=0.3), data=water_iso_periodcompare %>% filter(timing != 2)) +
+      geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                     y=.data[[vbl_clm[i]]]*1000, size=lake_surface_area),
+                 shape = 22, color=darken(color_select, factor=0.3), fill=alpha(darken(color_select, factor=0.3), 0.3),
+                 data=water_iso_periodcompare %>% filter(timing == 3)) +
+      scale_y_continuous(name=paste(colnames(water_iso_periodcompare[vbl_clm_index[i]]),"(‰)"), position = "left",
+                         limits = c(ylims[i,1],ylims[i,2])) +
+      scale_x_date(name=NULL, position = "bottom", date_labels = "%d %b") +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+  })
+
+# Subplot comparing sample values from the end of summer 2018 to midsummer 2019
+iso_lake_endsum_boxplot <- list()
+for (i in 1:length(vbl_clm_index)) 
+  local({ #Have to do local or else plot later only does each plot in most recent i
+    i <- i
+    color_select <- as.character(iso_color_index[iso_color_index$iso == colnames(water_iso_periodcompare[vbl_clm_index[i]]),2])
+    iso_lake_endsum_boxplot[[i]] <<- ggplot(data = water_iso_periodcompare %>% filter(timing != 1)) +
+      theme_classic() +
+      geom_violin(aes(x=timing, y=.data[[vbl_clm[i]]]*1000, group=timing, color=as.factor(timing), fill=as.factor(timing)), 
+                  scale="width", draw_quantiles = c(0.25, 0.5, 0.75)) +
+      geom_line(aes(timing, .data[[vbl_clm[i]]]*1000, group=site_name), color=color_select, linetype = "dashed") + # Lines connecting 2018 to 2019
+      geom_point(aes(x=timing, y=.data[[vbl_clm[i]]]*1000, shape=as.factor(timing),
+                     color=as.factor(timing), fill=as.factor(timing), size=lake_surface_area)) + # Individual lake points
+      scale_shape_manual(values=c(21,22)) +
+      scale_size(range = c(1,5)) +
+      scale_color_manual(values=c(lighten(color_select, factor=0.7), darken(color_select, factor=0.3))) +
+      scale_fill_manual(values=c(alpha(lighten(color_select, factor=0.7), 0.3), alpha(darken(color_select, factor=0.3), 0.3))) +
+      scale_x_continuous(name=NULL, labels=c("2018", "2019"), position = "bottom", breaks=c(2,3)) +
+      scale_y_continuous(name=paste(colnames(water_iso_periodcompare[vbl_clm_index[i]]),"(‰)"), position = "left",
+                         limits = c(ylims[i,1],ylims[i,2])) +
+      theme(legend.position = "none",
+            axis.title.x = element_text(size=16, color='gray40'),
+            axis.text.x =  element_text(size=14, color='gray40', angle=45, hjust=1),
+            axis.ticks.x = element_line(color='gray40'),
+            axis.line.x = element_line(color='gray40'),
+            axis.title.y = element_text(size=16, color=color_select),
+            axis.text.y = element_text(size=14, color=color_select),
+            axis.ticks.y = element_line(color=color_select),
+            axis.line.y = element_line(color=color_select))
+  })
+
+windows(height=12, width=8)
+#pdf("Figures/Lake_compare_2018-2019.pdf", height=12, width=7)
+plot_grid(plotlist = append(iso_lake_3period_plot, iso_lake_endsum_boxplot), ncol=2, align = "hv", byrow = FALSE)
+#ggsave("Figures/Lake_compare_2018-2019.png", height=12, width=7, dpi = 600)
+#dev.off()
+
+####==========END PLOTTING============####
+
+
+
+#=====================================================================#
+####==================Supplemental=================================####
+#=====================================================================#
+
+#======LWL of samples by groups plot======#
+water_iso_lwl <- subset(water_iso, type == "precipitation rain" | type == "precipitation snow")
+colorset_inv <- rev(c("slateblue4", "lightpink2"))
+
+# Full LMWL plot
+iso_lwl_plot <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type)), data=water_iso_lwl, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type), fill=fct_rev(type)), data=water_iso_lwl, method="lm") +
+  geom_rect(aes(xmin=-23, xmax=-15, ymin=-170, ymax=-125), color="gray60", fill=alpha("gray", 0))+
+  scale_color_manual(values=colorset_inv, guide=guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=alpha(colorset_inv, 0.4), guide=guide_legend(reverse=TRUE)) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-40,-4), ylim=c(-300,-80)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+# Zoomed in LMWL plot
+iso_lwl_plot_zoom <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type)), data=water_iso_lwl, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(type), fill=fct_rev(type)), data=water_iso_lwl, method="lm") +
+  scale_color_manual(values=colorset_inv, guide=guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=alpha(colorset_inv, 0.4), guide=guide_legend(reverse=TRUE)) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-23,-15), ylim=c(-170,-125)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+windows(height=6, width=12)
+#pdf("Figures/pfk_LMWL_prcp_plots.pdf", height=6, width=12)
+plot_grid(plotlist = list(iso_lwl_plot, iso_lwl_plot_zoom), ncol=2, align = "hv")
+#ggsave("Figures/pfk_LMWL_prcp_plots.png", height=6, width=12, dpi = 600)
+#dev.off()
+
+#======Lake LEL analyses and plots by sample period timing=======#
+lel_lake_bytiming <- water_iso_periodcompare %>% # Running regression by type
+  group_by(timing) %>%
+  nest() %>%
+  mutate(lel = map(data, ~lm(d2H~d18O, data=.)))
+
+lel_slope <- 
+  lel_lake_bytiming %>%
+  mutate(tidyit = map(lel, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "d18O") %>%
+  dplyr::select(timing, estimate, std.error)
+colnames(lel_slope) <- c("timing", "slope", "se.slope")
+
+lel_intercept <- 
+  lel_lake_bytiming %>%
+  mutate(tidyit = map(lel, broom::tidy)) %>%
+  unnest(tidyit) %>%
+  filter(term == "(Intercept)") %>%
+  dplyr::select(timing, estimate, std.error)
+colnames(lel_intercept) <- c("timing", "intercept", "se.intercept")
+
+lel_r2 <- 
+  lel_lake_bytiming %>%
+  mutate(glanceit = map(lel, broom::glance)) %>%
+  unnest(glanceit) %>%
+  dplyr::select(timing, r.squared, p.value, nobs)
+
+lel_lake_bytiming_params <- lel_slope %>% # Combining all data
+  inner_join(lel_intercept, by="timing") %>%
+  inner_join(lel_r2, by="timing")
+print(lel_lake_bytiming_params)
+
+# This makes a plot of the LEL of lakes by the three sampling periods
+colorset <- c("deepskyblue3", "darkgoldenrod2", "violetred4")
+water_iso_periodcompare$timing <- factor(water_iso_periodcompare$timing)
+colorset_inv <- rev(colorset[seq(1:length(unique(water_iso_periodcompare$timing)))])
+
+lake_lel_bytiming_plot <- ggplot() +
+  theme_classic() +
+  geom_abline(aes(slope=8, intercept=10), linetype="solid", lwd=1, color="gray40") + # GMWL
+  geom_abline(aes(slope=7.46, intercept=-3.30), linetype="dashed", lwd=1, color="gray40") + # GNIP LMWL
+  geom_abline(aes(slope=6.95, intercept=-18.24), linetype="dotted", lwd=1, color="gray40") + # Water Vapor Akers 2020 LMWL
+  geom_point(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(timing)), data=water_iso_periodcompare, alpha=0.3) +
+  geom_smooth(aes(x=d18O*1000, y=d2H*1000, color=fct_rev(timing), fill=fct_rev(timing)), data=water_iso_periodcompare, method="lm") +
+  scale_color_manual(values=colorset_inv, guide=guide_legend(reverse=TRUE)) +
+  scale_fill_manual(values=alpha(colorset_inv, 0.4), guide=guide_legend(reverse=TRUE)) +
+  scale_y_continuous(name="d2H (‰)") +
+  scale_x_continuous(name="d18O (‰)") +
+  coord_cartesian(xlim=c(-20,-4), ylim=c(-155,-80)) +
+  theme(legend.position = c(0.95,0.05),
+        legend.justification = c("right", "bottom"),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+windows(height=6, width=6)
+#pdf("Figures/lake_lel_bytiming_plot.pdf", height=6, width=6)
+plot(lake_lel_bytiming_plot)
+#ggsave("Figures/lake_lel_bytiming_plot.png", height=6, width=6, dpi = 600)
+#dev.off()

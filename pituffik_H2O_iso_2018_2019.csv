@@ -1,0 +1,536 @@
+sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_number,laketype,laketype_number,lake_surface_area,basin_name,alt_basin_name,lakeshed_area,dist_gris,dist_ocean,timing,main_lakes,qc_flag
+2018_099_AngryDuckLake_1,05/07/2018,76.5662,-68.4312,74,-0.0095,-0.1,-0.024,Angry Duck Lake,lake,1,endorheic,1,7808,Amitsuarsuk,Potato,110403,7123,997,1,1,0
+2018_258_AngryDuckLake_1,23/08/2018,76.5662,-68.4312,74,-0.0099,-0.102,-0.023,Angry Duck Lake,lake,1,endorheic,1,7808,Amitsuarsuk,Potato,110403,7123,997,2,1,0
+2019_137_AngryDuckLake_26072019,26/07/2019,76.5662,-68.4312,74,-0.0047,-0.08,-0.042,Angry Duck Lake,lake,1,endorheic,1,7808,Amitsuarsuk,Potato,110403,7123,997,3,1,0
+2019_085_BigWindyValeLake_24072019,24/07/2019,76.4894,-68.8332,211,-0.0186,-0.148,0.001,Big Windy Vale Lake,lake,1,vale,4,3368,Ice Cave,Ice Cave,317690,13361,3339,3,0,0
+2018_119_BlackshoreLake_1,06/07/2018,76.5405,-68.4088,159,-0.0195,-0.154,0.002,Blackshore Lake,lake,1,downstream,3,12392,Pituffik,North River,12333333,4474,3617,1,1,0
+2019_092_Blackshorelake_23072019,23/07/2019,76.5405,-68.4088,159,-0.019,-0.155,-0.003,Blackshore Lake,lake,1,downstream,3,12392,Pituffik,North River,12333333,4474,3617,3,1,0
+2018_118_BMEWSBacksideLake_1,06/07/2018,76.5451,-68.39,171,-0.0203,-0.159,0.003,BMEWS Backside Lake,lake,1,headwater,2,15069,Pituffik,North River,8278389,4589,3105,1,1,0
+2019_090_BMEWSBacksideLake_23072019,23/07/2019,76.5451,-68.39,171,-0.0203,-0.166,-0.004,BMEWS Backside Lake,lake,1,headwater,2,15069,Pituffik,North River,8278389,4589,3105,3,1,0
+2018_095_BMEWSBowlPond_1,05/07/2018,76.5578,-68.4561,80,-0.0172,-0.145,-0.007,BMEWS Bowl Pond,lake,1,headwater,2,3498,Amitsuarsuk,Potato,730898,6740,2066,1,1,0
+2019_130_BMEWSBowlLake_26072019,26/07/2019,76.5578,-68.4561,80,-0.0138,-0.13,-0.02,BMEWS Bowl Pond,lake,1,headwater,2,3498,Amitsuarsuk,Potato,730898,6740,2066,3,1,0
+2018_154_CableAccessLake_1,12/07/2018,76.5395,-68.6521,83,-0.0182,-0.146,0,Cable Access Lake,lake,1,headwater,2,18146,Pituffik,North River,817244,9547,3538,1,1,0
+2019_062_CableAccessLake_22072019,22/07/2019,76.5395,-68.6521,83,-0.0158,-0.136,-0.01,Cable Access Lake,lake,1,headwater,2,18146,Pituffik,North River,817244,9547,3538,3,1,0
+2018_060_CarexPond_1,29/06/2018,76.5593,-68.5285,180,-0.0175,-0.144,-0.004,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,1,1,0
+2018_282_CarexPond_lost,23/08/2018,76.5593,-68.5285,180,-0.0003,0.006,0.008,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,2,1,1
+2019_033_CarexPond_19072019,19/07/2019,76.5593,-68.5285,180,-0.0129,-0.125,-0.022,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,3,1,0
+2018_148_DLaunchLake_1,11/07/2018,76.5105,-68.88,86,-0.0193,-0.15,0.004,D Launch Lake,lake,1,vale,4,17058,Sioraq,South River,304542,14492,819,1,0,0
+2018_200_DLaunchLake_07.08.18,07/08/2018,76.5105,-68.88,86,-0.0178,-0.141,0.001,D Launch Lake,lake,1,vale,4,17058,Sioraq,South River,304542,14492,819,2,0,0
+2019_069_DLaunncLake_22072019,22/07/2019,76.5105,-68.88,86,-0.0174,-0.14,-0.001,D Launch Lake,lake,1,vale,4,17058,Sioraq,South River,304542,14492,819,3,0,0
+2018_079_DiabaseDepthLake_1,01/07/2018,76.571,-68.6848,197,-0.0192,-0.15,0.004,Diabase Depth Lake,lake,1,downstream,3,21090,Qoorunnapaluk,Horseshoe,3716069,11958,1370,1,1,0
+2018_281_DiabaseDepthLake_1,22/08/2018,76.571,-68.6848,197,-0.0178,-0.142,0,Diabase Depth Lake,lake,1,downstream,3,21090,Qoorunnapaluk,Horseshoe,3716069,11958,1370,2,1,0
+2019_101_DiabaseDepthLake_25072019,25/07/2019,76.571,-68.6848,197,-0.0176,-0.144,-0.003,Diabase Depth Lake,lake,1,downstream,3,21090,Qoorunnapaluk,Horseshoe,3716069,11958,1370,3,1,0
+2018_062_DirtyIceLake_1,29/06/2018,76.5636,-68.5407,185,-0.0172,-0.139,-0.001,Dirty Ice Lake,lake,1,headwater,2,6651,Raven,Raven,324914,8664,2122,1,1,0
+2018_273_DirtyIceLake_1,23/08/2018,76.5636,-68.5407,185,-0.0155,-0.131,-0.007,Dirty Ice Lake,lake,1,headwater,2,6651,Raven,Raven,324914,8664,2122,2,1,0
+2019_037_DirtyIceLake_19072019,19/07/2019,76.5636,-68.5407,185,-0.0146,-0.13,-0.013,Dirty Ice Lake,lake,1,headwater,2,6651,Raven,Raven,324914,8664,2122,3,1,0
+2018_186_DundasPond_1,17/07/2018,76.572,-68.8195,22,-0.0126,-0.114,-0.013,Dundas Pond,lake,1,endorheic,1,1437,Other,Other,32203,14996,68,1,0,0
+2019_202_DundasPond_30072019,30/07/2019,76.572,-68.8195,22,-0.0096,-0.099,-0.022,Dundas Pond,lake,1,endorheic,1,1437,Other,Other,32203,14996,68,3,0,0
+2018_116_FakePumiceLake_1,06/07/2018,76.5438,-68.4282,156,-0.0164,-0.136,-0.005,Fake Pumice Lake,lake,1,headwater,2,17407,Amitsuarsuk,Potato,96022,5076,3316,1,1,0
+2019_089_FakePumiceLake_23072019,23/07/2019,76.5438,-68.4282,156,-0.0154,-0.132,-0.009,Fake Pumice Lake,lake,1,headwater,2,17407,Amitsuarsuk,Potato,96022,5076,3316,3,1,0
+2018_169_FantailLake_1,16/07/2018,76.4714,-68.3678,287,-0.0213,-0.161,0.009,Fantail Lake,lake,1,headwater,2,11788,Sioraq,South River,116905,2708,11216,1,0,0
+2019_042_FogbreakLake_21072019,21/07/2019,76.4199,-69.1142,175,-0.0199,-0.149,0.01,Fogbreak Lake,lake,1,vale,4,6523,Narsaarsuk,Narsaarsuk,62856,16934,5232,3,0,0
+2018_094_GravelPileLake_1,05/07/2018,76.5451,-68.4555,134,-0.018,-0.145,-0.001,Gravel Pit Lake,lake,1,altered,6,12971,Amitsuarsuk,Potato,481074,5677,3373,1,1,0
+2019_066_GravelPitLake_22072019,22/07/2019,76.5451,-68.4555,134,-0.0177,-0.145,-0.003,Gravel Pit Lake,lake,1,altered,6,12971,Amitsuarsuk,Potato,481074,5677,3373,3,1,0
+2018_164_HalfSnowLake_16.07.18,16/07/2018,76.4968,-68.4402,228,-0.0232,-0.177,0.009,Half Snow Lake,lake,1,headwater,2,11329,Pituffik,North River,270973,3207,8470,1,0,0
+2019_145_HalfSnowLake_27072019,27/07/2019,76.4968,-68.4402,228,-0.0206,-0.161,0.004,Half Snow Lake,lake,1,headwater,2,11329,Pituffik,North River,270973,3207,8470,3,0,0
+2018_068_LakeBracket_1,29/06/2018,76.5658,-68.6361,207,-0.0179,-0.142,0.001,Horseshoe Lake,lake,1,headwater,2,216564,Qoorunnapaluk,Horseshoe,1347592,10303,2206,1,1,0
+2019_108_HorseshoeLake_25072019,25/07/2019,76.5658,-68.6361,207,-0.0174,-0.14,-0.001,Horseshoe Lake,lake,1,headwater,2,216564,Qoorunnapaluk,Horseshoe,1347592,10303,2206,3,1,0
+2019_169_OldMineIceWallIceCaveLake_27072019,27/07/2019,76.4236,-68.2737,495,-0.0201,-0.151,0.01,Ice Cavern Proglacial Lake,lake,1,proglacial,5,75772,Sioraq,South River,2018351,0,16517,3,0,0
+2019_159_TutoIcebergLake_27072019,27/07/2019,76.4177,-68.2812,494,-0.0202,-0.151,0.011,Iceberg Proglacial Lake,lake,1,proglacial,5,240047,Sioraq,South River,2018351,0,17000,3,0,0
+2018_133_IceRampProglacialLake_1,07/07/2018,76.4129,-68.2932,494,-0.0201,-0.15,0.011,Interramp Proglacial Lake,lake,1,proglacial,5,39673,Sioraq,South River,2018351,0,17767,1,0,0
+2019_011_IceRampNorthMeltPond_17072019,17/07/2019,76.4129,-68.2932,494,-0.0201,-0.151,0.01,Interramp Proglacial Lake,lake,1,proglacial,5,39673,Sioraq,South River,2018351,0,17767,,0,0
+2019_177_UpperIceCanyonLake_29072019,29/07/2019,76.4129,-68.2932,494,-0.0201,-0.151,0.01,Interramp Proglacial Lake,lake,1,proglacial,5,39673,Sioraq,South River,2018351,0,17767,3,0,0
+2018_113_LakeAqua_1,06/07/2018,76.5427,-68.4931,129,-0.0173,-0.141,-0.003,Lake Aqua,lake,1,headwater,2,13008,Pituffik,North River,208120,6190,3900,1,1,0
+2019_063_LakeAqua_22072019,22/07/2019,76.5427,-68.4931,129,-0.0161,-0.137,-0.008,Lake Aqua,lake,1,headwater,2,13008,Pituffik,North River,208120,6190,3900,3,1,0
+2018_093_LakeCrescent_1,05/07/2018,76.5384,-68.4327,155,-0.0191,-0.151,0.002,Lake Crescent,lake,1,downstream,3,257987,Pituffik,North River,19791709,4458,3545,1,1,0
+2018_262_LakeCrescent_1,23/08/2018,76.5384,-68.4327,155,-0.0179,-0.144,-0.001,Lake Crescent,lake,1,downstream,3,257987,Pituffik,North River,19791709,4458,3545,2,1,0
+2019_067_LakeCrescent_22072019,22/07/2019,76.5384,-68.4327,155,-0.0185,-0.148,0,Lake Crescent,lake,1,downstream,3,257987,Pituffik,North River,19791709,4458,3545,,1,0
+2019_231_LakeCrescent_01082019,01/08/2019,76.5384,-68.4327,155,-0.0183,-0.147,-0.001,Lake Crescent,lake,1,downstream,3,257987,Pituffik,North River,19791709,4458,3545,3,1,0
+2018_107_LakeDos_06.07.18,06/07/2018,76.5529,-68.4963,143,-0.0186,-0.149,0,Lake Dos,lake,1,downstream,3,12009,Amitsuarsuk,Potato,6090499,7000,2875,1,1,0
+2019_126_LakeDos_26072019,26/07/2019,76.5529,-68.4963,143,-0.0161,-0.138,-0.009,Lake Dos,lake,1,downstream,3,12009,Amitsuarsuk,Potato,6090499,7000,2875,3,1,0
+2018_066_LakeEchidna_1,29/06/2018,76.574,-68.6257,241,-0.0192,-0.15,0.004,Lake Echidna,lake,1,headwater,2,5908,Amitsuarsuk,Potato,501230,11029,1500,1,1,0
+2019_099_LakeEchidna_25072019,25/07/2019,76.574,-68.6257,241,-0.0174,-0.148,-0.009,Lake Echidna,lake,1,headwater,2,5908,Amitsuarsuk,Potato,501230,11029,1500,3,1,0
+2018_064_LakeGibraltar_1,29/06/2018,76.5716,-68.584,254,-0.0195,-0.152,0.004,Lake Gibraltar,lake,1,headwater,2,20777,Amitsuarsuk,Potato,515873,10008,1615,1,1,0
+2019_114_LakeGibraltar_25072019,25/07/2019,76.5716,-68.584,254,-0.0185,-0.15,-0.002,Lake Gibraltar,lake,1,headwater,2,20777,Amitsuarsuk,Potato,515873,10008,1615,3,1,0
+2018_156_LakeLeslie_1,13/07/2018,76.5676,-68.5971,215,-0.0175,-0.144,-0.004,Lake Leslie,lake,1,headwater,2,4378,Amitsuarsuk,Potato,49408,10028,2114,1,1,0
+2019_111_LakeLeslie_25072019,25/07/2019,76.5676,-68.5971,215,-0.0166,-0.143,-0.01,Lake Leslie,lake,1,headwater,2,4378,Amitsuarsuk,Potato,49408,10028,2114,3,1,0
+2018_120_LakeNephros_1,07/07/2018,76.5591,-68.5894,199,-0.0169,-0.139,-0.004,Lake Nephros,lake,1,headwater,2,4021,Amitsuarsuk,Potato,420447,9255,2982,1,1,0
+2019_031_LakeNephros_19072019,19/07/2019,76.5591,-68.5894,199,-0.015,-0.133,-0.013,Lake Nephros,lake,1,headwater,2,4021,Amitsuarsuk,Potato,420447,9255,2982,3,1,0
+2018_005_LakePotato_1,14/06/2018,76.5569,-68.5481,190,-0.0226,-0.173,0.008,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_013_LakePotato_1,18/06/2018,76.5569,-68.5481,190,-0.02,-0.156,0.004,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_024_LakePotato_1,22/06/2018,76.5569,-68.5481,190,-0.0195,-0.153,0.003,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_087_LakePotato_1,01/07/2018,76.5569,-68.5481,190,-0.0184,-0.146,0.001,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,1,1,0
+2018_152_PotatoLake_1,12/07/2018,76.5569,-68.5481,190,-0.0182,-0.144,0.002,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_187_LakePotato_1,23/07/2018,76.5569,-68.5481,190,-0.0182,-0.145,0.001,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_192_LakePotato_1,30/07/2018,76.5569,-68.5481,190,-0.0176,-0.142,-0.001,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_206_LakePotato_1,10/08/2018,76.5569,-68.5481,190,-0.0172,-0.14,-0.002,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
+2018_261_LakePotato_1,23/08/2018,76.5569,-68.5481,190,-0.0172,-0.14,-0.002,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,2,1,0
+2019_028_LakePotato_19072019,19/07/2019,76.5569,-68.5481,190,-0.017,-0.141,-0.005,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,3,1,0
+2019_205_LakePotato_30072019,30/07/2019,76.5569,-68.5481,190,-0.0158,-0.136,-0.01,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,1
+2018_109_LakeQuattro_1,06/07/2018,76.5483,-68.488,136,-0.0184,-0.146,0.001,Lake Quattro,lake,1,downstream,3,7144,Amitsuarsuk,Potato,6439204,6530,3309,1,1,0
+2018_260_LakeQuattro_1,23/08/2018,76.5483,-68.488,136,-0.0168,-0.138,-0.004,Lake Quattro,lake,1,downstream,3,7144,Amitsuarsuk,Potato,6439204,6530,3309,2,1,0
+2019_128_LakeQuattro_26072019,26/07/2019,76.5483,-68.488,136,-0.0163,-0.139,-0.009,Lake Quattro,lake,1,downstream,3,7144,Amitsuarsuk,Potato,6439204,6530,3309,3,1,0
+2018_108_LakeTres_1,06/07/2018,76.5502,-68.4931,139,-0.0183,-0.145,0.001,Lake Tres,lake,1,downstream,3,25234,Amitsuarsuk,Potato,6338791,6726,3114,1,1,0
+2019_127_LakeTres_26072019,26/07/2019,76.5502,-68.4931,139,-0.0164,-0.139,-0.008,Lake Tres,lake,1,downstream,3,25234,Amitsuarsuk,Potato,6338791,6726,3114,3,1,0
+2018_029_LakeTuto_1,22/06/2018,76.43,-68.327,489,-0.0173,-0.138,0,Lake Tuto,lake,1,altered,6,123243,Sioraq,South River,612976,1071,15572,1,0,0
+2018_195_LakeTuto_03.08.18,03/08/2018,76.43,-68.327,489,-0.0171,-0.136,0.001,Lake Tuto,lake,1,altered,6,123243,Sioraq,South River,612976,1071,15572,2,0,0
+2019_013_LakeTuto_17072019,17/07/2019,76.43,-68.327,489,-0.0174,-0.14,-0.001,Lake Tuto,lake,1,altered,6,123243,Sioraq,South River,612976,1071,15572,,0,0
+2019_156_LakeTutoNorth_27072019,27/07/2019,76.43,-68.327,489,-0.0171,-0.139,-0.002,Lake Tuto,lake,1,altered,6,123243,Sioraq,South River,612976,1071,15572,3,0,0
+2019_157_LakeTutoSouth_27072019,27/07/2019,76.43,-68.327,489,-0.0166,-0.134,-0.001,Lake Tuto,lake,1,altered,6,123243,Sioraq,South River,612976,1071,15572,,0,0
+2018_106_LakeUno_06.07.18,06/07/2018,76.5544,-68.5007,144,-0.0161,-0.135,-0.006,Lake Uno,lake,1,headwater,2,8030,Amitsuarsuk,Potato,200481,7220,2734,1,1,0
+2019_125_LakeUno_26072019,26/07/2019,76.5544,-68.5007,144,-0.0139,-0.127,-0.016,Lake Uno,lake,1,headwater,2,8030,Amitsuarsuk,Potato,200481,7220,2734,3,1,0
+2018_069_LandglacierViewLake_1,29/06/2018,76.5669,-68.6098,207,-0.0194,-0.152,0.003,Landglacier View Lake,lake,1,downstream,3,69705,Amitsuarsuk,Potato,2126829,10047,2114,1,1,0
+2019_109_LandglacierViewLake_25072019,25/07/2019,76.5669,-68.6098,207,-0.0184,-0.147,0,Landglacier View Lake,lake,1,downstream,3,69705,Amitsuarsuk,Potato,2126829,10047,2114,3,1,0
+2018_082_LionessRockLake_1,01/07/2018,76.5683,-68.6887,201,-0.0145,-0.123,-0.007,Lioness Rock Lake,lake,1,headwater,2,10390,Qoorunnapaluk,Horseshoe,45954,11907,1559,1,1,0
+2019_100_LionessRockLake_25072019,25/07/2019,76.5683,-68.6887,201,-0.0127,-0.118,-0.016,Lioness Rock Lake,lake,1,headwater,2,10390,Qoorunnapaluk,Horseshoe,45954,11907,1559,3,1,0
+2019_153_LittleRockyValeLake_27072019,27/07/2019,76.4582,-68.5046,271,-0.0207,-0.16,0.006,Little Rocky Vale Lake,lake,1,vale,4,3629,Sioraq,South River,9491875,6443,11409,3,0,0
+2019_084_LittleWindyValeLake_24072019,24/07/2019,76.4895,-68.8425,207,-0.0196,-0.153,0.004,Little Windy Vale Lake,lake,1,vale,4,1285,Ice Cave,Ice Cave,447554,13582,3225,3,0,0
+2018_115_LonesomeCabinLake_1,06/07/2018,76.5404,-68.4956,127,-0.0172,-0.14,-0.002,Lonesome Cabin Lake,lake,1,downstream,3,52721,Pituffik,North River,847914,6019,4128,1,1,0
+2019_064_LonesomeCabinLake_22072019,22/07/2019,76.5404,-68.4956,127,-0.0165,-0.137,-0.005,Lonesome Cabin Lake,lake,1,downstream,3,52721,Pituffik,North River,847914,6019,4128,3,1,0
+2018_111_LoonPond_1,06/07/2018,76.5441,-68.4679,136,-0.0161,-0.137,-0.008,Loon Pond,lake,1,headwater,2,4091,Pituffik,North River,64899,5852,3589,1,1,0
+2018_274_LoonPond_1,23/08/2018,76.5441,-68.4679,136,-0.0142,-0.127,-0.013,Loon Pond,lake,1,headwater,2,4091,Pituffik,North River,64899,5852,3589,2,1,0
+2019_065_LoonPond_22072019,22/07/2019,76.5441,-68.4679,136,-0.0134,-0.126,-0.019,Loon Pond,lake,1,headwater,2,4091,Pituffik,North River,64899,5852,3589,3,1,0
+2019_170_OldMineIceWallLowerIceCavePool_27072019,27/07/2019,76.4267,-68.2722,495,-0.02,-0.15,0.01,Lower Ice Cavern Pool,lake,1,proglacial,5,5973,Sioraq,South River,2018351,0,16423,3,0,0
+2018_112_MossyBottomPond_06.07.18,06/07/2018,76.5437,-68.479,136,-0.0173,-0.145,-0.007,Mossy Bottom Pond,lake,1,headwater,2,3141,Pituffik,North River,146592,6038,3725,1,1,0
+2019_123_MossyBottomPond_26072019,26/07/2019,76.5437,-68.479,136,-0.014,-0.132,-0.02,Mossy Bottom Pond,lake,1,headwater,2,3141,Pituffik,North River,146592,6038,3725,3,1,0
+2018_123_NoisyGooseLake_1,07/07/2018,76.5667,-68.5259,181,-0.0168,-0.138,-0.004,Noisy Goose Lake,lake,1,headwater,2,9464,Raven,Raven,335429,8646,1620,1,1,0
+2019_039_NoisyGooseLake_19072019,19/07/2019,76.5667,-68.5259,181,-0.0143,-0.128,-0.014,Noisy Goose Lake,lake,1,headwater,2,9464,Raven,Raven,335429,8646,1620,3,1,0
+2018_147_NorthMountainAccessPond_1,11/07/2018,76.5418,-68.7315,63,-0.0188,-0.151,-0.001,North Mountain Access Pond,lake,1,altered,6,8918,Pituffik,North River,3183891,11517,1821,1,1,0
+2019_061_NorthMountainAccessLake_22072019,22/07/2019,76.5418,-68.7315,63,-0.0161,-0.139,-0.01,North Mountain Access Pond,lake,1,altered,6,8918,Pituffik,North River,3183891,11517,1821,3,1,0
+2018_078_NorthMountainViewLake_1,01/07/2018,76.5672,-68.6699,202,-0.0185,-0.147,0.001,North Mountain View Lake,lake,1,downstream,3,42212,Qoorunnapaluk,Horseshoe,2650673,11347,1856,1,1,0
+2018_265_NorthMountainViewLake_1,22/08/2018,76.5672,-68.6699,202,-0.0172,-0.139,-0.001,North Mountain View Lake,lake,1,downstream,3,42212,Qoorunnapaluk,Horseshoe,2650673,11347,1856,2,1,0
+2019_106_NorthMountainViewLake_25072019,25/07/2019,76.5672,-68.6699,202,-0.0168,-0.139,-0.005,North Mountain View Lake,lake,1,downstream,3,42212,Qoorunnapaluk,Horseshoe,2650673,11347,1856,3,1,0
+2018_057_OpenWaterLake_1,29/06/2018,76.5606,-68.5787,194,-0.0177,-0.142,0,Open Water Lake,lake,1,downstream,3,7278,Amitsuarsuk,Potato,909376,9149,2736,1,1,0
+2019_030_OpenWaterLake_19072019,19/07/2019,76.5606,-68.5787,194,-0.015,-0.132,-0.012,Open Water Lake,lake,1,downstream,3,7278,Amitsuarsuk,Potato,909376,9149,2736,3,1,0
+2018_102_PacmanLake_1,05/07/2018,76.5684,-68.4743,77,-0.0173,-0.139,-0.001,Pacman Lake,lake,1,downstream,3,44321,Raven,Raven,3003577,7850,1132,1,1,0
+2019_133_PacmanLake_26072019,26/07/2019,76.5684,-68.4743,77,-0.0162,-0.137,-0.007,Pacman Lake,lake,1,downstream,3,44321,Raven,Raven,3003577,7850,1132,3,1,0
+2018_189_ParisPond_1,24/07/2018,76.5182,-68.4411,190,-0.0173,-0.142,-0.004,Paris Pond,lake,1,headwater,2,3211,Pituffik,North River,447132,3723,6187,1,0,0
+2018_117_PartyHouseLake_1,06/07/2018,76.5432,-68.4122,161,-0.0163,-0.134,-0.004,Party House Lake,lake,1,headwater,2,20505,Pituffik,North River,192628,4769,3319,1,1,0
+2018_278_PartyHouseLake_1,23/08/2018,76.5432,-68.4122,161,-0.0158,-0.132,-0.006,Party House Lake,lake,1,headwater,2,20505,Pituffik,North River,192628,4769,3319,2,1,0
+2019_091_PartyHouseLake_23072019,23/07/2019,76.5432,-68.4122,161,-0.0154,-0.13,-0.007,Party House Lake,lake,1,headwater,2,20505,Pituffik,North River,192628,4769,3319,3,1,0
+2018_098_PerchedLake_1,05/07/2018,76.5644,-68.4371,73,-0.0112,-0.108,-0.018,Perched Lake,lake,1,endorheic,1,6133,Amitsuarsuk,Potato,38142,7039,1233,1,1,0
+2018_259_PerchedLake_1,23/08/2018,76.5644,-68.4371,73,-0.0104,-0.105,-0.022,Perched Lake,lake,1,endorheic,1,6133,Amitsuarsuk,Potato,38142,7039,1233,2,1,0
+2019_138_PerchedLake_26072019,26/07/2019,76.5644,-68.4371,73,-0.0085,-0.097,-0.029,Perched Lake,lake,1,endorheic,1,6133,Amitsuarsuk,Potato,38142,7039,1233,3,1,0
+2018_017_PowerLake_1,19/06/2018,76.5462,-68.5516,178,-0.0169,-0.139,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2018_022_PowerLake_1,22/06/2018,76.5462,-68.5516,178,-0.0168,-0.138,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2018_055_PowerLake_1,29/06/2018,76.5462,-68.5516,178,-0.0165,-0.136,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,1,1,0
+2018_153_PowerLake_1,12/07/2018,76.5462,-68.5516,178,-0.0159,-0.131,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2018_188_PowerLake_1,23/07/2018,76.5462,-68.5516,178,-0.0157,-0.131,-0.005,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2018_193_PowerLake_30.07.18,30/07/2018,76.5462,-68.5516,178,-0.0156,-0.131,-0.006,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2018_207_PowerLake_1,10/08/2018,76.5462,-68.5516,178,-0.0154,-0.13,-0.007,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2018_267_PowerLake_1,23/08/2018,76.5462,-68.5516,178,-0.0154,-0.13,-0.007,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,2,1,0
+2019_027_PowerLake_19072019,19/07/2019,76.5462,-68.5516,178,-0.0152,-0.129,-0.007,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
+2019_207_PowerLake_30072019,30/07/2019,76.5462,-68.5516,178,-0.0148,-0.127,-0.009,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,3,1,0
+2018_035_PytheasParkingPool_1,23/06/2018,76.5593,-68.2632,349,-0.0192,-0.152,0.002,Pytheas Parking Pool,lake,1,altered,6,10277,Pituffik,North River,2413061,3873,2768,,0,0
+2019_068_PytheasParkingPool_22072019,22/07/2019,76.5593,-68.2632,349,-0.0154,-0.138,-0.015,Pytheas Parking Pool,lake,1,altered,6,10277,Pituffik,North River,2413061,3873,2768,3,0,0
+2018_061_RavenLake_1,29/06/2018,76.5607,-68.5197,173,-0.0153,-0.127,-0.005,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,1,1,1
+2018_272_RavenLake_1,23/08/2018,76.5607,-68.5197,173,-0.0165,-0.134,-0.002,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,2,1,0
+2019_034_RavenLake_19072019,19/07/2019,76.5607,-68.5197,173,-0.0165,-0.135,-0.003,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,3,1,0
+2018_160_RavenRidgePond_1,13/07/2018,76.5734,-68.5271,203,-0.0174,-0.144,-0.005,Raven Ridge Pond,lake,1,headwater,2,2510,Other,Other,872237,9213,1030,1,1,0
+2019_040_RaveMorainePond_19072019,19/07/2019,76.5734,-68.5271,203,-0.0149,-0.131,-0.012,Raven Ridge Pond,lake,1,headwater,2,2510,Other,Other,872237,9213,1030,3,1,0
+2018_058_RoadsEndPond_1,29/06/2018,76.5617,-68.6007,203,-0.0163,-0.136,-0.006,Roads End Lake,lake,1,headwater,2,1808,Amitsuarsuk,Potato,144678,9709,2756,1,1,0
+2019_032_EndOfRoadLake_19072019,19/07/2019,76.5617,-68.6007,203,-0.0128,-0.125,-0.023,Roads End Lake,lake,1,headwater,2,1808,Amitsuarsuk,Potato,144678,9709,2756,3,1,0
+2018_172_RockRingLake_1,16/07/2018,76.4784,-68.2998,299,-0.0215,-0.161,0.011,Rock Ring Lake,lake,1,headwater,2,11285,Pituffik,North River,807282,835,10710,1,0,0
+2018_149_RockyValeLake_1,11/07/2018,76.4588,-68.4926,271,-0.0218,-0.166,0.008,Rocky Vale Lake,lake,1,vale,4,25953,Sioraq,South River,9455225,6038,11520,1,0,0
+2019_152_RockyValeLake_27072019,27/07/2019,76.4588,-68.4926,271,-0.0205,-0.159,0.005,Rocky Vale Lake,lake,1,vale,4,25953,Sioraq,South River,9455225,6038,11520,3,0,0
+2018_083_SaundersIslandViewLake_1,01/07/2018,76.5802,-68.6619,262,-0.0186,-0.146,0.003,Secret Lake,lake,1,headwater,2,49630,Secret,Secret,600533,12101,906,1,1,0
+2018_276_SaundersIslandViewLake_1,22/08/2018,76.5802,-68.6619,262,-0.0184,-0.145,0.002,Secret Lake,lake,1,headwater,2,49630,Secret,Secret,600533,12101,906,2,1,0
+2019_095_SecretLake_25072019,25/07/2019,76.5802,-68.6619,262,-0.0184,-0.146,0.001,Secret Lake,lake,1,headwater,2,49630,Secret,Secret,600533,12101,906,3,1,0
+2018_121_SereneLake_1,07/07/2018,76.563,-68.5546,205,-0.0166,-0.136,-0.003,Serene Lake,lake,1,headwater,2,7436,Raven,Raven,160228,8867,2366,1,1,0
+2018_264_SereneLake_1,23/08/2018,76.563,-68.5546,205,-0.0154,-0.131,-0.008,Serene Lake,lake,1,headwater,2,7436,Raven,Raven,160228,8867,2366,2,1,0
+2019_036_SereneLake_19072019,19/07/2019,76.563,-68.5546,205,-0.0146,-0.129,-0.012,Serene Lake,lake,1,headwater,2,7436,Raven,Raven,160228,8867,2366,3,1,0
+2018_081_ShaleyPointLake_1,01/07/2018,76.5731,-68.693,199,-0.0192,-0.15,0.004,Shaley Point Lake,lake,1,headwater,2,22943,Qoorunnapaluk,Horseshoe,252731,12218,1027,1,1,0
+2019_105_ShaleyPointLake_25072019,25/07/2019,76.5731,-68.693,199,-0.0179,-0.144,-0.001,Shaley Point Lake,lake,1,headwater,2,22943,Qoorunnapaluk,Horseshoe,252731,12218,1027,3,1,0
+2018_122_SittingRockLake_1,07/07/2018,76.5637,-68.531,177,-0.0175,-0.141,-0.001,Sitting Rock Lake,lake,1,downstream,3,14537,Raven,Raven,508793,8491,1943,1,1,0
+2019_038_SittingRockLake_19072019,19/07/2019,76.5637,-68.531,177,-0.0164,-0.136,-0.005,Sitting Rock Lake,lake,1,downstream,3,14537,Raven,Raven,508793,8491,1943,3,1,0
+2019_107_SpurLake_25072019,25/07/2019,76.5658,-68.6517,207,-0.0167,-0.137,-0.003,Spur Lake,lake,1,downstream,3,8865,Qoorunnapaluk,Horseshoe,1471612,10979,2398,3,1,0
+2018_146_TankFarmLake_1,11/07/2018,76.5456,-68.7629,56,-0.0189,-0.151,0,Tank Farm Lake,lake,1,altered,6,33550,Pituffik,North River,5669738,12398,898,1,1,0
+2019_060_TankFarmLake_22072019,22/07/2019,76.5456,-68.7629,56,-0.0174,-0.146,-0.007,Tank Farm Lake,lake,1,altered,6,33550,Pituffik,North River,5669738,12398,898,3,1,0
+2018_065_TheTarn_1,29/06/2018,76.5696,-68.5934,244,-0.0178,-0.143,-0.001,The Tarn,lake,1,headwater,2,6432,Amitsuarsuk,Potato,39318,10092,1875,1,1,0
+2018_155_TheTarn_1,13/07/2018,76.5696,-68.5934,244,-0.0173,-0.14,-0.002,The Tarn,lake,1,headwater,2,6432,Amitsuarsuk,Potato,39318,10092,1875,,1,0
+2019_112_TheTarn_25072019,25/07/2019,76.5696,-68.5934,244,-0.0156,-0.135,-0.01,The Tarn,lake,1,headwater,2,6432,Amitsuarsuk,Potato,39318,10092,1875,3,1,0
+2018_171_UnexpectedLake_16.07.18,16/07/2018,76.485,-68.3222,281,-0.0198,-0.157,0.001,Unexpected Lake,lake,1,headwater,2,10494,Pituffik,North River,73142,1014,9897,1,0,0
+2018_088_UpperLakePotato_1,01/07/2018,76.5607,-68.5662,193,-0.0188,-0.148,0.002,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,1,1,0
+2018_271_UpperLakePotato_1,23/08/2018,76.5607,-68.5662,193,-0.0177,-0.142,0,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,2,1,0
+2019_029_UpperLakePotato_19072019,19/07/2019,76.5607,-68.5662,193,-0.0174,-0.143,-0.004,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,,1,0
+2019_206_UpperLakePotato_30072019,30/07/2019,76.5607,-68.5662,193,-0.017,-0.141,-0.005,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,3,1,0
+2018_100_WaterGardenLake_1,05/07/2018,76.5674,-68.4423,73,-0.0119,-0.11,-0.015,Water Garden Lake,lake,1,endorheic,1,23730,Other,Other,90265,7340,887,1,1,0
+2018_279_WaterGardenLake_1,23/08/2018,76.5674,-68.4423,73,-0.0114,-0.108,-0.017,Water Garden Lake,lake,1,endorheic,1,23730,Other,Other,90265,7340,887,2,1,0
+2019_136_WaterGardenLake_26072019,26/07/2019,76.5674,-68.4423,73,-0.0104,-0.105,-0.022,Water Garden Lake,lake,1,endorheic,1,23730,Other,Other,90265,7340,887,3,1,0
+2018_097_WaterLake_1,05/07/2018,76.561,-68.4424,70,-0.0188,-0.149,0.001,Water Lake,lake,1,downstream,3,245299,Amitsuarsuk,Potato,11414629,6502,1369,1,1,0
+2018_275_WaterLake_1,23/08/2018,76.561,-68.4424,70,-0.0174,-0.141,-0.002,Water Lake,lake,1,downstream,3,245299,Amitsuarsuk,Potato,11414629,6502,1369,2,1,0
+2019_135_WaterLake_26072019,26/07/2019,76.561,-68.4424,70,-0.0171,-0.142,-0.005,Water Lake,lake,1,downstream,3,245299,Amitsuarsuk,Potato,11414629,6502,1369,3,1,0
+2018_168_AnkleSaverWashPool_1,16/07/2018,76.4755,-68.3411,290,-0.022,-0.165,0.011,Ankle Saver Wash Pool,pool,2,,,157,Pituffik,North River,,1982,10902,,0,0
+2018_086_BLaunchPool_1,01/07/2018,76.576,-68.642,262,-0.0188,-0.151,-0.001,B Launch Pool,pool,2,altered,,2265,Amitsuarsuk,Potato,36080,11494,1353,1,1,0
+2019_055_BLaunchPool_20072019,20/07/2019,76.576,-68.642,262,-0.0141,-0.132,-0.019,B Launch Pool,pool,2,altered,,2265,Amitsuarsuk,Potato,36080,11494,1353,,1,0
+2019_096_BLaunchPool_25072019,25/07/2019,76.576,-68.642,262,-0.0135,-0.128,-0.02,B Launch Pool,pool,2,altered,,2265,Amitsuarsuk,Potato,36080,11494,1353,3,1,0
+2019_072_BackBeachPool_24072019,24/07/2019,76.5016,-68.9469,74,-0.0139,-0.124,-0.013,Back Beach Pool,pool,2,altered,,121,Ice Cave,Ice Cave,,16252,454,,0,0
+2018_167_BoulderPlainPools_1,16/07/2018,76.48,-68.381,264,-0.0212,-0.161,0.009,Boulder Plain Pools,pool,2,,,189,Pituffik,North River,,2517,10327,,0,0
+2019_049_CapeAthollMidHikePool_21072019,21/07/2019,76.4007,-69.156,285,-0.0162,-0.131,-0.001,Cape Atholl 'Mid' Hike Pool,pool,2,,,179,Quaraatit,Cape Atholl Station,,16063,6568,,0,0
+2018_190_Champsd'ElyseeSeepPool_1,24/07/2018,76.5242,-68.4628,213,-0.0185,-0.145,0.003,Champs Elysees Seep Pool,pool,2,,,37,Pituffik,North River,,4520,5680,,0,0
+2018_103_CoastalPlateauPool_1,05/07/2018,76.574,-68.4281,35,-0.0066,-0.087,-0.034,Coastal Plateau Pool,pool,2,,,5002,Other,Other,198950,7828,186,1,1,1
+2019_139_CoastalPlateauPool_26072019,26/07/2019,76.574,-68.4281,35,-0.0131,-0.123,-0.018,Coastal Plateau Pool,pool,2,,,5002,Other,Other,198950,7828,186,3,1,0
+2019_102_DiabaseDepthPool_25072019,25/07/2019,76.5701,-68.6821,199,-0.0173,-0.142,-0.004,Diabase Depth Entrance Pool,pool,2,,,203,Qoorunnapaluk,Horseshoe,,11928,1577,,1,0
+2019_104_WestDiabaseDepthPool_25072019,25/07/2019,76.5704,-68.6927,197,-0.0174,-0.143,-0.004,Diabase Depth Exit Pool,pool,2,,,1781,Qoorunnapaluk,Horseshoe,,12149,1382,,1,0
+2019_201_DundasPool_30072019,30/07/2019,76.5714,-68.8245,30,-0.0172,-0.14,-0.002,Dundas Pool,pool,2,,,187,Other,Other,,15101,104,,0,0
+2018_222_GarnetSlopePool_15.08.18,15/08/2018,76.5722,-68.2657,345,-0.0185,-0.146,0.002,Garnet Slope Pool,pool,2,,,5,Garnet,Garnet,,5197,1547,,0,0
+2018_131_IceRampBaseMeltPool_1,07/07/2018,76.4111,-68.2997,500,-0.0229,-0.168,0.015,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,,0,0
+2019_009_IceRampPool_17072019,17/07/2019,76.4111,-68.2997,500,-0.0202,-0.151,0.011,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,,0,0
+2019_019_IceRampPool_18072019,18/07/2019,76.4111,-68.2997,500,-0.0202,-0.151,0.011,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,3,0,0
+2018_049_IceWallMoraineFirstCrestPool_1,27/06/2018,76.5372,-68.1366,417,-0.0236,-0.18,0.009,Ice Wall Moraine First Crest Pool,pool,2,,,33,Pituffik,North River,,489,5380,,0,0
+2018_050_IceWallMoraineValleyPool_1,27/06/2018,76.5361,-68.1297,432,-0.0173,-0.143,-0.005,Ice Wall Moraine Valley Pool,pool,2,,,36,Pituffik,North River,,375,5516,,0,0
+2018_157_LushPool_13.07.18,13/07/2018,76.566,-68.5787,214,-0.0181,-0.147,-0.002,Lush Pool,pool,2,,,483,Amitsuarsuk,Potato,,9581,2220,,1,0
+2018_001_NorthMountainRoadPool_1,14/06/2018,76.5441,-68.6105,249,-0.0208,-0.161,0.005,North Mountain Road Pool,pool,2,altered,,586,Pituffik,North River,181164,8858,4356,,1,0
+2018_011_NorthMountainRoadPool_1,18/06/2018,76.5441,-68.6105,249,-0.0186,-0.148,0.001,North Mountain Road Pool,pool,2,altered,,586,Pituffik,North River,181164,8858,4356,,1,0
+2018_020_NorthMountainRoadPool_1,22/06/2018,76.5441,-68.6105,249,-0.0179,-0.145,-0.002,North Mountain Road Pool,pool,2,altered,,586,Pituffik,North River,181164,8858,4356,1,1,0
+2018_277_NorthMountainRoadPool_1,23/08/2018,76.5441,-68.6105,249,-0.0167,-0.137,-0.003,North Mountain Road Pool,pool,2,altered,,586,Pituffik,North River,181164,8858,4356,2,1,0
+2019_203_NorthMountainPool_30072019,30/07/2019,76.5441,-68.6105,249,-0.0147,-0.128,-0.01,North Mountain Road Pool,pool,2,altered,,586,Pituffik,North River,181164,8858,4356,3,1,0
+2019_131_NorthPacmanPlainPool_26072019,26/07/2019,76.5667,-68.4647,78,-0.0144,-0.13,-0.015,North Pacman Plain Pool,pool,2,,,1853,Raven,Raven,46355,7662,1263,,1,0
+2019_188_OutwashPointPond_29072019,29/07/2019,76.4009,-68.3676,428,-0.019,-0.147,0.005,Outwash Point Pond,pool,2,,,634,Sioraq,South River,30163,584,18417,,0,0
+2019_190_OutwashPointWeirdRockDrainLowerPool_29072019,29/07/2019,76.3992,-68.3831,408,-0.0192,-0.147,0.007,Outwash Point Weird Rock Drain Lower Pool,pool,2,,,26,Sioraq,South River,,879,18323,,0,0
+2019_189_OutwashPointWeirdRockDrainUpperPool_29072019,29/07/2019,76.3994,-68.3783,415,-0.0192,-0.147,0.007,Outwash Point Weird Rock Drain Upper Pool,pool,2,,,21,Sioraq,South River,,765,18385,,0,0
+2018_128_PMountainPeakPool_1,07/07/2018,76.4019,-68.7246,816,-0.0192,-0.145,0.009,P Mountain Peak Pool,pool,2,altered,,31,Sioraq,South River,,8798,11837,,0,0
+2018_127_PMountainPlainPool_07.07.18,07/07/2018,76.4604,-68.631,292,-0.016,-0.133,-0.005,P Mountain Plain Pool,pool,2,altered,,3558,Sioraq,South River,476931,9106,9070,1,0,0
+2019_118_PMountainPlainPool_25072019,25/07/2019,76.4604,-68.631,292,-0.0126,-0.118,-0.017,P Mountain Plain Pool,pool,2,altered,,3558,Sioraq,South River,476931,9106,9070,3,0,0
+2018_158_PavementPlainPool_1,13/07/2018,76.5793,-68.5759,322,-0.0155,-0.134,-0.01,Pavement Plain Pool,pool,2,,,40,Other,Other,,10568,854,,1,0
+2019_071_PavillionPond_23072019,23/07/2019,76.5428,-68.8051,37,-0.0152,-0.133,-0.011,Pavillion Pool,pool,2,,,46,Other,Other,,13416,508,,0,0
+2018_016_PotatoFarmPool_1,18/06/2018,76.5539,-68.5646,196,-0.0164,-0.136,-0.005,Potato Farm Pool,pool,2,,,5,Amitsuarsuk,Potato,,8471,3393,,1,0
+2018_023_PotatoFarmPool_1,22/06/2018,76.5539,-68.5646,196,-0.0162,-0.139,-0.009,Potato Farm Pool,pool,2,,,5,Amitsuarsuk,Potato,,8471,3393,,1,0
+2018_039_PytheasPeakDrainagePool_1,23/06/2018,76.5668,-68.2121,403,-0.02,-0.156,0.004,Pytheas Peak Drainage Pool,pool,2,,,66,Pituffik,North River,5775,4095,2016,,0,0
+2018_036_PytheasPlainPool_1,23/06/2018,76.5661,-68.2384,368,-0.0167,-0.136,-0.002,Pytheas Plain Pool,pool,2,,,18,Pituffik,North River,3152,4275,2105,1,0,0
+2018_263_PytheasPlainPool_1,21/08/2018,76.5661,-68.2384,368,-0.0172,-0.14,-0.002,Pytheas Plain Pool,pool,2,,,18,Pituffik,North River,3152,4275,2105,2,0,0
+2018_110_QuattroMorainePools_1,06/07/2018,76.5504,-68.484,145,-0.0112,-0.112,-0.022,Quattro Moraine Pool,pool,2,,,93,Amitsuarsuk,Potato,5233,6659,3101,1,1,0
+2019_129_QuattroMorainePool_26072019,26/07/2019,76.5504,-68.484,145,-0.0096,-0.111,-0.034,Quattro Moraine Pool,pool,2,,,93,Amitsuarsuk,Potato,5233,6659,3101,3,1,0
+2018_161_RavenRidgeRiftPool_1,13/07/2018,76.5721,-68.5233,203,-0.0173,-0.143,-0.005,Raven Ridge Rift Pool,pool,2,,,105,Other,Other,,9081,1137,,1,0
+2019_151_RockyValeParkingPool_27072019,27/07/2019,76.464,-68.4796,282,-0.0115,-0.118,-0.026,Rocky Vale Parking Pool,pool,2,altered,,203,Sioraq,South River,,5595,11506,,0,0
+2018_191_SecretPlaceWestPool_25.07.18,25/07/2018,76.5831,-68.6188,300,-0.0193,-0.151,0.003,Secret Place West Pool,pool,2,,,10,Other,Other,,11629,580,,1,0
+2019_070_Shelter2Pond_23072019,23/07/2019,76.5308,-68.5594,114,-0.0132,-0.129,-0.023,Shelter 2 Pool,pool,2,altered,,,Pituffik,North River,,,,,1,0
+2018_040_SouthMountainPeakPool_1,24/06/2018,76.5128,-68.6966,233,-0.0173,-0.139,-0.001,South Mountain Pool,pool,2,altered,,519,Main Base,Main Base,9682,9927,3846,1,1,0
+2018_269_SouthMountainPool_1,22/08/2018,76.5128,-68.6966,233,-0.0126,-0.116,-0.015,South Mountain Pool,pool,2,altered,,519,Main Base,Main Base,9682,9927,3846,2,1,0
+2019_014_SouthMountainPool_17072019,17/07/2019,76.5128,-68.6966,233,-0.01,-0.108,-0.028,South Mountain Pool,pool,2,altered,,519,Main Base,Main Base,9682,9927,3846,3,1,0
+2018_101_PacmanPlainPool_05.07.18,05/07/2018,76.5626,-68.4738,82,-0.0204,-0.163,0,South Pacman Plain Pool,pool,2,,,525,Raven,Raven,26559,7459,1779,1,1,0
+2019_132_SouthPacmanPlainPool_26072019,26/07/2019,76.5626,-68.4738,82,-0.0163,-0.148,-0.018,South Pacman Plain Pool,pool,2,,,525,Raven,Raven,26559,7459,1779,3,1,0
+2018_229_TheViewPool_lost,19/07/2018,76.5358,-68.2958,337,,,,The View Pool,pool,2,,,,Pituffik,North River,,,,,0,1
+2019_208_TOWPool_30072019,30/07/2019,76.5381,-68.7542,60,-0.0143,-0.137,-0.023,TOW Pool,pool,2,altered,,19,Pituffik,North River,,12020,1619,,1,0
+2019_158_TutoPool_27072019,27/07/2019,76.4309,-68.3345,490,-0.0125,-0.119,-0.019,Tuto Pool,pool,2,altered,,833,Sioraq,South River,,1429,15777,,0,0
+2019_097_UpperBLaunchPool_25072019,25/07/2019,76.576,-68.6477,262,-0.0141,-0.131,-0.018,Upper B Launch Pool,pool,2,altered,,822,Qoorunnapaluk,Horseshoe,,11633,1433,,1,0
+2019_073_BackBeachCreekMouth_24072019,24/07/2019,76.4997,-68.9461,63,-0.02,-0.153,0.007,Back Beach Creek Mouth,stream,3,,,,Ice Cave,Ice Cave,,,,,,0
+2019_074_BackBeachCreekSnowdriftForksJointFlow_24072019,24/07/2019,76.4939,-68.8961,156,-0.022,-0.167,0.009,Back Beach Creek Snowdrift Forks Joint Flow,stream,3,,,,Ice Cave,Ice Cave,,,,,,0
+2019_076_BackBeachCreekSnowdriftForksNorthFork_24072019,24/07/2019,76.4939,-68.8961,156,-0.0205,-0.157,0.007,Back Beach Creek Snowdrift Forks North Fork,stream,3,,,,Ice Cave,Ice Cave,,,,,,0
+2019_075_BackBeachCreekSnowdriftForksSouthFork_24072019,24/07/2019,76.4939,-68.8961,156,-0.0199,-0.153,0.006,Back Beach Creek Snowdrift Forks South Fork,stream,3,,,,Ice Cave,Ice Cave,,,,,,0
+2019_054_CapeAthollRiverMouth_21072019,21/07/2019,76.3233,-69.3447,36,-0.0184,-0.139,0.008,Cape Atholl Creek Mouth,stream,3,,,,Quaraatit,Cape Atholl Station,,,,,,0
+2018_126_FoxCanyonBridgeJointFlow_07.07.18,07/07/2018,76.4664,-68.5797,198,-0.0229,-0.17,0.013,Fox Canyon Bridge Joint Flow,stream,3,,,,Sioraq,South River,,,,,,0
+2019_007_FoxRiverBridgeJoint_17072019,17/07/2019,76.4664,-68.5797,198,-0.02,-0.15,0.01,Fox Canyon Bridge Joint Flow,stream,3,,,,Sioraq,South River,,,,,,0
+2019_194_FoxCanyonBridgeJointFlow_29072019,29/07/2019,76.4664,-68.5797,198,-0.0195,-0.148,0.008,Fox Canyon Bridge Joint Flow,stream,3,,,,Sioraq,South River,,,,,,0
+2018_124_FoxCanyonBridgeNorthFork_1,07/07/2018,76.4664,-68.5797,198,-0.0222,-0.165,0.013,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_144_FoxCanyonNorthFork_1,11/07/2018,76.4664,-68.5797,198,-0.0222,-0.167,0.011,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_235_FoxCanyonNorthFork_1,20/07/2018,76.4664,-68.5797,198,-0.0219,-0.166,0.009,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_246_FoxCanyonNorthFork_1,27/07/2018,76.4664,-68.5797,198,-0.0209,-0.16,0.007,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_255_FoxCanyonNorthFork_1,03/08/2018,76.4664,-68.5797,198,-0.0208,-0.157,0.009,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_220_FoxCanyonNorthFork_1,15/08/2018,76.4664,-68.5797,198,-0.0202,-0.152,0.01,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_005_FoxRiverBridgeNorthFork_17072019,17/07/2019,76.4664,-68.5797,198,-0.02,-0.151,0.009,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_017_FoxRiverBridgeNorthFork_18072019,18/07/2019,76.4664,-68.5797,198,-0.0202,-0.152,0.01,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_093_FoxRiverBridgeNorthFork_25072019,25/07/2019,76.4664,-68.5797,198,-0.0199,-0.149,0.01,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_192_FoxCanyonBridgeNorthFork_29072019,29/07/2019,76.4664,-68.5797,198,-0.0198,-0.149,0.009,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_229_FoxCanyonBridgeNorthFork_01082019,01/08/2019,76.4664,-68.5797,198,-0.02,-0.15,0.01,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_125_FoxCanyonBridgeSouthFork_1,07/07/2018,76.4664,-68.5797,198,-0.0236,-0.175,0.014,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_145_FoxCanyonSouthFork_1,11/07/2018,76.4664,-68.5797,198,-0.0241,-0.181,0.012,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_236_FoxCanyonSouthFork_1,20/07/2018,76.4664,-68.5797,198,-0.0199,-0.157,0.002,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,1
+2018_247_FoxCanyonSouthFork_1,27/07/2018,76.4664,-68.5797,198,-0.0215,-0.163,0.009,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_256_FoxCanyonSouthFork_1,03/08/2018,76.4664,-68.5797,198,-0.0216,-0.162,0.011,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2018_221_FoxCanyonSouthFork_1,15/08/2018,76.4664,-68.5797,198,-0.0211,-0.159,0.01,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_006_FoxRiverBridgeSouthFork_17072019,17/07/2019,76.4664,-68.5797,198,-0.0202,-0.151,0.011,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_018_FoxRiverBridgeSouthFork_18072019,18/07/2019,76.4664,-68.5797,198,-0.0204,-0.153,0.01,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_094_FoxRiverBridgeSouthFork_25072019,25/07/2019,76.4664,-68.5797,198,-0.0192,-0.146,0.008,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_193_FoxCanyonBridgeSouthFork_29072019,29/07/2019,76.4664,-68.5797,198,-0.0198,-0.148,0.01,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_230_FoxCanyonBridgeSouthFork_01082019,01/08/2019,76.4664,-68.5797,198,-0.0192,-0.146,0.008,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
+2019_191_UpperNorthForkFoxCanyon_29072019,29/07/2019,76.3882,-68.38,376,-0.0196,-0.149,0.008,Headwaters of North Fork Fox Canyon,stream,3,,,,Sioraq,South River,,,,,,0
+2019_185_IceCanyonAboveWaterfall_29072019,29/07/2019,76.3878,-68.3742,383,-0.0188,-0.146,0.004,Ice Canyon Above Waterfall,stream,3,,,,Sioraq,South River,,,,,,0
+2019_187_IceCanyonBelowWaterfall_29072019,29/07/2019,76.3878,-68.3742,383,-0.02,-0.15,0.01,Ice Canyon Below Waterfall,stream,3,,,,Sioraq,South River,,,,,,0
+2019_180_IceCanyonRiverPreBankSpring_29072019,29/07/2019,76.4028,-68.3219,453,-0.0198,-0.15,0.008,Ice Canyon River Pre Bank Spring,stream,3,,,,Sioraq,South River,,,,,,0
+2019_232_IceRampPoolRiver_01082019,01/08/2019,76.4111,-68.2997,500,-0.0198,-0.15,0.008,Ice Ramp Pool River,stream,3,,,,Sioraq,South River,,,,,,0
+2018_047_IceWallStream_1,27/06/2018,76.5406,-68.1422,350,-0.0241,-0.181,0.012,Ice Wall River,stream,3,,,,Pituffik,North River,,,,,,0
+2018_211_IceWallStream_1,10/08/2018,76.5406,-68.1422,350,-0.0206,-0.155,0.01,Ice Wall River,stream,3,,,,Pituffik,North River,,,,,,0
+2019_117_IceWallRiver_NriverHead_25072019,25/07/2019,76.5406,-68.1422,350,-0.0208,-0.156,0.01,Ice Wall River,stream,3,,,,Pituffik,North River,,,,,,0
+2019_212_IceWallRiverBelowWaterslide_31072019,31/07/2019,76.5386,-67.9722,516,-0.0204,-0.153,0.01,Ice Wall River Below Waterslide,stream,3,,,,Pituffik,North River,,,,,,0
+2019_210_IceWallRiverHikeEnd_31072019,31/07/2019,76.5419,-68.1092,380,-0.0204,-0.153,0.01,Ice Wall River Hike End,stream,3,,,,Pituffik,North River,,,,,,0
+2019_209_IceWallRiverHikeStart_31072019,31/07/2019,76.5419,-68.1092,380,-0.0202,-0.153,0.009,Ice Wall River Hike Start,stream,3,,,,Pituffik,North River,,,,,,0
+2019_213_IceWallRiverMiddleWaterslide_31072019,31/07/2019,76.5386,-67.9722,516,-0.0205,-0.153,0.011,Ice Wall River Middle Waterslide,stream,3,,,,Pituffik,North River,,,,,,0
+2019_211_IceWallRiverUpperIceWall_31072019,31/07/2019,76.5419,-68.0461,427,-0.0206,-0.155,0.01,Ice Wall River Upper Ice Wall,stream,3,,,,Pituffik,North River,,,,,,0
+2019_214_IceWallRiverUpperWaterslide_31072019,31/07/2019,76.5386,-67.9722,516,-0.0208,-0.156,0.01,Ice Wall River Upper Waterslide,stream,3,,,,Pituffik,North River,,,,,,0
+2018_008_LakePotatoInflow_1,14/06/2018,76.5582,-68.5522,190,-0.0218,-0.167,0.007,Lake Potato Inflow,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2018_015_LakePotatoInflow_1,18/06/2018,76.5582,-68.5522,190,-0.0201,-0.156,0.005,Lake Potato Inflow,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2018_025_LakePotatoInflow_1,22/06/2018,76.5582,-68.5522,190,-0.0198,-0.155,0.003,Lake Potato Inflow,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2018_056_LakePotatoInflow_1,29/06/2018,76.5582,-68.5522,190,-0.0191,-0.15,0.003,Lake Potato Inflow,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2019_046_CapeAthollRiverCrossing_21072019,21/07/2019,76.4219,-69.0956,177,-0.0193,-0.145,0.009,Narsaarsuk River Crossing for Cape Atholl,stream,3,,,,Narsaarsuk,Narsaarsuk,,,,,,0
+2019_047_CapeAthollRiverCrossingSouthBank_21072019,21/07/2019,76.4219,-69.0956,177,-0.0193,-0.145,0.009,Narsaarsuk River Crossing for Cape Atholl South Bank,stream,3,,,,Narsaarsuk,Narsaarsuk,,,,,,0
+2018_010_NorthRiverMouth_1,18/06/2018,76.5406,-68.7503,53,-0.0227,-0.172,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_032_NorthRiverMouth_1,23/06/2018,76.5406,-68.7503,53,-0.0229,-0.172,0.011,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_043_NorthRiverMouth_1,27/06/2018,76.5406,-68.7503,53,-0.0225,-0.17,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_054_NorthRiverMouth_1,29/06/2018,76.5406,-68.7503,53,-0.018,-0.147,-0.003,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,1
+2018_089_NorthRiverMouth_1,02/07/2018,76.5406,-68.7503,53,-0.0214,-0.164,0.007,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_134_NorthRiverMouth_1,08/07/2018,76.5406,-68.7503,53,-0.0218,-0.164,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_140_NorthRiverMouth_1,11/07/2018,76.5406,-68.7503,53,-0.0218,-0.166,0.008,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_231_NorthRiverMouth_1,19/07/2018,76.5406,-68.7503,53,-0.0216,-0.163,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_242_NorthRiverMouth_1,30/07/2018,76.5406,-68.7503,53,-0.0215,-0.163,0.009,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_252_NorthRiverMouth_1,03/08/2018,76.5406,-68.7503,53,-0.0211,-0.16,0.009,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_198_NorthRiverMouth_1,07/08/2018,76.5406,-68.7503,53,-0.0202,-0.152,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_217_NorthRiverMouth_1,15/08/2018,76.5406,-68.7503,53,-0.0206,-0.154,0.011,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2018_280_NorthRiverMouth_1,20/08/2018,76.5406,-68.7503,53,-0.021,-0.157,0.011,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_001_NorthRiverMouth_17072019,17/07/2019,76.5406,-68.7503,53,-0.0208,-0.156,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_023_NorthRiverMouth_19072019,19/07/2019,76.5406,-68.7503,53,-0.0212,-0.159,0.011,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_056_NorthRiverMouth_22072019,22/07/2019,76.5406,-68.7503,53,-0.0201,-0.152,0.009,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_142_NorthRiverMouth_26072019,26/07/2019,76.5406,-68.7503,53,-0.0199,-0.153,0.006,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_197_NorthRiverMouth_30072019,30/07/2019,76.5406,-68.7503,53,-0.0206,-0.155,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_225_NorthRiverMouth_01082019,01/08/2019,76.5406,-68.7503,53,-0.0207,-0.155,0.011,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
+2019_200_NorthRiverMouthLateAfternoonMaxFlow_30072019,30/07/2019,76.5406,-68.7503,53,-0.0198,-0.152,0.006,North River Mouth Late Afternoon Max Flow,stream,3,,,,Pituffik,North River,,,,,,0
+2018_135_NorthRiverSouthForkShelter2_1,08/07/2018,76.5308,-68.5594,114,-0.0212,-0.159,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2018_141_NorthRiverSouthForkShelter2_1,11/07/2018,76.5308,-68.5594,114,-0.0214,-0.162,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2018_232_NorthRiverSouthForkShelter2_1,19/07/2018,76.5308,-68.5594,114,-0.0208,-0.158,0.008,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2018_243_NorthRiverSouthForkShelter2_1,30/07/2018,76.5308,-68.5594,114,-0.0199,-0.154,0.005,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,1
+2018_253_NorthRiverSouthForkShelter2_1,03/08/2018,76.5308,-68.5594,114,-0.019,-0.149,0.003,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,1
+2018_208_NorthRiverSouthForkShelter2_1,10/08/2018,76.5308,-68.5594,114,-0.0203,-0.153,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2018_218_NorthRiverSouthForkShelter2_1,15/08/2018,76.5308,-68.5594,114,-0.0205,-0.153,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_002_NorthRiverShelter2SouthFork_17072019,17/07/2019,76.5308,-68.5594,114,-0.0207,-0.155,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_024_NorthRiverShelterSouthFork_19072019,19/07/2019,76.5308,-68.5594,114,-0.0211,-0.158,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_057_NorthRiverShelter2SouthFork_22072019,22/07/2019,76.5308,-68.5594,114,-0.02,-0.151,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_088_NorthRiverShelter2SouthFork_23072019,23/07/2019,76.5308,-68.5594,114,-0.0202,-0.153,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_143_NorthRiverShelter2SouthFork_26072019,26/07/2019,76.5308,-68.5594,114,-0.0208,-0.156,0.01,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_198_NorthRiverShelter2SouthFork_30072019,30/07/2019,76.5308,-68.5594,114,-0.0207,-0.155,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2019_226_NorthRiverShelter2SouthFork_01082019,01/08/2019,76.5308,-68.5594,114,-0.0205,-0.155,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
+2018_033_NorthRiverShelter5.8_1,23/06/2018,76.5203,-68.3681,195,-0.024,-0.179,0.013,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_044_NorthRiverShelter5.8_1,27/06/2018,76.5203,-68.3681,195,-0.0242,-0.181,0.013,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_136_NorthRiverShelter5.8_08.07.18,08/07/2018,76.5203,-68.3681,195,-0.0228,-0.171,0.011,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_142_NorthRiverShelter5.8_11.07.18,11/07/2018,76.5203,-68.3681,195,-0.0241,-0.18,0.013,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_233_NorthRiverShelter5.8_lost,19/07/2018,76.5203,-68.3681,195,,,,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,1
+2018_244_NorthRiverShelter5.8_1,30/07/2018,76.5203,-68.3681,195,-0.0217,-0.167,0.007,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_254_NorthRiverShelter5.8_1,03/08/2018,76.5203,-68.3681,195,-0.0216,-0.163,0.01,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_209_NorthRiverShelter5.8_1,10/08/2018,76.5203,-68.3681,195,-0.0208,-0.156,0.01,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_219_NorthRiverShelter5.8_15.08.18,15/08/2018,76.5203,-68.3681,195,-0.0208,-0.157,0.009,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2019_003_NorthRiverShelter5.8_17072019,17/07/2019,76.5203,-68.3681,195,-0.0207,-0.156,0.01,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2019_025_NorthRiverShelter5.8_19072019,19/07/2019,76.5203,-68.3681,195,-0.0212,-0.159,0.011,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2019_058_NorthRiverShelter5.8_22072019,22/07/2019,76.5203,-68.3681,195,-0.0205,-0.153,0.011,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2019_144_NorthRiverShelter5.8_26072019,26/07/2019,76.5203,-68.3681,195,-0.0209,-0.156,0.011,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2019_199_NorthRiverShelter5.8_30072019,30/07/2019,76.5203,-68.3681,195,-0.02,-0.153,0.007,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2019_227_NorthRiverShelter5.8_01082019,01/08/2019,76.5203,-68.3681,195,-0.0201,-0.154,0.007,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
+2018_196_OldMineRiver_1,03/08/2018,76.44,-68.2811,452,-0.0205,-0.155,0.009,Old Mine River,stream,3,,,,Sioraq,South River,,,,,,0
+2019_171_OldMineRiverDownstream_27072019,27/07/2019,76.44,-68.2811,452,-0.0199,-0.149,0.01,Old Mine River Downstream,stream,3,,,,Sioraq,South River,,,,,,0
+2018_096_GravelStreamOfPotatoCreek_1,05/07/2018,76.5567,-68.4683,85,-0.0189,-0.15,0.001,Potato Creek Above Water Lake,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2019_134_PotatoCreekAboveWaterLake_26072019,26/07/2019,76.5567,-68.4683,85,-0.0164,-0.139,-0.008,Potato Creek Above Water Lake,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2018_197_WaterfallStream_03.08.18,03/08/2018,76.5747,-68.4197,27,-0.0175,-0.142,-0.002,Potato Creek at Waterfall,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2019_124_PotatoCreekEnteringQuattroBasin_26072019,26/07/2019,76.5528,-68.5083,147,-0.0162,-0.138,-0.008,Potato Creek Entering Quattro Basin,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2019_115_PotatoCreekHead_25072019,25/07/2019,76.5656,-68.605,208,-0.0182,-0.146,0,Potato Creek North Mtn View Lake Outlet,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2018_077_SearchPartyValleyStream_1,30/06/2018,76.5042,-68.8467,156,-0.0229,-0.173,0.01,Search Party Valley Stream,stream,3,,,,Search Party,Search Party,,,,,,0
+2018_009_SouthRiverMouth_1,18/06/2018,76.5206,-68.8772,22,-0.0231,-0.174,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_034_SouthRiverMouth_1,23/06/2018,76.5206,-68.8772,22,-0.0231,-0.174,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_045_SouthRiverMouth_1,27/06/2018,76.5206,-68.8772,22,-0.0232,-0.175,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_090_SouthRiverMouth_1,02/07/2018,76.5206,-68.8772,22,-0.0215,-0.165,0.007,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_137_SouthRiverMouth_1,08/07/2018,76.5206,-68.8772,22,-0.0222,-0.167,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_143_SouthRiverMouth_1,11/07/2018,76.5206,-68.8772,22,-0.022,-0.167,0.009,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_234_SouthRiverMouth_lost,20/07/2018,76.5206,-68.8772,22,,,,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,1
+2018_245_SouthRiverMouth_1,30/07/2018,76.5206,-68.8772,22,-0.0214,-0.163,0.008,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_257_SouthRiverMouth_1,04/08/2018,76.5206,-68.8772,22,-0.0206,-0.157,0.008,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_199_SouthRiverMouth_1,07/08/2018,76.5206,-68.8772,22,-0.0199,-0.151,0.008,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_225_SouthRiverMouth_1,16/08/2018,76.5206,-68.8772,22,-0.0202,-0.152,0.01,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_268_SouthRiverMouth_1,20/08/2018,76.5206,-68.8772,22,-0.0204,-0.153,0.01,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2019_004_SouthRiverMouth_17072019,17/07/2019,76.5206,-68.8772,22,-0.02,-0.15,0.01,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2019_026_SouthRiverMouth_19072019,19/07/2019,76.5206,-68.8772,22,-0.0204,-0.152,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2019_059_SouthRiverMouth_22072019,22/07/2019,76.5206,-68.8772,22,-0.0196,-0.148,0.009,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2019_195_SouthRiverMouth_29072019,29/07/2019,76.5206,-68.8772,22,-0.0187,-0.145,0.005,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,1
+2019_228_SouthRiverMouth_01082019,01/08/2019,76.5206,-68.8772,22,-0.0199,-0.149,0.01,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
+2018_104_TheWaterfall_1,05/07/2018,76.5747,-68.4197,27,-0.0187,-0.148,0.002,The Waterfall,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2019_140_TheWaterfall_26072019,26/07/2019,76.5747,-68.4197,27,-0.0172,-0.143,-0.005,The Waterfall,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
+2019_179_UpperIceCanyonRiverAfternoon_29072019,29/07/2019,76.4111,-68.2997,500,-0.0201,-0.151,0.01,Upper Ice Canyon River Afternoon,stream,3,,,,Sioraq,South River,,,,,,0
+2019_178_UpperIceCanyonRiverMorning_29072019,29/07/2019,76.4111,-68.2997,500,-0.0201,-0.15,0.011,Upper Ice Canyon River Morning,stream,3,,,,Sioraq,South River,,,,,,0
+2018_305_103Tap_17.11.18,17/11/2018,,,,-0.0186,-0.148,0.001,103 Tap,surface flow,4,,,,NA,NA,,,,,,1
+2018_304_345Tap_17.11.18,17/11/2018,,,,-0.0187,-0.149,0.001,345 Tap,surface flow,4,,,,NA,NA,,,,,,1
+2019_098_BLaunchSeep_25072019,25/07/2019,76.5758,-68.6381,257,-0.0195,-0.154,0.002,B Launch Seep,surface flow,4,,,,Amitsuarsuk,Potato,,,,,,0
+2018_202_BackBeachNorthCreek_1,07/08/2018,76.5052,-68.9558,0,-0.0211,-0.162,0.007,Back Beach North Creek,surface flow,4,,,,Other,Other,,,,,,0
+2018_203_BackBeachSouthCliffSeep_1,07/08/2018,76.4981,-68.9739,29,-0.0205,-0.156,0.008,Back Beach South Cliff Seep,surface flow,4,,,,Other,Other,,,,,,0
+2018_201_BackBeachSouthCreek_1,07/08/2018,76.5019,-68.9664,24,-0.0211,-0.16,0.009,Back Beach South Creek,surface flow,4,,,,Other,Other,,,,,,0
+2018_166_BlackMossWash_1,16/07/2018,76.4864,-68.42,241,-0.021,-0.159,0.009,Blackmoss Wash East Fork,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_149_FertilizerRidgeDrainageEastFork_27072019,27/07/2019,76.4861,-68.4375,237,-0.02,-0.15,0.01,Blackmoss Wash East Fork,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_175_BlackmossRiverEastFork_29072019,29/07/2019,76.4861,-68.4375,237,-0.0198,-0.149,0.009,Blackmoss Wash East Fork,surface flow,4,,,,Sioraq,South River,,,,,,0
+2018_026_FertilizerPlotLowerDrainage_1,22/06/2018,76.4861,-68.4375,237,-0.021,-0.16,0.008,Blackmoss Wash Joint Flow,surface flow,4,,,,Sioraq,South River,,,,1,,0
+2018_249_FertilizerRidgeFlow_1,01/08/2018,76.4861,-68.4375,237,-0.0209,-0.16,0.007,Blackmoss Wash Joint Flow,surface flow,4,,,,Sioraq,South River,,,,2,,0
+2019_008_FertilizerRidgeDrainage_17072019,17/07/2019,76.4861,-68.4375,237,-0.0198,-0.149,0.009,Blackmoss Wash Joint Flow,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_148_FertilizerRidgeDrainageJointFlow_27072019,27/07/2019,76.4861,-68.4375,237,-0.0199,-0.15,0.009,Blackmoss Wash Joint Flow,surface flow,4,,,,Sioraq,South River,,,,3,,0
+2019_174_BlackmossRiverJointFlow_29072019,29/07/2019,76.4861,-68.4375,237,-0.0196,-0.149,0.008,Blackmoss Wash Joint Flow,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_150_FertilizerRidgeDrainageSouthFork_27072019,27/07/2019,76.4861,-68.4375,237,-0.0198,-0.149,0.009,Blackmoss Wash South Fork,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_176_BlackmossRiverSouthFork_29072019,29/07/2019,76.4861,-68.4375,237,-0.02,-0.15,0.01,Blackmoss Wash South Fork,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_053_CapeAthollAlmostThereCreek_21072019,21/07/2019,76.3257,-69.3384,80,-0.0182,-0.136,0.01,Cape Atholl Almost There Creek,surface flow,4,,,,Quaraatit,Cape Atholl Station,,,,,,0
+2019_048_CapeAthollCrimsonViewSeep_21072019,21/07/2019,76.3817,-69.1547,355,-0.0179,-0.138,0.005,Cape Atholl Crimson View Seep,surface flow,4,,,,Quaraatit,Cape Atholl Station,,,,,,0
+2019_051_CapeAthollRedMossCreek_21072019,21/07/2019,76.3353,-69.2966,258,-0.0182,-0.128,0.018,Cape Atholl Red Moss Creek,surface flow,4,,,,Quaraatit,Cape Atholl Station,,,,,,0
+2019_050_CapeAthollWashoutCreek_21072019,21/07/2019,76.39,-69.1558,309,-0.0171,-0.133,0.004,Cape Atholl Washout Creek,surface flow,4,,,,Quaraatit,Cape Atholl Station,,,,,,0
+2018_059_CarexSwale_1,29/06/2018,76.5556,-68.5236,176,-0.0157,-0.134,-0.008,Carex Swale,surface flow,4,,,,Amitsuarsuk,Potato,,,,,,0
+2018_080_DiabaseDepthLakeInflow_1,01/07/2018,76.5703,-68.6839,198,-0.0186,-0.146,0.003,Diabase Depth Lake Inflow,surface flow,4,,,,Qoorunnapaluk,Horseshoe,,,,,,0
+2019_044_FogbreakSnowbankDrip_21072019,21/07/2019,76.4199,-69.1142,175,-0.0205,-0.152,0.012,Fogbreak Snowbank Drip,surface flow,4,,,,Narsaarsuk,Narsaarsuk,,,,,,0
+2019_045_FogbreakSnowbankRunoff_21072019,21/07/2019,76.4199,-69.1142,175,-0.0199,-0.15,0.009,Fogbreak Snowbank Runoff,surface flow,4,,,,Narsaarsuk,Narsaarsuk,,,,,,0
+2018_223_GarnetCreek_1,15/08/2018,76.5789,-68.2472,234,-0.0203,-0.157,0.005,Garnet Creek,surface flow,4,,,,Garnet,Garnet,,,,,,0
+2019_147_HalfSnowLakeOutlet_27072019,27/07/2019,76.4968,-68.4402,228,-0.0207,-0.162,0.004,Half Snow Lake Outlet,surface flow,4,,,,Pituffik,North River,,,,,,0
+2019_186_IceCanyonGiantIceBlockDrip_29072019,29/07/2019,76.3878,-68.3742,383,-0.0213,-0.16,0.01,Ice Canyon Giant Ice Block Drip,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_181_IceCanyonSubsurfaceBankSpring_29072019,29/07/2019,76.4028,-68.3219,453,-0.019,-0.147,0.005,Ice Canyon Subsurface Bank Spring,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_196_IceCanyonSurfaceSnowBoulderMelt_29072019,29/07/2019,76.4075,-68.3097,493,-0.0198,-0.152,0.006,Ice Canyon Surface Snow Boulder Melt,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_080_IceCaveCeilingDrip_24072019,24/07/2019,76.4899,-68.8603,220,-0.0223,-0.169,0.009,Ice Cave Ceiling Drip,surface flow,4,,,,Ice Cave,Ice Cave,,,,,,0
+2019_103_IceCaveEntranceWaterfallFromAbove_24072019,24/07/2019,76.4899,-68.8603,220,-0.0227,-0.172,0.01,Ice Cave Entrance Waterfall from Above,surface flow,4,,,,Ice Cave,Ice Cave,,,,,,0
+2018_070_IceCaveHikeSlopeDrain_1,30/06/2018,76.5033,-68.8928,130,-0.023,-0.173,0.011,Ice Cave Hike Slope Drain,surface flow,4,,,,Search Party,Search Party,,,,,,0
+2018_071_IceCaveHikeStream_1,30/06/2018,76.5023,-68.8885,148,-0.0231,-0.174,0.011,Ice Cave Hike Stream,surface flow,4,,,,Search Party,Search Party,,,,,,0
+2018_074_IceCaveInCaveStream_1,30/06/2018,76.4899,-68.8603,220,-0.0225,-0.171,0.009,Ice Cave In-Cave Stream,surface flow,4,,,,Ice Cave,Ice Cave,,,,,,0
+2019_077_IceCaveStreamDownstream_24072019,24/07/2019,76.4899,-68.8603,220,-0.0216,-0.164,0.009,Ice Cave Stream Downstream,surface flow,4,,,,Ice Cave,Ice Cave,,,,,,0
+2019_079_IceCaveStreamMiddleInside_24072019,24/07/2019,76.4899,-68.8603,220,-0.0207,-0.158,0.008,Ice Cave Stream Middle Inside,surface flow,4,,,,Ice Cave,Ice Cave,,,,,,0
+2019_083_IceCaveSteamPreCave_24072019,24/07/2019,76.4899,-68.8603,220,-0.0183,-0.146,0,Ice Cave Stream PreCave,surface flow,4,,,,Ice Cave,Ice Cave,,,,,,0
+2018_178_IceCliffOutwashStream_1,16/07/2018,76.4873,-68.2785,302,-0.0216,-0.161,0.012,Ice Cliff Outwash Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_226_IceCliffIceSheetOutflow_1,16/08/2018,76.4873,-68.2785,302,-0.0206,-0.153,0.012,Ice Cliff Outwash Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_228_SnowbankWash_1,16/08/2018,76.4706,-68.3344,303,-0.018,-0.142,0.002,Ice Cliff Plain Snowbank Wash,surface flow,4,,,,Sioraq,South River,,,,,,0
+2018_179_IceCliffWaterfall_1,16/07/2018,76.4894,-68.2705,363,-0.0196,-0.146,0.011,Ice Cliff Waterfall,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_227_IceCliffWaterfallStream_1,16/08/2018,76.4894,-68.2705,363,-0.0209,-0.155,0.012,Ice Cliff Waterfall Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2019_020_IceRampDrippingWater_lost,18/07/2019,76.4111,-68.2997,500,,,,Ice Ramp Dripping Water,surface flow,4,,,,Sioraq,South River,,,,,,1
+2018_212_IceWallIceSheetOutflow_1,10/08/2018,76.5342,-68.1867,318,-0.0208,-0.156,0.01,Ice Wall Ice Sheet Outflow,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_052_IceWallMoraineCrestSeep_1,27/06/2018,76.5372,-68.1364,416,-0.0203,-0.156,0.006,Ice Wall Moraine Crest Seep,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_213_IceWallOverTheTopFlow_10.08.18,10/08/2018,76.5342,-68.1867,318,-0.0227,-0.172,0.01,Ice Wall Over the Top Flow,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_046_IceWallPlainDrainagePool_1,27/06/2018,76.5466,-68.1521,350,-0.0202,-0.16,0.002,Ice Wall Plain Drainage Pool,surface flow,4,,,539,Pituffik,North River,,1561,4286,1,,0
+2018_210_IceWallRoadSeep_1,10/08/2018,76.5466,-68.1521,350,-0.0182,-0.147,-0.001,Ice Wall Plain Drainage Pool,surface flow,4,,,539,Pituffik,North River,,1561,4286,2,,0
+2019_116_IceWallHikeCrossingStream_25072019,25/07/2019,76.5466,-68.1521,350,-0.0212,-0.159,0.011,Ice Wall Plain Drainage Pool,surface flow,4,,,539,Pituffik,North River,,1561,4286,3,,0
+2019_160_OldMineIceWaterfall_27072019,27/07/2019,76.4319,-68.2633,501,-0.019,-0.145,0.007,Ice Waterfall,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_234_OldMineIceWaterfall_01082019,01/08/2019,76.4319,-68.2633,501,-0.0198,-0.148,0.01,Ice Waterfall,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_161_OldMineIceWaterfallPoolExitStream_27072019,27/07/2019,76.4319,-68.2633,501,-0.0198,-0.148,0.01,Ice Waterfall Pool Exit Stream,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_233_OldMineIceWaterfallPoolExitStream_01082019,01/08/2019,76.4319,-68.2633,501,-0.0197,-0.148,0.01,Ice Waterfall Pool Exit Stream,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_141_IperautagCreek_26072019,26/07/2019,76.5746,-68.4551,43,-0.0155,-0.132,-0.008,Iperautag Creek,surface flow,4,,,,Raven,Raven,,,,,,0
+2018_159_LakeviewPlainSeep_1,13/07/2018,76.5781,-68.56,301,-0.0205,-0.158,0.006,Lakeview Plain Seep,surface flow,4,,,,Other,Other,,,,,,0
+2019_224_LaskSkiSnowbankRunoff_31072019,31/07/2019,76.5586,-67.9861,574,-0.0194,-0.153,0.002,Last Ski Snowbank Runoff,surface flow,4,,,,Pituffik,North River,,,,,,0
+2019_155_LittleRockyValeSnowbankDrip_27072019,27/07/2019,76.4582,-68.5046,271,-0.0203,-0.155,0.007,Little Rocky Vale Snowbank Drip,surface flow,4,,,,Sioraq,South River,,,,,,0
+2018_266_LostboySwale_1,22/08/2018,76.5792,-68.6794,249,-0.0183,-0.144,0.002,Lostboy Swale,surface flow,4,,,,Secret,Secret,,,,,,0
+2018_194_NoCaveBeachSeep_26.07.18,26/07/2018,76.57,-68.7747,21,-0.0194,-0.151,0.004,No Cave Beach Seep,surface flow,4,,,,Other,Other,,,,,,0
+2018_003_NorthNorthMountainStream_1,14/06/2018,76.5482,-68.5661,174,-0.0226,-0.173,0.008,North North Mountain Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_012_NorthNorthMountainStream_1,18/06/2018,76.5482,-68.5661,174,-0.0216,-0.167,0.006,North North Mountain Stream,surface flow,4,,,,Pituffik,North River,,,,1,,0
+2018_021_NorthNorthMountainStream_1,22/06/2018,76.5482,-68.5661,174,-0.0188,-0.148,0.002,North North Mountain Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_270_NorthNorthMountainStream_1,23/08/2018,76.5482,-68.5661,174,-0.0181,-0.144,0.001,North North Mountain Stream,surface flow,4,,,,Pituffik,North River,,,,2,,0
+2019_204_NorthNorthMountainStreamPool_30072019,30/07/2019,76.5482,-68.5661,174,-0.017,-0.146,-0.01,North North Mountain Stream Pool,surface flow,4,,,495,Pituffik,North River,,8123,3938,3,,0
+2019_182_PinkSnowfieldMeltwater_29072019,29/07/2019,76.405,-68.3475,458,-0.0194,-0.148,0.007,Pink Snowfield Meltwater,surface flow,4,,,,Sioraq,South River,,,,,,0
+2019_035_RavenLakeMilkySeep_19072019,19/07/2019,76.5597,-68.5242,173,-0.0179,-0.143,0,Raven Lake Milky Seep,surface flow,4,,,,Raven,Raven,,,,,,0
+2019_041_RavenPointSlopeSeep_19072019,19/07/2019,76.5717,-68.5303,209,-0.0188,-0.15,0,Raven Point Slope Seep,surface flow,4,,,,Raven,Raven,,,,,,0
+2018_174_RockRingLakeInflowStream_1,16/07/2018,76.4775,-68.2997,302,-0.0216,-0.162,0.011,Rock Ring Lake Inflow Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_175_RockRingMoraineIceSheetRunoff_1,16/07/2018,76.4789,-68.2711,322,-0.0214,-0.16,0.011,Rock Ring Moraine Ice Sheet Runoff,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_084_SecretPlaceSeep_1,01/07/2018,76.5811,-68.5975,314,-0.0188,-0.149,0.001,Secret Place Seep,surface flow,4,,,,Other,Other,,,,,,0
+2019_168_SidewinderIceStream_27072019,27/07/2019,76.4303,-68.2644,506,-0.0196,-0.147,0.01,Sidewinder Ice Stream,surface flow,4,,,,Sioraq,South River,,,,,,0
+2018_067_SpagnumCoveDrain_1,29/06/2018,76.5697,-68.6172,224,-0.0203,-0.157,0.005,Sphagnum Cove Drain,surface flow,4,,,,Amitsuarsuk,Potato,,,,,,0
+2019_110_SphagnumCoveDrain_25072019,25/07/2019,76.5697,-68.6172,224,-0.0186,-0.149,0,Sphagnum Cove Drain,surface flow,4,,,,Amitsuarsuk,Potato,,,,,,0
+2019_113_TarnRidgeDrain_25072019,25/07/2019,76.57,-68.6044,227,-0.0203,-0.157,0.005,Tarn Ridge Drain,surface flow,4,,,,Amitsuarsuk,Potato,,,,,,0
+2019_222_ThreeGlacierViewPlateauGiantPool_31072019,31/07/2019,76.5453,-67.9014,575,-0.0203,-0.153,0.009,Three Glacier View Plateau Giant Pool,surface flow,4,,,,Three Glacier View,Three Glacier View,,,,,,0
+2019_221_ThreeGlacierViewSnowfieldRunoff_31072019,31/07/2019,76.5417,-67.8975,605,-0.0197,-0.15,0.008,Three Glacier View Snowfield Runoff,surface flow,4,,,,Three Glacier View,Three Glacier View,,,,,,0
+2018_165_VividValeCreek_1,16/07/2018,76.489,-68.3572,253,-0.0215,-0.162,0.01,Vivid Verdent Vale Creek,surface flow,4,,,,Pituffik,North River,,,,,,0
+2019_217_WaterslideIceFlatsTopMeltStream_31072019,31/07/2019,76.5386,-67.9556,533,-0.0207,-0.158,0.008,Waterslide Ice Flats Top Melt Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
+2018_302_12SWSFogFrost_15.11.18,15/11/2018,76.5702,-68.3258,381,-0.0306,-0.223,0.022,12SWS Fog Frost,snow or ice,5,,,,Other,Other,,,,,,0
+2018_204_BackBeachSmallSnowIcePack_2,07/08/2018,76.5014,-68.9686,21,-0.0207,-0.155,0.011,Back Beach Small Snow Pack,snow or ice,5,,,,Other,Other,,,,,,0
+2018_027_FertilizerPlotLowerDrainageSnow_2,22/06/2018,76.4861,-68.4375,237,-0.0247,-0.186,0.012,Blackmoss Wash Road Crossing Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_285_BlueIceViewSnow_05.11.18,05/11/2018,76.4188,-68.2893,505,-0.0196,-0.138,0.019,Blue Ice View Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_294_345Snow_08.11.18,08/11/2018,76.5383,-68.7632,15,-0.0221,-0.167,0.01,Building 345 Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_052_CapeAthollRedMossCreekSnowpack_21072019,21/07/2019,76.3353,-69.2966,258,-0.0172,-0.128,0.01,Cape Atholl Red Moss Creek Snowpack,snow or ice,5,,,,Quaraatit,Cape Atholl Station,,,,,,0
+2018_303_DLaunchSnow_16.11.18,16/11/2018,76.5112,-68.8967,153,-0.0281,-0.207,0.018,D Launch Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_185_DundasIceberg_3,17/07/2018,76.5731,-68.8228,0,-0.0248,-0.186,0.012,Dundas Iceberg,snow or ice,5,,,,Other,Other,,,,,,0
+2018_170_FantailLakeSnow_2,16/07/2018,76.4714,-68.3678,287,-0.0191,-0.143,0.01,Fantail Lake Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_043_FogbreakSnowbank_21072019,21/07/2019,76.4199,-69.1142,175,-0.0207,-0.153,0.013,Fogbreak Snowbank,snow or ice,5,,,,Narsaarsuk,Narsaarsuk,,,,,,0
+2018_224_GarnetMountainSnowFieldRemnant_2,15/08/2018,76.5775,-68.2533,262,-0.0216,-0.165,0.008,Garnet Mountain Snowfield Remnant,snow or ice,5,,,,Garnet,Garnet,,,,,,0
+2019_146_HalfSnowLakeSlush_27072019,27/07/2019,76.4968,-68.4402,228,-0.0187,-0.149,0.001,Half Snow Lake Slush,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_184_IceCanyonSurfaceSnow4cmIcy_29072019,29/07/2019,76.4058,-68.3144,482,-0.0187,-0.14,0.01,Ice Canyon Surface Snow 4 cm Icy,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_183_IceCanyonSurfaceSnowTopLayer_29072019,29/07/2019,76.4058,-68.3144,482,-0.0183,-0.146,0,Ice Canyon Surface Snow Top Layer,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_075_IceCaveDripwater_1,30/06/2018,76.4899,-68.8603,220,-0.0262,-0.196,0.014,Ice Cave Dripwater,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2019_078_IceCaveExternalDriftSnow_24072019,24/07/2019,76.4899,-68.8603,220,-0.0245,-0.19,0.006,Ice Cave External Drift Snow,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2018_076_IceCaveFrostCrystals_2,30/06/2018,76.4899,-68.8603,220,-0.0202,-0.143,0.019,Ice Cave Frost Crystals,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2018_073_IceCaveHikeFogPlainPolarDesertSnow_2,30/06/2018,76.4958,-68.8592,244,-0.0203,-0.148,0.014,Ice Cave Hike Fog Plain Polar Desert Snow,snow or ice,5,,,,Search Party,Search Party,,,,,,0
+2018_072_IceCaveHikeMidpointSnow_2,30/06/2018,76.4994,-68.8819,201,-0.0231,-0.175,0.01,Ice Cave Hike Midpoint Snow,snow or ice,5,,,,Search Party,Search Party,,,,,,0
+2019_081_IceCaveWallClearIce_24072019,24/07/2019,76.4899,-68.8603,220,-0.0192,-0.152,0.002,Ice Cave Wall Clear Ice,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2019_082_IceCaveWallWhiteIce_24072019,24/07/2019,76.4899,-68.8603,220,-0.0201,-0.152,0.009,Ice Cave Wall White Ice,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2018_180_IceCliffBaseIce_3,16/07/2018,76.4894,-68.2705,363,-0.0195,-0.144,0.012,Ice Cliff Base Ice,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_181_IceCliffCleanIceLayer_3,16/07/2018,76.4894,-68.2705,363,-0.0187,-0.138,0.012,Ice Cliff Clean Ice Layer,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_182_IceCliffDirtyIceLayer_3,16/07/2018,76.4894,-68.2705,363,-0.0191,-0.14,0.013,Ice Cliff Dirty Ice Layer,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_132_IceRampBaseSnowbank_07.07.18,07/07/2018,76.4111,-68.2997,500,-0.0246,-0.189,0.008,Ice Ramp Base Snowbank,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_031_RampCampSnow_2,22/06/2018,76.4111,-68.2997,500,-0.0235,-0.18,0.008,Ice Ramp Camp Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_286_IceRampCaveIce_05.11.18,05/11/2018,76.4111,-68.2997,500,-0.0214,-0.159,0.012,Ice Ramp Cave Ice,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_010_IceRampOldSnowRamp_17072019,17/07/2019,76.4111,-68.2997,500,-0.0199,-0.151,0.008,Ice Ramp Old Snow Ramp,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_021_IceRampOldSnowRampSaturatedIcy_18072019,18/07/2019,76.4111,-68.2997,500,-0.0207,-0.156,0.01,Ice Ramp Old Snow Ramp Saturated Icy,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_022_IceRampOldSnowRampUnsaturatedLoose_18072019,18/07/2019,76.4111,-68.2997,500,-0.0217,-0.166,0.008,Ice Ramp Old Snow Ramp Unsaturated Loose,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_283_IceRampSnow_05.11.18,05/11/2018,76.4111,-68.2997,500,-0.0259,-0.191,0.016,Ice Ramp Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_284_IceRampSnow2_05.11.18,05/11/2018,76.4111,-68.2997,500,-0.0236,-0.172,0.017,Ice Ramp Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_053_IceWallIceSheetSnow_2,27/06/2018,76.5328,-68.1214,451,-0.024,-0.184,0.008,Ice Wall Ice Sheet Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_048_IceWallMoraineEdgeSnow_2,27/06/2018,76.5386,-68.1406,363,-0.0249,-0.189,0.01,Ice Wall Moraine Edge Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_051_IceWallMoraineValleySnow_2,27/06/2018,76.5361,-68.1292,432,-0.0248,-0.191,0.007,Ice Wall Moraine Valley Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_163_OldMineIceWaterfallBlueIce_27072019,27/07/2019,76.4319,-68.2633,501,-0.008,-0.108,-0.044,Ice Waterfall Blue Ice,snow or ice,5,,,,Sioraq,South River,,,,,,1
+2019_164_OldMineIceWallSurfaceSnow10m_27072019,27/07/2019,76.4319,-68.2633,501,-0.009,-0.112,-0.04,Ice Waterfall Ice Wall Surface Snow 10m,snow or ice,5,,,,Sioraq,South River,,,,,,1
+2019_165_OldMineIceWallSurfaceSnow15m_27072019,27/07/2019,76.4319,-68.2633,501,-0.021,-0.158,0.01,Ice Waterfall Ice Wall Surface Snow 15m,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_166_OldMineIceWallSurfaceSnow20m_27072019,27/07/2019,76.4319,-68.2633,501,-0.0193,-0.148,0.006,Ice Waterfall Ice Wall Surface Snow 20m,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_167_OldMineIceWallSurfaceSnow30m_27072019,27/07/2019,76.4319,-68.2633,501,-0.0216,-0.162,0.011,Ice Waterfall Ice Wall Surface Snow 30m,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_162_OldMineIceWaterfallSlushOuterIce_27072019,27/07/2019,76.4319,-68.2633,501,-0.0164,-0.137,-0.006,Ice Waterfall Slush/Outer Ice,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_240_IleDeLaCiteSnowField_2,24/07/2018,76.5247,-68.4614,213,-0.0195,-0.152,0.004,Ile de la Cite Snowfield,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_012_IceRampNorthMeltPondIce_17072019,17/07/2019,76.4129,-68.2932,494,-0.0193,-0.146,0.008,Interramp Proglacial Lake Ice,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_114_LakeAquaSnow_2,06/07/2018,76.5427,-68.4931,129,-0.0234,-0.172,0.015,Lake Aqua Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_007_LakePotatoIce_3,14/06/2018,76.5569,-68.5481,190,-0.0234,-0.177,0.01,Lake Potato Ice,snow or ice,5,,,,Amitsuarsuk,Potato,,,,,,0
+2018_014_LakePotatoIceBlownToShore_3,18/06/2018,76.5569,-68.5481,190,-0.0165,-0.134,-0.002,Lake Potato Ice Blown to Shore,snow or ice,5,,,,Amitsuarsuk,Potato,,,,,,0
+2018_006_LakePotatoSnow_2,14/06/2018,76.5569,-68.5481,190,-0.0208,-0.155,0.011,Lake Potato Snow,snow or ice,5,,,,Amitsuarsuk,Potato,,,,,,0
+2018_030_LakeTutoSnow_2,22/06/2018,76.43,-68.327,489,-0.0256,-0.194,0.011,Lake Tuto Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_223_LastSkiSnowbankSlush_31072019,31/07/2019,76.5586,-67.9861,574,-0.021,-0.16,0.008,Last Ski Snowbank Slush,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_154_LittleRockyValeSnowbank_27072019,27/07/2019,76.4582,-68.5046,271,-0.019,-0.149,0.003,Little Rocky Vale Snowbank,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_028_MidwayTutoRoadSnow_2,22/06/2018,76.4503,-68.3972,331,-0.0188,-0.143,0.007,Midway Tuto Road Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_290_NMountainRidgeSnow_08.11.18,08/11/2018,76.5558,-68.7527,200,-0.025,-0.183,0.017,North Mountain Ridge Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_291_NMountainRidgeSnowCrust_08.11.18,08/11/2018,76.5558,-68.7527,200,-0.0223,-0.162,0.016,North Mountain Ridge Snow Crust,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_289_NMountainPool_08.11.18,08/11/2018,76.5441,-68.6105,249,-0.0245,-0.177,0.019,North Mountain Road Pool Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_002_NorthMountainRoadSnow_2,14/06/2018,76.5441,-68.6105,249,-0.0173,-0.137,0.001,North Mountain Road Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_004_NorthNorthMountainSnow_2,14/06/2018,76.5482,-68.5661,174,-0.0301,-0.227,0.014,North North Mountain Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_292_NorthRiverShelter2Snow_08.11.18,08/11/2018,76.5308,-68.5594,114,-0.0252,-0.184,0.018,North River Shelter 2 Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_293_NorthRiver5.8Snow_08.11.18,08/11/2018,76.5203,-68.3681,195,-0.0278,-0.205,0.017,North River Shelter 5.8 Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_172_OldMineRiverSnowbankIce_27072019,27/07/2019,76.4417,-68.2875,434,-0.0191,-0.151,0.002,Old Mine River Snowbank Ice,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_173_OldMineRiverSnowbankSlush_27072019,27/07/2019,76.4417,-68.2875,434,-0.0203,-0.159,0.003,Old Mine River Snowbank Slush,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_130_PMountainFrost_07.07.18,07/07/2018,76.4019,-68.7246,816,-0.0189,-0.144,0.007,P Mountain Peak Hoar Frost,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_129_PMountainPeakSnow_07.07.18,07/07/2018,76.4019,-68.7246,816,-0.0224,-0.169,0.01,P Mountain Peak Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2019_119_PMountainSaddle10cmSnow_25072019,25/07/2019,76.3943,-68.6921,701,-0.017,-0.125,0.011,P Mountain Saddle 10 cm Snow,snow or ice,5,,,,Paakitsup,Pituffik Glacier Front,,,,,,0
+2019_121_PMountainSaddleSlush_25072019,25/07/2019,76.3943,-68.6921,701,-0.0188,-0.14,0.01,P Mountain Saddle Slush,snow or ice,5,,,,Paakitsup,Pituffik Glacier Front,,,,,,0
+2019_120_PMountainSaddleSurfaceSnow_25072019,25/07/2019,76.3943,-68.6921,701,-0.0166,-0.14,-0.007,P Mountain Saddle Surface Snow,snow or ice,5,,,,Paakitsup,Pituffik Glacier Front,,,,,,0
+2018_241_PeregrineCliffSnow_2,25/07/2018,76.5864,-68.6737,202,-0.0184,-0.144,0.003,Peregrine Cliff Snow,snow or ice,5,,,,Other,Other,,,,,,0
+2018_287_PierTopSnow_05.11.18,05/11/2018,76.5443,-68.8717,23,-0.0266,-0.192,0.021,Pier Top Snow,snow or ice,5,,,,Other,Other,,,,,,0
+2018_042_PotatoFarmSnow_2,26/06/2018,76.5539,-68.5646,196,-0.0204,-0.154,0.009,Potato Farm Snow,snow or ice,5,,,,Amitsuarsuk,Potato,,,,,,0
+2018_018_PowerLakeIce_3,19/06/2018,76.5462,-68.5516,178,-0.0139,-0.12,-0.009,Power Lake Ice,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_295_PytheasPoolSnow_08.11.18,08/11/2018,76.5593,-68.2632,349,-0.02,-0.143,0.017,Pytheas Parking Pool Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_038_PytheasPeakSnow_2,23/06/2018,76.57,-68.2144,429,-0.0177,-0.127,0.015,Pytheas Peak Snow,snow or ice,5,,,,Other,Other,,,,,,0
+2018_037_PytheasPlainSnow_2,23/06/2018,76.5661,-68.2384,368,-0.0206,-0.158,0.007,Pytheas Plain Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_122_RadioMountainSnow_25072019,25/07/2019,76.3939,-68.6397,785,-0.0142,-0.117,-0.003,Radio Mountain Snow,snow or ice,5,,,,Paakitsup,Pituffik Glacier Front,,,,,,0
+2018_063_RavenPointSnow_2,29/06/2018,76.5711,-68.5481,281,-0.0184,-0.133,0.014,Raven Point Snow,snow or ice,5,,,,Raven,Raven,,,,,,0
+2018_173_RockRingLakeSnow_2,16/07/2018,76.4784,-68.2998,299,-0.0198,-0.152,0.006,Rock Ring Lake Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_177_RockRingMoraineOldSnowRamp_2,16/07/2018,76.4778,-68.2683,328,-0.0203,-0.152,0.01,Rock Ring Moraine Old Snow Ramp,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_176_RockRingMoraineRecentSnow_2,16/07/2018,76.4778,-68.2683,328,-0.0193,-0.142,0.012,Rock Ring Moraine Recent Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2018_150_RockyValeSnow_2,11/07/2018,76.4588,-68.4926,271,-0.0224,-0.172,0.007,Rocky Vale Snow,snow or ice,5,,,,Sioraq,South River,,,,,,0
+2018_085_SecretPlaceSnow_2,01/07/2018,76.5811,-68.5975,314,-0.0202,-0.148,0.014,Secret Place Snow,snow or ice,5,,,,Other,Other,,,,,,0
+2018_041_SouthMountainPeakSnow_2,24/06/2018,76.5128,-68.6966,233,-0.0197,-0.142,0.016,South Mountain Snow,snow or ice,5,,,,Main Base,Main Base,,,,,,0
+2018_288_SMountainSnow_06.11.18,06/11/2018,76.5128,-68.6966,233,-0.0228,-0.167,0.015,South Mountain Snow,snow or ice,5,,,,Main Base,Main Base,,,,,,0
+2018_230_TheViewSnow_2,19/07/2018,76.5372,-68.2842,385,-0.0201,-0.151,0.01,The View Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_220_ThreeGlacierViewUpperSnowfield_31072019,31/07/2019,76.5417,-67.8975,605,-0.0201,-0.151,0.01,Three Glacier View Upper Snowfield,snow or ice,5,,,,Three Glacier View,Three Glacier View,,,,,,0
+2019_216_Waterslide3cmIce_31072019,31/07/2019,76.5386,-67.9722,516,-0.0194,-0.155,0,Waterslide 3 cm Ice,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_219_WaterslideSnowfieldBlueSlush_31072019,31/07/2019,76.5397,-67.9281,574,-0.0208,-0.16,0.006,Waterslide Snowfield Blue Slush,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_218_WaterslideSnowfieldSurfaceSnow_31072019,31/07/2019,76.5397,-67.9281,574,-0.0216,-0.167,0.006,Waterslide Snowfield Surface Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_215_WaterslideSurfaceSlushIce_31072019,31/07/2019,76.5386,-67.9722,516,-0.0212,-0.163,0.007,Waterslide Surface Slush/Ice,snow or ice,5,,,,Pituffik,North River,,,,,,0
+2019_087_WindyValeSnowbankInnerCleanSnow_24072019,24/07/2019,76.4897,-68.8342,211,-0.0205,-0.158,0.006,Windy Vale Snowbank Inner Clean Snow,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2019_086_WindyValeSnowbankOuterCrustSlush_24072019,24/07/2019,76.4897,-68.8342,211,-0.0201,-0.155,0.006,Windy Vale Snowbank Outer Crust/Slush,snow or ice,5,,,,Ice Cave,Ice Cave,,,,,,0
+2018_091_PrecipitationRainEvent1_4,03/07/2018,76.5383,-68.7632,61,-0.0173,-0.135,0.003,Rain Event 2018-07-03 Pt 1,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_092_PrecipitationRainEvent2_4,03/07/2018,76.5383,-68.7632,61,-0.021,-0.161,0.007,Rain Event 2018-07-03 Pt 2,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_138_PrecipitationEvent_4,09/07/2018,76.5383,-68.7632,61,-0.0228,-0.182,0,Rain Event 2018-07-09,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_139_PrecipitationEvent_10.07.18,10/07/2018,76.5383,-68.7632,61,-0.0175,-0.14,0,Rain Event 2018-07-10,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_151_PrecipitationEvent_4,12/07/2018,76.5383,-68.7632,61,-0.018,-0.147,-0.003,Rain Event 2018-07-12,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_162_PrecipitationEvent_15.07.18,15/07/2018,76.5383,-68.7632,61,-0.0194,-0.151,0.004,Rain Event 2018-07-15,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_163_PrecipitationEvent_4,16/07/2018,76.5383,-68.7632,61,-0.0174,-0.133,0.006,Rain Event 2018-07-16,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_239_PrecipitationEvent_lost,21/07/2018,76.5383,-68.7632,61,,,,Rain Event 2018-07-21,precipitation rain,6,,,,Pituffik,North River,,,,,,1
+2018_248_PrecipitationEvent_4,30/07/2018,76.5383,-68.7632,61,-0.0186,-0.153,-0.004,Rain Event 2018-07-30,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_251_PrecipitationEvent_4,03/08/2018,76.5383,-68.7632,61,-0.0211,-0.172,-0.003,Rain Event 2018-08-03,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_214_PrecipitationEvent_4,10/08/2018,76.5383,-68.7632,61,-0.0194,-0.149,0.006,Rain Event 2018-08-10,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_215_PrecipitationEvent_4,11/08/2018,76.5383,-68.7632,61,-0.0208,-0.164,0.002,Rain Event 2018-08-11,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_216_PrecipitationEvent_12.08.18,12/08/2018,76.5383,-68.7632,61,-0.0241,-0.191,0.002,Rain Event 2018-08-12,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2019_016_Precipitation_EventRainMidday_18072019,18/07/2019,76.5383,-68.7632,61,-0.0265,-0.21,0.002,Rain Event Midday 2019-07-18,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2019_015_Precipitation_EventRainMorning_18072019,18/07/2019,76.5383,-68.7632,61,-0.0207,-0.169,-0.003,Rain Event Morning 2019-07-18,precipitation rain,6,,,,Pituffik,North River,,,,,,0
+2018_237_PMountainFreshSnow_2,20/07/2018,76.4019,-68.7246,816,-0.0173,-0.141,-0.003,P Mountain Fresh Snow,precipitation snow,7,,,,Sioraq,South River,,,,,,1
+2018_250_PMountainWeekOldSnow_lost,01/08/2018,76.4019,-68.7246,816,,,,P Mountain Week Old Snow,precipitation snow,7,,,,Sioraq,South River,,,,,,1
+2018_300_PierSnowFresh_14.11.18,14/11/2018,76.5443,-68.8717,23,-0.0303,-0.225,0.017,Pier Fresh Snow,precipitation snow,7,,,,Other,Other,,,,,,0
+2018_301_PytheasPoolFreshSnow_15.11.18,15/11/2018,76.5593,-68.2632,349,-0.0379,-0.282,0.021,Pytheas Parking Pool Fresh Snow,precipitation snow,7,,,,Pituffik,North River,,,,,,0
+2018_238_RadioMountainFreshSnow_2,20/07/2018,76.3939,-68.6397,785,-0.0188,-0.146,0.004,Radio Mountain Fresh Snow,precipitation snow,7,,,,Paakitsup,Pituffik Glacier Front,,,,,,0
+2018_019_SnowEventAt345_4,20/06/2018,76.5383,-68.7632,61,-0.0293,-0.224,0.01,Snow Event 2018-06-20,precipitation snow,7,,,,Pituffik,North River,,,,,,0
+2018_296_SnowEvent_12.11.18,12/11/2018,76.5383,-68.7632,61,-0.035,-0.268,0.012,Snow Event 2018-11-12,precipitation snow,7,,,,Pituffik,North River,,,,,,0
+2018_297_Snow2_2100_12.11.18,12/11/2018,76.5383,-68.7632,61,-0.0389,-0.3,0.011,Snow Event 2018-11-12 2100,precipitation snow,7,,,,Pituffik,North River,,,,,,0
+2018_298_Snow3_1145_13.11.18,13/11/2018,76.5383,-68.7632,61,-0.0357,-0.273,0.013,Snow Event 2018-11-13 1145,precipitation snow,7,,,,Pituffik,North River,,,,,,0
+2018_299_Snow4_2300_13.11.18,13/11/2018,76.5383,-68.7632,61,-0.0326,-0.246,0.015,Snow Event 2018-11-13 2300,precipitation snow,7,,,,Pituffik,North River,,,,,,0
