@@ -12,7 +12,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_154_CableAccessLake_1,12/07/2018,76.5395,-68.6521,83,-0.0182,-0.146,0,Cable Access Lake,lake,1,headwater,2,18146,Pituffik,North River,817244,9547,3538,1,1,0
 2019_062_CableAccessLake_22072019,22/07/2019,76.5395,-68.6521,83,-0.0158,-0.136,-0.01,Cable Access Lake,lake,1,headwater,2,18146,Pituffik,North River,817244,9547,3538,3,1,0
 2018_060_CarexPond_1,29/06/2018,76.5593,-68.5285,180,-0.0175,-0.144,-0.004,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,1,1,0
-2018_282_CarexPond_lost,23/08/2018,76.5593,-68.5285,180,-0.0003,0.006,0.008,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,2,1,1
 2019_033_CarexPond_19072019,19/07/2019,76.5593,-68.5285,180,-0.0129,-0.125,-0.022,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,3,1,0
 2018_148_DLaunchLake_1,11/07/2018,76.5105,-68.88,86,-0.0193,-0.15,0.004,D Launch Lake,lake,1,vale,4,17058,Sioraq,South River,304542,14492,819,1,0,0
 2018_200_DLaunchLake_07.08.18,07/08/2018,76.5105,-68.88,86,-0.0178,-0.141,0.001,D Launch Lake,lake,1,vale,4,17058,Sioraq,South River,304542,14492,819,2,0,0
@@ -36,6 +35,9 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_068_LakeBracket_1,29/06/2018,76.5658,-68.6361,207,-0.0179,-0.142,0.001,Horseshoe Lake,lake,1,headwater,2,216564,Qoorunnapaluk,Horseshoe,1347592,10303,2206,1,1,0
 2019_108_HorseshoeLake_25072019,25/07/2019,76.5658,-68.6361,207,-0.0174,-0.14,-0.001,Horseshoe Lake,lake,1,headwater,2,216564,Qoorunnapaluk,Horseshoe,1347592,10303,2206,3,1,0
 2019_169_OldMineIceWallIceCaveLake_27072019,27/07/2019,76.4236,-68.2737,495,-0.0201,-0.151,0.01,Ice Cavern Proglacial Lake,lake,1,proglacial,5,75772,Sioraq,South River,2018351,0,16517,3,0,0
+2018_131_IceRampBaseMeltPool_1,07/07/2018,76.4111,-68.2997,500,-0.0229,-0.168,0.015,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,,0,0
+2019_009_IceRampPool_17072019,17/07/2019,76.4111,-68.2997,500,-0.0202,-0.151,0.011,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,,0,0
+2019_019_IceRampPool_18072019,18/07/2019,76.4111,-68.2997,500,-0.0202,-0.151,0.011,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,3,0,0
 2019_159_TutoIcebergLake_27072019,27/07/2019,76.4177,-68.2812,494,-0.0202,-0.151,0.011,Iceberg Proglacial Lake,lake,1,proglacial,5,240047,Sioraq,South River,2018351,0,17000,3,0,0
 2018_133_IceRampProglacialLake_1,07/07/2018,76.4129,-68.2932,494,-0.0201,-0.15,0.011,Interramp Proglacial Lake,lake,1,proglacial,5,39673,Sioraq,South River,2018351,0,17767,1,0,0
 2019_011_IceRampNorthMeltPond_17072019,17/07/2019,76.4129,-68.2932,494,-0.0201,-0.151,0.01,Interramp Proglacial Lake,lake,1,proglacial,5,39673,Sioraq,South River,2018351,0,17767,,0,0
@@ -66,7 +68,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_206_LakePotato_1,10/08/2018,76.5569,-68.5481,190,-0.0172,-0.14,-0.002,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,0
 2018_261_LakePotato_1,23/08/2018,76.5569,-68.5481,190,-0.0172,-0.14,-0.002,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,2,1,0
 2019_028_LakePotato_19072019,19/07/2019,76.5569,-68.5481,190,-0.017,-0.141,-0.005,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,3,1,0
-2019_205_LakePotato_30072019,30/07/2019,76.5569,-68.5481,190,-0.0158,-0.136,-0.01,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,1
 2018_109_LakeQuattro_1,06/07/2018,76.5483,-68.488,136,-0.0184,-0.146,0.001,Lake Quattro,lake,1,downstream,3,7144,Amitsuarsuk,Potato,6439204,6530,3309,1,1,0
 2018_260_LakeQuattro_1,23/08/2018,76.5483,-68.488,136,-0.0168,-0.138,-0.004,Lake Quattro,lake,1,downstream,3,7144,Amitsuarsuk,Potato,6439204,6530,3309,2,1,0
 2019_128_LakeQuattro_26072019,26/07/2019,76.5483,-68.488,136,-0.0163,-0.139,-0.009,Lake Quattro,lake,1,downstream,3,7144,Amitsuarsuk,Potato,6439204,6530,3309,3,1,0
@@ -123,7 +124,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2019_207_PowerLake_30072019,30/07/2019,76.5462,-68.5516,178,-0.0148,-0.127,-0.009,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,3,1,0
 2018_035_PytheasParkingPool_1,23/06/2018,76.5593,-68.2632,349,-0.0192,-0.152,0.002,Pytheas Parking Pool,lake,1,altered,6,10277,Pituffik,North River,2413061,3873,2768,,0,0
 2019_068_PytheasParkingPool_22072019,22/07/2019,76.5593,-68.2632,349,-0.0154,-0.138,-0.015,Pytheas Parking Pool,lake,1,altered,6,10277,Pituffik,North River,2413061,3873,2768,3,0,0
-2018_061_RavenLake_1,29/06/2018,76.5607,-68.5197,173,-0.0153,-0.127,-0.005,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,1,1,1
 2018_272_RavenLake_1,23/08/2018,76.5607,-68.5197,173,-0.0165,-0.134,-0.002,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,2,1,0
 2019_034_RavenLake_19072019,19/07/2019,76.5607,-68.5197,173,-0.0165,-0.135,-0.003,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,3,1,0
 2018_160_RavenRidgePond_1,13/07/2018,76.5734,-68.5271,203,-0.0174,-0.144,-0.005,Raven Ridge Pond,lake,1,headwater,2,2510,Other,Other,872237,9213,1030,1,1,0
@@ -168,15 +168,11 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_167_BoulderPlainPools_1,16/07/2018,76.48,-68.381,264,-0.0212,-0.161,0.009,Boulder Plain Pools,pool,2,,,189,Pituffik,North River,,2517,10327,,0,0
 2019_049_CapeAthollMidHikePool_21072019,21/07/2019,76.4007,-69.156,285,-0.0162,-0.131,-0.001,Cape Atholl 'Mid' Hike Pool,pool,2,,,179,Quaraatit,Cape Atholl Station,,16063,6568,,0,0
 2018_190_Champsd'ElyseeSeepPool_1,24/07/2018,76.5242,-68.4628,213,-0.0185,-0.145,0.003,Champs Elysees Seep Pool,pool,2,,,37,Pituffik,North River,,4520,5680,,0,0
-2018_103_CoastalPlateauPool_1,05/07/2018,76.574,-68.4281,35,-0.0066,-0.087,-0.034,Coastal Plateau Pool,pool,2,,,5002,Other,Other,198950,7828,186,1,1,1
 2019_139_CoastalPlateauPool_26072019,26/07/2019,76.574,-68.4281,35,-0.0131,-0.123,-0.018,Coastal Plateau Pool,pool,2,,,5002,Other,Other,198950,7828,186,3,1,0
 2019_102_DiabaseDepthPool_25072019,25/07/2019,76.5701,-68.6821,199,-0.0173,-0.142,-0.004,Diabase Depth Entrance Pool,pool,2,,,203,Qoorunnapaluk,Horseshoe,,11928,1577,,1,0
 2019_104_WestDiabaseDepthPool_25072019,25/07/2019,76.5704,-68.6927,197,-0.0174,-0.143,-0.004,Diabase Depth Exit Pool,pool,2,,,1781,Qoorunnapaluk,Horseshoe,,12149,1382,,1,0
 2019_201_DundasPool_30072019,30/07/2019,76.5714,-68.8245,30,-0.0172,-0.14,-0.002,Dundas Pool,pool,2,,,187,Other,Other,,15101,104,,0,0
 2018_222_GarnetSlopePool_15.08.18,15/08/2018,76.5722,-68.2657,345,-0.0185,-0.146,0.002,Garnet Slope Pool,pool,2,,,5,Garnet,Garnet,,5197,1547,,0,0
-2018_131_IceRampBaseMeltPool_1,07/07/2018,76.4111,-68.2997,500,-0.0229,-0.168,0.015,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,,0,0
-2019_009_IceRampPool_17072019,17/07/2019,76.4111,-68.2997,500,-0.0202,-0.151,0.011,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,,0,0
-2019_019_IceRampPool_18072019,18/07/2019,76.4111,-68.2997,500,-0.0202,-0.151,0.011,Ice Ramp Base Pond,lake,1,proglacial,5,1126,Sioraq,South River,2018351,0,17767,3,0,0
 2018_049_IceWallMoraineFirstCrestPool_1,27/06/2018,76.5372,-68.1366,417,-0.0236,-0.18,0.009,Ice Wall Moraine First Crest Pool,pool,2,,,33,Pituffik,North River,,489,5380,,0,0
 2018_050_IceWallMoraineValleyPool_1,27/06/2018,76.5361,-68.1297,432,-0.0173,-0.143,-0.005,Ice Wall Moraine Valley Pool,pool,2,,,36,Pituffik,North River,,375,5516,,0,0
 2018_157_LushPool_13.07.18,13/07/2018,76.566,-68.5787,214,-0.0181,-0.147,-0.002,Lush Pool,pool,2,,,483,Amitsuarsuk,Potato,,9581,2220,,1,0
@@ -210,7 +206,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2019_014_SouthMountainPool_17072019,17/07/2019,76.5128,-68.6966,233,-0.01,-0.108,-0.028,South Mountain Pool,pool,2,altered,,519,Main Base,Main Base,9682,9927,3846,3,1,0
 2018_101_PacmanPlainPool_05.07.18,05/07/2018,76.5626,-68.4738,82,-0.0204,-0.163,0,South Pacman Plain Pool,pool,2,,,525,Raven,Raven,26559,7459,1779,1,1,0
 2019_132_SouthPacmanPlainPool_26072019,26/07/2019,76.5626,-68.4738,82,-0.0163,-0.148,-0.018,South Pacman Plain Pool,pool,2,,,525,Raven,Raven,26559,7459,1779,3,1,0
-2018_229_TheViewPool_lost,19/07/2018,76.5358,-68.2958,337,,,,The View Pool,pool,2,,,,Pituffik,North River,,,,,0,1
 2019_208_TOWPool_30072019,30/07/2019,76.5381,-68.7542,60,-0.0143,-0.137,-0.023,TOW Pool,pool,2,altered,,19,Pituffik,North River,,12020,1619,,1,0
 2019_158_TutoPool_27072019,27/07/2019,76.4309,-68.3345,490,-0.0125,-0.119,-0.019,Tuto Pool,pool,2,altered,,833,Sioraq,South River,,1429,15777,,0,0
 2019_097_UpperBLaunchPool_25072019,25/07/2019,76.576,-68.6477,262,-0.0141,-0.131,-0.018,Upper B Launch Pool,pool,2,altered,,822,Qoorunnapaluk,Horseshoe,,11633,1433,,1,0
@@ -235,7 +230,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2019_229_FoxCanyonBridgeNorthFork_01082019,01/08/2019,76.4664,-68.5797,198,-0.02,-0.15,0.01,Fox Canyon Bridge North Fork,stream,3,,,,Sioraq,South River,,,,,,0
 2018_125_FoxCanyonBridgeSouthFork_1,07/07/2018,76.4664,-68.5797,198,-0.0236,-0.175,0.014,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
 2018_145_FoxCanyonSouthFork_1,11/07/2018,76.4664,-68.5797,198,-0.0241,-0.181,0.012,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
-2018_236_FoxCanyonSouthFork_1,20/07/2018,76.4664,-68.5797,198,-0.0199,-0.157,0.002,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,1
 2018_247_FoxCanyonSouthFork_1,27/07/2018,76.4664,-68.5797,198,-0.0215,-0.163,0.009,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
 2018_256_FoxCanyonSouthFork_1,03/08/2018,76.4664,-68.5797,198,-0.0216,-0.162,0.011,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
 2018_221_FoxCanyonSouthFork_1,15/08/2018,76.4664,-68.5797,198,-0.0211,-0.159,0.01,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,0
@@ -267,7 +261,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_010_NorthRiverMouth_1,18/06/2018,76.5406,-68.7503,53,-0.0227,-0.172,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
 2018_032_NorthRiverMouth_1,23/06/2018,76.5406,-68.7503,53,-0.0229,-0.172,0.011,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
 2018_043_NorthRiverMouth_1,27/06/2018,76.5406,-68.7503,53,-0.0225,-0.17,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
-2018_054_NorthRiverMouth_1,29/06/2018,76.5406,-68.7503,53,-0.018,-0.147,-0.003,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,1
 2018_089_NorthRiverMouth_1,02/07/2018,76.5406,-68.7503,53,-0.0214,-0.164,0.007,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
 2018_134_NorthRiverMouth_1,08/07/2018,76.5406,-68.7503,53,-0.0218,-0.164,0.01,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
 2018_140_NorthRiverMouth_1,11/07/2018,76.5406,-68.7503,53,-0.0218,-0.166,0.008,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,0
@@ -287,8 +280,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_135_NorthRiverSouthForkShelter2_1,08/07/2018,76.5308,-68.5594,114,-0.0212,-0.159,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
 2018_141_NorthRiverSouthForkShelter2_1,11/07/2018,76.5308,-68.5594,114,-0.0214,-0.162,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
 2018_232_NorthRiverSouthForkShelter2_1,19/07/2018,76.5308,-68.5594,114,-0.0208,-0.158,0.008,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
-2018_243_NorthRiverSouthForkShelter2_1,30/07/2018,76.5308,-68.5594,114,-0.0199,-0.154,0.005,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,1
-2018_253_NorthRiverSouthForkShelter2_1,03/08/2018,76.5308,-68.5594,114,-0.019,-0.149,0.003,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,1
 2018_208_NorthRiverSouthForkShelter2_1,10/08/2018,76.5308,-68.5594,114,-0.0203,-0.153,0.009,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
 2018_218_NorthRiverSouthForkShelter2_1,15/08/2018,76.5308,-68.5594,114,-0.0205,-0.153,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
 2019_002_NorthRiverShelter2SouthFork_17072019,17/07/2019,76.5308,-68.5594,114,-0.0207,-0.155,0.011,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,0
@@ -302,7 +293,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_044_NorthRiverShelter5.8_1,27/06/2018,76.5203,-68.3681,195,-0.0242,-0.181,0.013,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
 2018_136_NorthRiverShelter5.8_08.07.18,08/07/2018,76.5203,-68.3681,195,-0.0228,-0.171,0.011,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
 2018_142_NorthRiverShelter5.8_11.07.18,11/07/2018,76.5203,-68.3681,195,-0.0241,-0.18,0.013,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
-2018_233_NorthRiverShelter5.8_lost,19/07/2018,76.5203,-68.3681,195,,,,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,1
 2018_244_NorthRiverShelter5.8_1,30/07/2018,76.5203,-68.3681,195,-0.0217,-0.167,0.007,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
 2018_254_NorthRiverShelter5.8_1,03/08/2018,76.5203,-68.3681,195,-0.0216,-0.163,0.01,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
 2018_209_NorthRiverShelter5.8_1,10/08/2018,76.5203,-68.3681,195,-0.0208,-0.156,0.01,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,0
@@ -327,7 +317,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_090_SouthRiverMouth_1,02/07/2018,76.5206,-68.8772,22,-0.0215,-0.165,0.007,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2018_137_SouthRiverMouth_1,08/07/2018,76.5206,-68.8772,22,-0.0222,-0.167,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2018_143_SouthRiverMouth_1,11/07/2018,76.5206,-68.8772,22,-0.022,-0.167,0.009,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
-2018_234_SouthRiverMouth_lost,20/07/2018,76.5206,-68.8772,22,,,,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,1
 2018_245_SouthRiverMouth_1,30/07/2018,76.5206,-68.8772,22,-0.0214,-0.163,0.008,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2018_257_SouthRiverMouth_1,04/08/2018,76.5206,-68.8772,22,-0.0206,-0.157,0.008,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2018_199_SouthRiverMouth_1,07/08/2018,76.5206,-68.8772,22,-0.0199,-0.151,0.008,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
@@ -336,14 +325,11 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2019_004_SouthRiverMouth_17072019,17/07/2019,76.5206,-68.8772,22,-0.02,-0.15,0.01,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2019_026_SouthRiverMouth_19072019,19/07/2019,76.5206,-68.8772,22,-0.0204,-0.152,0.011,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2019_059_SouthRiverMouth_22072019,22/07/2019,76.5206,-68.8772,22,-0.0196,-0.148,0.009,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
-2019_195_SouthRiverMouth_29072019,29/07/2019,76.5206,-68.8772,22,-0.0187,-0.145,0.005,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,1
 2019_228_SouthRiverMouth_01082019,01/08/2019,76.5206,-68.8772,22,-0.0199,-0.149,0.01,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,0
 2018_104_TheWaterfall_1,05/07/2018,76.5747,-68.4197,27,-0.0187,-0.148,0.002,The Waterfall,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
 2019_140_TheWaterfall_26072019,26/07/2019,76.5747,-68.4197,27,-0.0172,-0.143,-0.005,The Waterfall,stream,3,,,,Amitsuarsuk,Potato,,,,,,0
 2019_179_UpperIceCanyonRiverAfternoon_29072019,29/07/2019,76.4111,-68.2997,500,-0.0201,-0.151,0.01,Upper Ice Canyon River Afternoon,stream,3,,,,Sioraq,South River,,,,,,0
 2019_178_UpperIceCanyonRiverMorning_29072019,29/07/2019,76.4111,-68.2997,500,-0.0201,-0.15,0.011,Upper Ice Canyon River Morning,stream,3,,,,Sioraq,South River,,,,,,0
-2018_305_103Tap_17.11.18,17/11/2018,,,,-0.0186,-0.148,0.001,103 Tap,surface flow,4,,,,NA,NA,,,,,,1
-2018_304_345Tap_17.11.18,17/11/2018,,,,-0.0187,-0.149,0.001,345 Tap,surface flow,4,,,,NA,NA,,,,,,1
 2019_098_BLaunchSeep_25072019,25/07/2019,76.5758,-68.6381,257,-0.0195,-0.154,0.002,B Launch Seep,surface flow,4,,,,Amitsuarsuk,Potato,,,,,,0
 2018_202_BackBeachNorthCreek_1,07/08/2018,76.5052,-68.9558,0,-0.0211,-0.162,0.007,Back Beach North Creek,surface flow,4,,,,Other,Other,,,,,,0
 2018_203_BackBeachSouthCliffSeep_1,07/08/2018,76.4981,-68.9739,29,-0.0205,-0.156,0.008,Back Beach South Cliff Seep,surface flow,4,,,,Other,Other,,,,,,0
@@ -384,7 +370,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_228_SnowbankWash_1,16/08/2018,76.4706,-68.3344,303,-0.018,-0.142,0.002,Ice Cliff Plain Snowbank Wash,surface flow,4,,,,Sioraq,South River,,,,,,0
 2018_179_IceCliffWaterfall_1,16/07/2018,76.4894,-68.2705,363,-0.0196,-0.146,0.011,Ice Cliff Waterfall,surface flow,4,,,,Pituffik,North River,,,,,,0
 2018_227_IceCliffWaterfallStream_1,16/08/2018,76.4894,-68.2705,363,-0.0209,-0.155,0.012,Ice Cliff Waterfall Stream,surface flow,4,,,,Pituffik,North River,,,,,,0
-2019_020_IceRampDrippingWater_lost,18/07/2019,76.4111,-68.2997,500,,,,Ice Ramp Dripping Water,surface flow,4,,,,Sioraq,South River,,,,,,1
 2018_212_IceWallIceSheetOutflow_1,10/08/2018,76.5342,-68.1867,318,-0.0208,-0.156,0.01,Ice Wall Ice Sheet Outflow,surface flow,4,,,,Pituffik,North River,,,,,,0
 2018_052_IceWallMoraineCrestSeep_1,27/06/2018,76.5372,-68.1364,416,-0.0203,-0.156,0.006,Ice Wall Moraine Crest Seep,surface flow,4,,,,Pituffik,North River,,,,,,0
 2018_213_IceWallOverTheTopFlow_10.08.18,10/08/2018,76.5342,-68.1867,318,-0.0227,-0.172,0.01,Ice Wall Over the Top Flow,surface flow,4,,,,Pituffik,North River,,,,,,0
@@ -455,8 +440,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_053_IceWallIceSheetSnow_2,27/06/2018,76.5328,-68.1214,451,-0.024,-0.184,0.008,Ice Wall Ice Sheet Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
 2018_048_IceWallMoraineEdgeSnow_2,27/06/2018,76.5386,-68.1406,363,-0.0249,-0.189,0.01,Ice Wall Moraine Edge Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
 2018_051_IceWallMoraineValleySnow_2,27/06/2018,76.5361,-68.1292,432,-0.0248,-0.191,0.007,Ice Wall Moraine Valley Snow,snow or ice,5,,,,Pituffik,North River,,,,,,0
-2019_163_OldMineIceWaterfallBlueIce_27072019,27/07/2019,76.4319,-68.2633,501,-0.008,-0.108,-0.044,Ice Waterfall Blue Ice,snow or ice,5,,,,Sioraq,South River,,,,,,1
-2019_164_OldMineIceWallSurfaceSnow10m_27072019,27/07/2019,76.4319,-68.2633,501,-0.009,-0.112,-0.04,Ice Waterfall Ice Wall Surface Snow 10m,snow or ice,5,,,,Sioraq,South River,,,,,,1
 2019_165_OldMineIceWallSurfaceSnow15m_27072019,27/07/2019,76.4319,-68.2633,501,-0.021,-0.158,0.01,Ice Waterfall Ice Wall Surface Snow 15m,snow or ice,5,,,,Sioraq,South River,,,,,,0
 2019_166_OldMineIceWallSurfaceSnow20m_27072019,27/07/2019,76.4319,-68.2633,501,-0.0193,-0.148,0.006,Ice Waterfall Ice Wall Surface Snow 20m,snow or ice,5,,,,Sioraq,South River,,,,,,0
 2019_167_OldMineIceWallSurfaceSnow30m_27072019,27/07/2019,76.4319,-68.2633,501,-0.0216,-0.162,0.011,Ice Waterfall Ice Wall Surface Snow 30m,snow or ice,5,,,,Sioraq,South River,,,,,,0
@@ -516,7 +499,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_151_PrecipitationEvent_4,12/07/2018,76.5383,-68.7632,61,-0.018,-0.147,-0.003,Rain Event 2018-07-12,precipitation rain,6,,,,Pituffik,North River,,,,,,0
 2018_162_PrecipitationEvent_15.07.18,15/07/2018,76.5383,-68.7632,61,-0.0194,-0.151,0.004,Rain Event 2018-07-15,precipitation rain,6,,,,Pituffik,North River,,,,,,0
 2018_163_PrecipitationEvent_4,16/07/2018,76.5383,-68.7632,61,-0.0174,-0.133,0.006,Rain Event 2018-07-16,precipitation rain,6,,,,Pituffik,North River,,,,,,0
-2018_239_PrecipitationEvent_lost,21/07/2018,76.5383,-68.7632,61,,,,Rain Event 2018-07-21,precipitation rain,6,,,,Pituffik,North River,,,,,,1
 2018_248_PrecipitationEvent_4,30/07/2018,76.5383,-68.7632,61,-0.0186,-0.153,-0.004,Rain Event 2018-07-30,precipitation rain,6,,,,Pituffik,North River,,,,,,0
 2018_251_PrecipitationEvent_4,03/08/2018,76.5383,-68.7632,61,-0.0211,-0.172,-0.003,Rain Event 2018-08-03,precipitation rain,6,,,,Pituffik,North River,,,,,,0
 2018_214_PrecipitationEvent_4,10/08/2018,76.5383,-68.7632,61,-0.0194,-0.149,0.006,Rain Event 2018-08-10,precipitation rain,6,,,,Pituffik,North River,,,,,,0
@@ -524,8 +506,6 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_216_PrecipitationEvent_12.08.18,12/08/2018,76.5383,-68.7632,61,-0.0241,-0.191,0.002,Rain Event 2018-08-12,precipitation rain,6,,,,Pituffik,North River,,,,,,0
 2019_016_Precipitation_EventRainMidday_18072019,18/07/2019,76.5383,-68.7632,61,-0.0265,-0.21,0.002,Rain Event Midday 2019-07-18,precipitation rain,6,,,,Pituffik,North River,,,,,,0
 2019_015_Precipitation_EventRainMorning_18072019,18/07/2019,76.5383,-68.7632,61,-0.0207,-0.169,-0.003,Rain Event Morning 2019-07-18,precipitation rain,6,,,,Pituffik,North River,,,,,,0
-2018_237_PMountainFreshSnow_2,20/07/2018,76.4019,-68.7246,816,-0.0173,-0.141,-0.003,P Mountain Fresh Snow,precipitation snow,7,,,,Sioraq,South River,,,,,,1
-2018_250_PMountainWeekOldSnow_lost,01/08/2018,76.4019,-68.7246,816,,,,P Mountain Week Old Snow,precipitation snow,7,,,,Sioraq,South River,,,,,,1
 2018_300_PierSnowFresh_14.11.18,14/11/2018,76.5443,-68.8717,23,-0.0303,-0.225,0.017,Pier Fresh Snow,precipitation snow,7,,,,Other,Other,,,,,,0
 2018_301_PytheasPoolFreshSnow_15.11.18,15/11/2018,76.5593,-68.2632,349,-0.0379,-0.282,0.021,Pytheas Parking Pool Fresh Snow,precipitation snow,7,,,,Pituffik,North River,,,,,,0
 2018_238_RadioMountainFreshSnow_2,20/07/2018,76.3939,-68.6397,785,-0.0188,-0.146,0.004,Radio Mountain Fresh Snow,precipitation snow,7,,,,Paakitsup,Pituffik Glacier Front,,,,,,0
@@ -534,3 +514,23 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_297_Snow2_2100_12.11.18,12/11/2018,76.5383,-68.7632,61,-0.0389,-0.3,0.011,Snow Event 2018-11-12 2100,precipitation snow,7,,,,Pituffik,North River,,,,,,0
 2018_298_Snow3_1145_13.11.18,13/11/2018,76.5383,-68.7632,61,-0.0357,-0.273,0.013,Snow Event 2018-11-13 1145,precipitation snow,7,,,,Pituffik,North River,,,,,,0
 2018_299_Snow4_2300_13.11.18,13/11/2018,76.5383,-68.7632,61,-0.0326,-0.246,0.015,Snow Event 2018-11-13 2300,precipitation snow,7,,,,Pituffik,North River,,,,,,0
+2018_282_CarexPond_lost,23/08/2018,76.5593,-68.5285,180,-0.0003,0.006,0.008,Carex Pond,lake,1,headwater,2,1910,Raven,Raven,37389,8133,2401,2,1,1
+2019_205_LakePotato_30072019,30/07/2019,76.5569,-68.5481,190,-0.0158,-0.136,-0.01,Lake Potato,lake,1,downstream,3,60289,Amitsuarsuk,Potato,4938559,8179,2775,,1,1
+2018_061_RavenLake_1,29/06/2018,76.5607,-68.5197,173,-0.0153,-0.127,-0.005,Raven Lake,lake,1,downstream,3,177847,Raven,Raven,1742387,7770,1891,1,1,1
+2018_103_CoastalPlateauPool_1,05/07/2018,76.574,-68.4281,35,-0.0066,-0.087,-0.034,Coastal Plateau Pool,pool,2,,,5002,Other,Other,198950,7828,186,1,1,1
+2018_229_TheViewPool_lost,19/07/2018,76.5358,-68.2958,337,,,,The View Pool,pool,2,,,,Pituffik,North River,,,,,0,1
+2018_236_FoxCanyonSouthFork_1,20/07/2018,76.4664,-68.5797,198,-0.0199,-0.157,0.002,Fox Canyon Bridge South Fork,stream,3,,,,Sioraq,South River,,,,,,1
+2018_054_NorthRiverMouth_1,29/06/2018,76.5406,-68.7503,53,-0.018,-0.147,-0.003,North River Mouth,stream,3,,,,Pituffik,North River,,,,,,1
+2018_243_NorthRiverSouthForkShelter2_1,30/07/2018,76.5308,-68.5594,114,-0.0199,-0.154,0.005,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,1
+2018_253_NorthRiverSouthForkShelter2_1,03/08/2018,76.5308,-68.5594,114,-0.019,-0.149,0.003,North River Shelter 2 South Fork,stream,3,,,,Pituffik,North River,,,,,,1
+2018_233_NorthRiverShelter5.8_lost,19/07/2018,76.5203,-68.3681,195,,,,North River Shelter 5.8,stream,3,,,,Pituffik,North River,,,,,,1
+2018_234_SouthRiverMouth_lost,20/07/2018,76.5206,-68.8772,22,,,,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,1
+2019_195_SouthRiverMouth_29072019,29/07/2019,76.5206,-68.8772,22,-0.0187,-0.145,0.005,South River Mouth,stream,3,,,,Sioraq,South River,,,,,,1
+2018_305_103Tap_17.11.18,17/11/2018,,,,-0.0186,-0.148,0.001,103 Tap,surface flow,4,,,,NA,NA,,,,,,1
+2018_304_345Tap_17.11.18,17/11/2018,,,,-0.0187,-0.149,0.001,345 Tap,surface flow,4,,,,NA,NA,,,,,,1
+2019_020_IceRampDrippingWater_lost,18/07/2019,76.4111,-68.2997,500,,,,Ice Ramp Dripping Water,surface flow,4,,,,Sioraq,South River,,,,,,1
+2019_163_OldMineIceWaterfallBlueIce_27072019,27/07/2019,76.4319,-68.2633,501,-0.008,-0.108,-0.044,Ice Waterfall Blue Ice,snow or ice,5,,,,Sioraq,South River,,,,,,1
+2019_164_OldMineIceWallSurfaceSnow10m_27072019,27/07/2019,76.4319,-68.2633,501,-0.009,-0.112,-0.04,Ice Waterfall Ice Wall Surface Snow 10m,snow or ice,5,,,,Sioraq,South River,,,,,,1
+2018_239_PrecipitationEvent_lost,21/07/2018,76.5383,-68.7632,61,,,,Rain Event 2018-07-21,precipitation rain,6,,,,Pituffik,North River,,,,,,1
+2018_237_PMountainFreshSnow_2,20/07/2018,76.4019,-68.7246,816,-0.0173,-0.141,-0.003,P Mountain Fresh Snow,precipitation snow,7,,,,Sioraq,South River,,,,,,1
+2018_250_PMountainWeekOldSnow_lost,01/08/2018,76.4019,-68.7246,816,,,,P Mountain Week Old Snow,precipitation snow,7,,,,Sioraq,South River,,,,,,1

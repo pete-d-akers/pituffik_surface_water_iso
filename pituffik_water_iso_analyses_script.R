@@ -170,7 +170,8 @@ lwl_slope <-
   unnest(tidyit) %>%
   filter(term == "d18O") %>%
   dplyr::select(type, estimate, std.error)
-colnames(lwl_slope) <- c("type", "slope", "se.slope")
+colnames(lwl_slope) <- c("type", "slope", "se_slope")
+lwl_slope$conf_int_slope <- lwl_slope$se_slope*qnorm(0.975)
 
 lwl_intercept <- 
   lwl_bytype %>%
@@ -178,7 +179,8 @@ lwl_intercept <-
   unnest(tidyit) %>%
   filter(term == "(Intercept)") %>%
   dplyr::select(type, estimate, std.error)
-colnames(lwl_intercept) <- c("type", "intercept", "se.intercept")
+colnames(lwl_intercept) <- c("type", "intercept", "se_intercept")
+lwl_intercept$conf_int_intercept <- lwl_intercept$se_intercept*qnorm(0.975)
 
 lwl_r2 <- 
   lwl_bytype %>%
@@ -255,7 +257,8 @@ lel_slope <-
   unnest(tidyit) %>%
   filter(term == "d18O") %>%
   dplyr::select(site_name, estimate, std.error)
-colnames(lel_slope) <- c("site_name", "slope", "se.slope")
+colnames(lel_slope) <- c("site_name", "slope", "se_slope")
+lel_slope$conf_int_slope <- lel_slope$se_slope*qnorm(0.975)
 
 lel_intercept <- 
   lel_lake_bylake %>%
@@ -263,7 +266,8 @@ lel_intercept <-
   unnest(tidyit) %>%
   filter(term == "(Intercept)") %>%
   dplyr::select(site_name, estimate, std.error)
-colnames(lel_intercept) <- c("site_name", "intercept", "se.intercept")
+colnames(lel_intercept) <- c("site_name", "intercept", "se_intercept")
+lel_intercept$conf_int_intercept <- lel_intercept$se_intercept*qnorm(0.975)
 
 lel_r2 <- 
   lel_lake_bylake %>%
@@ -282,20 +286,23 @@ print(lel_lake_bylake_params) # Lake LEL parameters by each lake
 
 lel_lake_bylake_bylaketype_slope <- lel_lake_bylake_params %>%
   group_by(laketype) %>%
-  summarize(count=n(),mean_slope=mean(slope, na.rm=TRUE), st_err_slope=sd(slope)/sqrt(n()))
+  summarize(count=n(),mean_slope=mean(slope, na.rm=TRUE), conf_int_slope=sd(slope)/sqrt(n())*qnorm(0.975))
 print(lel_lake_bylake_bylaketype_slope) # Lake LEL slopes averaged by laketype
 
 # Comparing overall mean LEL to means of individual lakes
 mean_LEL_bylake <- lel_lake_bylake_params %>% # Mean LEL slope of individual lake LELs
   ungroup() %>%
   summarize(mean_slope=mean(slope, na.rm=TRUE),
-            st_err_slope=sd(slope, na.rm=TRUE)/sqrt(sum(!is.na(slope))))
+            conf_int_slope=sd(slope, na.rm=TRUE)/sqrt(sum(!is.na(slope)))*qnorm(0.975))
 
 multilake_naomit <- multilake %>%
   filter (site_name != "Interramp Proglacial Lake") # Removing to match bylake slope dataset
-single_LEL <- summary(lm(multilake_naomit$d2H~multilake_naomit$d18O)) # Single LEL for all lake data combined
+single_LEL_lm <- summary(lm(multilake_naomit$d2H~multilake_naomit$d18O)) # Single LEL for all lake data combined
+single_LEL <- tibble(mean_slope = single_LEL_lm$coefficients[2],
+                     conf_int_slope = single_LEL_lm$coefficients[4]*qnorm(0.975))
+                        
 
-LEL_method_compare <- rbind(mean_LEL_bylake, single_LEL$coefficients[c(2,4)])
+LEL_method_compare <- rbind(mean_LEL_bylake, single_LEL)
 LEL_method_compare$method <- c("Mean of individual lake LELs", "Single LEL of all lake data combined")
 print(LEL_method_compare) # Comparison of two LEL methods
 
@@ -314,8 +321,8 @@ lake_lel_intersect$laketype <- lel_lake_bylake_params$laketype
 
 lake_lel_intersect_bylaketype <- lake_lel_intersect %>%
   group_by(laketype) %>%
-  summarize(count=n(), mean_d18O=mean(d18O, na.rm=TRUE)*1000, st_err_d18O=sd(d18O)/sqrt(n())*1000,
-            mean_d2H=mean(d2H, na.rm=TRUE)*1000, st_err_d2H=sd(d2H)/sqrt(n())*1000)
+  summarize(count=n(), mean_d18O=mean(d18O, na.rm=TRUE)*1000, conf_int_d18O=sd(d18O)/sqrt(n())*1000*qnorm(0.975),
+            mean_d2H=mean(d2H, na.rm=TRUE)*1000, conf_int_d2H=sd(d2H)/sqrt(n())*1000*qnorm(0.975))
 print(lake_lel_intersect_bylaketype)
 
 # Dendrogram analysis of lake types
@@ -334,6 +341,13 @@ lake_isoz_per3$d18O <- scale(lake_isoz_per3$d18O, center=mean(lake_isoz_per3$d18
 lake_isoz_per3$dxs <- scale(lake_isoz_per3$dxs, center=mean(lake_isoz_per3$dxs), scale=sd(lake_isoz_per3$dxs))
 lake_isoz_per3_hclust <- hclust(dist(lake_isoz_per3))
 lake_isoz_per3_dendro <- as.dendrogram(lake_isoz_per3_hclust)
+
+# Lake parameter means and confidence interval per lake type
+lake_per3_means_bylaketype <- lake_per3 %>%
+  select(elevation, d18O, d2H, dxs, laketype, lake_surface_area, lakeshed_area, dist_gris, dist_ocean, doy) %>%
+  group_by(laketype) %>%
+  summarize(across(everything(), list(mean=mean, conf_int=~sd(.)/sqrt(length(.))*qnorm(0.975))))
+print(lake_per3_means_bylaketype)
 
 #==Lake isotope environmental parameter regression
 # This section uses LASSO regression first to see which environmental parameters
@@ -507,6 +521,13 @@ amitsuarsuk_subset$site_name <- "Amitsuarsuk" # Renaming all sites along stream 
 stream_subset <- rbind(stream_subset_northsouth, amitsuarsuk_subset) # Putting all desired stream data in one tibble
 stream_subset$site_name <- factor(stream_subset$site_name, levels=stream_spatial_index) # Making so the order is always correct
 
+mean_iso_pituffik_sioraq <- stream_subset %>% # Calculating the mean isotopic values of all Pituffik and Sioraq River samples
+  filter (basin_name != "Amitsuarsuk") %>%
+  summarize(count=n(),mean_d18O=mean(d18O, na.rm=TRUE)*1000, conf_int_d18O=sd(d18O, na.rm=TRUE)/sqrt(sum(!is.na(d18O)))*qnorm(0.975)*1000,
+            mean_d2H=mean(d2H, na.rm=TRUE)*1000, conf_int_d2H=sd(d2H, na.rm=TRUE)/sqrt(sum(!is.na(d2H)))*qnorm(0.975)*1000,
+            mean_dxs=mean(dxs, na.rm=TRUE)*1000, conf_int_dxs=sd(dxs, na.rm=TRUE)/sqrt(sum(!is.na(dxs)))*qnorm(0.975)*1000)
+print(mean_iso_pituffik_sioraq)
+
 lel_stream_bystream <- stream_subset %>% # Running regression by type
   group_by(site_name) %>%
   nest() %>%
@@ -518,7 +539,8 @@ lel_slope <-
   unnest(tidyit) %>%
   filter(term == "d18O") %>%
   dplyr::select(site_name, estimate, std.error)
-colnames(lel_slope) <- c("site_name", "slope", "se.slope")
+colnames(lel_slope) <- c("site_name", "slope", "se_slope")
+lel_slope$conf_int_slope <- lel_slope$se_slope*qnorm(0.975)
 
 lel_intercept <- 
   lel_stream_bystream %>%
@@ -526,7 +548,8 @@ lel_intercept <-
   unnest(tidyit) %>%
   filter(term == "(Intercept)") %>%
   dplyr::select(site_name, estimate, std.error)
-colnames(lel_intercept) <- c("site_name", "intercept", "se.intercept")
+colnames(lel_intercept) <- c("site_name", "intercept", "se_intercept")
+lel_intercept$conf_int_intercept <- lel_intercept$se_intercept*qnorm(0.975)
 
 lel_r2 <- 
   lel_stream_bystream %>%
@@ -545,7 +568,7 @@ print(lel_stream_bystream_params)
 
 lel_stream_bystream_bybasin_slope <- lel_stream_bystream_params %>%
   group_by(basin_name) %>%
-  summarize(count=n(),mean_slope=mean(slope, na.rm=TRUE), st_err_slope=sd(slope, na.rm=TRUE)/sqrt(sum(!is.na(slope))))
+  summarize(count=n(),mean_slope=mean(slope, na.rm=TRUE), conf_int_slope=sd(slope, na.rm=TRUE)/sqrt(sum(!is.na(slope)))*qnorm(0.975))
 print(lel_stream_bystream_bybasin_slope)
 
 ####========END SPATIAL ANALYSIS======####
@@ -569,7 +592,8 @@ lwl_lake18_slope <-
   unnest(tidyit) %>%
   filter(term == "d18O") %>%
   dplyr::select(site_name, estimate, std.error)
-colnames(lwl_lake18_slope) <- c("site_name", "slope", "se.slope")
+colnames(lwl_lake18_slope) <- c("site_name", "slope", "se_slope")
+lwl_lake18_slope$conf_int_slope <- lwl_lake18_slope$se_slope*qnorm(0.975)
 
 lwl_lake18_intercept <- 
   lwl_lake18_bytype %>%
@@ -577,7 +601,8 @@ lwl_lake18_intercept <-
   unnest(tidyit) %>%
   filter(term == "(Intercept)") %>%
   dplyr::select(site_name, estimate, std.error)
-colnames(lwl_lake18_intercept) <- c("site_name", "intercept", "se.intercept")
+colnames(lwl_lake18_intercept) <- c("site_name", "intercept", "se_intercept")
+lwl_lake18_intercept$conf_int_intercept <- lwl_lake18_intercept$se_intercept*qnorm(0.975)
 
 lwl_lake18_r2 <- 
   lwl_lake18_bytype %>%
@@ -1560,7 +1585,8 @@ lel_slope <-
   unnest(tidyit) %>%
   filter(term == "d18O") %>%
   dplyr::select(timing, estimate, std.error)
-colnames(lel_slope) <- c("timing", "slope", "se.slope")
+colnames(lel_slope) <- c("timing", "slope", "se_slope")
+lel_slope$conf_int_slope <- lel_slope$se_slope*qnorm(0.975)
 
 lel_intercept <- 
   lel_lake_bytiming %>%
@@ -1568,7 +1594,8 @@ lel_intercept <-
   unnest(tidyit) %>%
   filter(term == "(Intercept)") %>%
   dplyr::select(timing, estimate, std.error)
-colnames(lel_intercept) <- c("timing", "intercept", "se.intercept")
+colnames(lel_intercept) <- c("timing", "intercept", "se_intercept")
+lel_intercept$conf_int_intercept <- lel_intercept$se_intercept*qnorm(0.975)
 
 lel_r2 <- 
   lel_lake_bytiming %>%
@@ -1613,4 +1640,37 @@ windows(height=6, width=6)
 #pdf("Figures/lake_lel_bytiming_plot.pdf", height=6, width=6)
 plot(lake_lel_bytiming_plot)
 #ggsave("Figures/lake_lel_bytiming_plot.png", height=6, width=6, dpi = 600)
+#dev.off()
+
+# Stream dxs plotted by day of year for three basins
+colorset <- c(rep("deepskyblue3",3), rep("darkgoldenrod2",3), "violetred4")
+stream_spatial_labels <- c("Pituffik: Mouth", "Pituffik: Snoutwash", "Pituffik: Ice Wall",
+                           "Sioraq: Mouth", "Sioraq: Tuto", "Sioraq: Pingorsuit",
+                           "Amitsuarsuk")
+stream_dxs_doy_plot <- ggplot() +
+  theme_classic() +
+  geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                 y=dxs*1000, color=site_name, shape=as.character(year)), data=stream_subset, alpha=0.6, size=2) +
+  geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
+                y=dxs*1000, color=site_name, group=interaction(as.character(year), site_name)), data=stream_subset) +
+  scale_color_manual(values=colorset) +
+  scale_y_continuous(name="dxs (‰)") +
+  scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
+               date_breaks="2 weeks", date_labels = "%d %b") +
+  theme(legend.position = c(0.05,0.05),
+        legend.justification = c("left", "bottom"),
+        legend.background = element_rect(fill='transparent'),
+        axis.title.x = element_text(size=16, color='gray40'),
+        axis.text.x =  element_text(size=14, color='gray40'),
+        axis.ticks.x = element_line(color='gray40'),
+        axis.line.x = element_line(color='gray40'),
+        axis.title.y = element_text(size=16, color='gray40'),
+        axis.text.y = element_text(size=14, color='gray40'),
+        axis.ticks.y = element_line(color='gray40'),
+        axis.line.y = element_line(color='gray40'))
+
+windows(height=8, width=8)
+#pdf("Figures/stream_dxs_doy_plot.pdf", height=6, width=6)
+stream_dxs_doy_plot
+#ggsave("Figures/stream_dxs_doy_plot.png", height=6, width=6, dpi=600)
 #dev.off()
