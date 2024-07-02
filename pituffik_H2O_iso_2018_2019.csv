@@ -1,7 +1,7 @@
 sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_number,laketype,laketype_number,lake_surface_area,basin_name,alt_basin_name,lakeshed_area,dist_gris,dist_ocean,timing,main_lakes,qc_flag
-2018_099_AngryDuckLake_1,05/07/2018,76.5662,-68.4312,74,-0.0095,-0.1,-0.024,Angry Duck Lake,lake,1,endorheic,1,7808,Amitsuarsuk,Potato,110403,7123,997,1,1,0
-2018_258_AngryDuckLake_1,23/08/2018,76.5662,-68.4312,74,-0.0099,-0.102,-0.023,Angry Duck Lake,lake,1,endorheic,1,7808,Amitsuarsuk,Potato,110403,7123,997,2,1,0
-2019_137_AngryDuckLake_26072019,26/07/2019,76.5662,-68.4312,74,-0.0047,-0.08,-0.042,Angry Duck Lake,lake,1,endorheic,1,7808,Amitsuarsuk,Potato,110403,7123,997,3,1,0
+2018_099_AngryDuckLake_1,05/07/2018,76.5662,-68.4312,74,-0.0095,-0.1,-0.024,Angry Duck Lake,lake,1,megapool,1,7808,Amitsuarsuk,Potato,110403,7123,997,1,1,0
+2018_258_AngryDuckLake_1,23/08/2018,76.5662,-68.4312,74,-0.0099,-0.102,-0.023,Angry Duck Lake,lake,1,megapool,1,7808,Amitsuarsuk,Potato,110403,7123,997,2,1,0
+2019_137_AngryDuckLake_26072019,26/07/2019,76.5662,-68.4312,74,-0.0047,-0.08,-0.042,Angry Duck Lake,lake,1,megapool,1,7808,Amitsuarsuk,Potato,110403,7123,997,3,1,0
 2019_085_BigWindyValeLake_24072019,24/07/2019,76.4894,-68.8332,211,-0.0186,-0.148,0.001,Big Windy Vale Lake,lake,1,vale,4,3368,Ice Cave,Ice Cave,317690,13361,3339,3,0,0
 2018_119_BlackshoreLake_1,06/07/2018,76.5405,-68.4088,159,-0.0195,-0.154,0.002,Blackshore Lake,lake,1,downstream,3,12392,Pituffik,North River,12333333,4474,3617,1,1,0
 2019_092_Blackshorelake_23072019,23/07/2019,76.5405,-68.4088,159,-0.019,-0.155,-0.003,Blackshore Lake,lake,1,downstream,3,12392,Pituffik,North River,12333333,4474,3617,3,1,0
@@ -22,8 +22,8 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_062_DirtyIceLake_1,29/06/2018,76.5636,-68.5407,185,-0.0172,-0.139,-0.001,Dirty Ice Lake,lake,1,headwater,2,6651,Raven,Raven,324914,8664,2122,1,1,0
 2018_273_DirtyIceLake_1,23/08/2018,76.5636,-68.5407,185,-0.0155,-0.131,-0.007,Dirty Ice Lake,lake,1,headwater,2,6651,Raven,Raven,324914,8664,2122,2,1,0
 2019_037_DirtyIceLake_19072019,19/07/2019,76.5636,-68.5407,185,-0.0146,-0.13,-0.013,Dirty Ice Lake,lake,1,headwater,2,6651,Raven,Raven,324914,8664,2122,3,1,0
-2018_186_DundasPond_1,17/07/2018,76.572,-68.8195,22,-0.0126,-0.114,-0.013,Dundas Pond,lake,1,endorheic,1,1437,Other,Other,32203,14996,68,1,0,0
-2019_202_DundasPond_30072019,30/07/2019,76.572,-68.8195,22,-0.0096,-0.099,-0.022,Dundas Pond,lake,1,endorheic,1,1437,Other,Other,32203,14996,68,3,0,0
+2018_186_DundasPond_1,17/07/2018,76.572,-68.8195,22,-0.0126,-0.114,-0.013,Dundas Pond,lake,1,megapool,1,1437,Other,Other,32203,14996,68,1,0,0
+2019_202_DundasPond_30072019,30/07/2019,76.572,-68.8195,22,-0.0096,-0.099,-0.022,Dundas Pond,lake,1,megapool,1,1437,Other,Other,32203,14996,68,3,0,0
 2018_116_FakePumiceLake_1,06/07/2018,76.5438,-68.4282,156,-0.0164,-0.136,-0.005,Fake Pumice Lake,lake,1,headwater,2,17407,Amitsuarsuk,Potato,96022,5076,3316,1,1,0
 2019_089_FakePumiceLake_23072019,23/07/2019,76.5438,-68.4282,156,-0.0154,-0.132,-0.009,Fake Pumice Lake,lake,1,headwater,2,17407,Amitsuarsuk,Potato,96022,5076,3316,3,1,0
 2018_169_FantailLake_1,16/07/2018,76.4714,-68.3678,287,-0.0213,-0.161,0.009,Fantail Lake,lake,1,headwater,2,11788,Sioraq,South River,116905,2708,11216,1,0,0
@@ -91,7 +91,7 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_111_LoonPond_1,06/07/2018,76.5441,-68.4679,136,-0.0161,-0.137,-0.008,Loon Pond,lake,1,headwater,2,4091,Pituffik,North River,64899,5852,3589,1,1,0
 2018_274_LoonPond_1,23/08/2018,76.5441,-68.4679,136,-0.0142,-0.127,-0.013,Loon Pond,lake,1,headwater,2,4091,Pituffik,North River,64899,5852,3589,2,1,0
 2019_065_LoonPond_22072019,22/07/2019,76.5441,-68.4679,136,-0.0134,-0.126,-0.019,Loon Pond,lake,1,headwater,2,4091,Pituffik,North River,64899,5852,3589,3,1,0
-2019_170_OldMineIceWallLowerIceCavePool_27072019,27/07/2019,76.4267,-68.2722,495,-0.02,-0.15,0.01,Lower Ice Cavern Pool,lake,1,proglacial,5,5973,Sioraq,South River,2018351,0,16423,3,0,0
+2019_170_OldMineIceWallLowerIceCavePool_27072019,27/07/2019,76.4267,-68.2722,495,-0.02,-0.15,0.01,Lower Ice Cavern Pond,lake,1,proglacial,5,5973,Sioraq,South River,2018351,0,16423,3,0,0
 2018_112_MossyBottomPond_06.07.18,06/07/2018,76.5437,-68.479,136,-0.0173,-0.145,-0.007,Mossy Bottom Pond,lake,1,headwater,2,3141,Pituffik,North River,146592,6038,3725,1,1,0
 2019_123_MossyBottomPond_26072019,26/07/2019,76.5437,-68.479,136,-0.014,-0.132,-0.02,Mossy Bottom Pond,lake,1,headwater,2,3141,Pituffik,North River,146592,6038,3725,3,1,0
 2018_123_NoisyGooseLake_1,07/07/2018,76.5667,-68.5259,181,-0.0168,-0.138,-0.004,Noisy Goose Lake,lake,1,headwater,2,9464,Raven,Raven,335429,8646,1620,1,1,0
@@ -109,9 +109,9 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_117_PartyHouseLake_1,06/07/2018,76.5432,-68.4122,161,-0.0163,-0.134,-0.004,Party House Lake,lake,1,headwater,2,20505,Pituffik,North River,192628,4769,3319,1,1,0
 2018_278_PartyHouseLake_1,23/08/2018,76.5432,-68.4122,161,-0.0158,-0.132,-0.006,Party House Lake,lake,1,headwater,2,20505,Pituffik,North River,192628,4769,3319,2,1,0
 2019_091_PartyHouseLake_23072019,23/07/2019,76.5432,-68.4122,161,-0.0154,-0.13,-0.007,Party House Lake,lake,1,headwater,2,20505,Pituffik,North River,192628,4769,3319,3,1,0
-2018_098_PerchedLake_1,05/07/2018,76.5644,-68.4371,73,-0.0112,-0.108,-0.018,Perched Lake,lake,1,endorheic,1,6133,Amitsuarsuk,Potato,38142,7039,1233,1,1,0
-2018_259_PerchedLake_1,23/08/2018,76.5644,-68.4371,73,-0.0104,-0.105,-0.022,Perched Lake,lake,1,endorheic,1,6133,Amitsuarsuk,Potato,38142,7039,1233,2,1,0
-2019_138_PerchedLake_26072019,26/07/2019,76.5644,-68.4371,73,-0.0085,-0.097,-0.029,Perched Lake,lake,1,endorheic,1,6133,Amitsuarsuk,Potato,38142,7039,1233,3,1,0
+2018_098_PerchedLake_1,05/07/2018,76.5644,-68.4371,73,-0.0112,-0.108,-0.018,Perched Lake,lake,1,megapool,1,6133,Amitsuarsuk,Potato,38142,7039,1233,1,1,0
+2018_259_PerchedLake_1,23/08/2018,76.5644,-68.4371,73,-0.0104,-0.105,-0.022,Perched Lake,lake,1,megapool,1,6133,Amitsuarsuk,Potato,38142,7039,1233,2,1,0
+2019_138_PerchedLake_26072019,26/07/2019,76.5644,-68.4371,73,-0.0085,-0.097,-0.029,Perched Lake,lake,1,megapool,1,6133,Amitsuarsuk,Potato,38142,7039,1233,3,1,0
 2018_017_PowerLake_1,19/06/2018,76.5462,-68.5516,178,-0.0169,-0.139,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
 2018_022_PowerLake_1,22/06/2018,76.5462,-68.5516,178,-0.0168,-0.138,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,,1,0
 2018_055_PowerLake_1,29/06/2018,76.5462,-68.5516,178,-0.0165,-0.136,-0.004,Power Lake,lake,1,headwater,2,59537,Pituffik,North River,347391,7527,3862,1,1,0
@@ -154,9 +154,9 @@ sample_id,date,latitude,longitude,elevation,d18O,d2H,dxs,site_name,type,type_num
 2018_271_UpperLakePotato_1,23/08/2018,76.5607,-68.5662,193,-0.0177,-0.142,0,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,2,1,0
 2019_029_UpperLakePotato_19072019,19/07/2019,76.5607,-68.5662,193,-0.0174,-0.143,-0.004,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,,1,0
 2019_206_UpperLakePotato_30072019,30/07/2019,76.5607,-68.5662,193,-0.017,-0.141,-0.005,Upper Lake Potato,lake,1,downstream,3,51069,Amitsuarsuk,Potato,4341661,8739,2603,3,1,0
-2018_100_WaterGardenLake_1,05/07/2018,76.5674,-68.4423,73,-0.0119,-0.11,-0.015,Water Garden Lake,lake,1,endorheic,1,23730,Other,Other,90265,7340,887,1,1,0
-2018_279_WaterGardenLake_1,23/08/2018,76.5674,-68.4423,73,-0.0114,-0.108,-0.017,Water Garden Lake,lake,1,endorheic,1,23730,Other,Other,90265,7340,887,2,1,0
-2019_136_WaterGardenLake_26072019,26/07/2019,76.5674,-68.4423,73,-0.0104,-0.105,-0.022,Water Garden Lake,lake,1,endorheic,1,23730,Other,Other,90265,7340,887,3,1,0
+2018_100_WaterGardenLake_1,05/07/2018,76.5674,-68.4423,73,-0.0119,-0.11,-0.015,Water Garden Lake,lake,1,megapool,1,23730,Other,Other,90265,7340,887,1,1,0
+2018_279_WaterGardenLake_1,23/08/2018,76.5674,-68.4423,73,-0.0114,-0.108,-0.017,Water Garden Lake,lake,1,megapool,1,23730,Other,Other,90265,7340,887,2,1,0
+2019_136_WaterGardenLake_26072019,26/07/2019,76.5674,-68.4423,73,-0.0104,-0.105,-0.022,Water Garden Lake,lake,1,megapool,1,23730,Other,Other,90265,7340,887,3,1,0
 2018_097_WaterLake_1,05/07/2018,76.561,-68.4424,70,-0.0188,-0.149,0.001,Water Lake,lake,1,downstream,3,245299,Amitsuarsuk,Potato,11414629,6502,1369,1,1,0
 2018_275_WaterLake_1,23/08/2018,76.561,-68.4424,70,-0.0174,-0.141,-0.002,Water Lake,lake,1,downstream,3,245299,Amitsuarsuk,Potato,11414629,6502,1369,2,1,0
 2019_135_WaterLake_26072019,26/07/2019,76.561,-68.4424,70,-0.0171,-0.142,-0.005,Water Lake,lake,1,downstream,3,245299,Amitsuarsuk,Potato,11414629,6502,1369,3,1,0
