@@ -36,7 +36,7 @@ darken <- function(color, factor = 0.5) {
 # Reading in data
 water_iso_full <- as_tibble(read.csv("pituffik_H2O_iso_2018_2019.csv", header=TRUE, sep=","))
 water_iso_full$date <- as.Date(water_iso_full$date, format= "%d/%m/%Y")
-water_iso_full$year <- year(water_iso_full$date) # Extracting year
+water_iso_full$yr <- year(water_iso_full$date) # Extracting year
 water_iso_full$doy <- yday(water_iso_full$date)
 water_iso_full$type <- factor(water_iso_full$type, levels=c("lake", "pool", "stream", "surface flow", # Making so the order is always correct
                                                             "snow or ice", "precipitation rain", "precipitation snow"))
@@ -993,7 +993,7 @@ print(lel_stream_bystream_bybasin_slope)
 #==Lake temporal analyses
 # Local water line parameters and stat values for 2018 Lake Potato/Power Lake
 lwl_lake18_bytype <- water_iso_plus_gnip %>% # Running regression by type
-  filter(year == 2018) %>%
+  filter(yr == 2018) %>%
   filter(site_name == "Lake Potato" | site_name == "Power Lake") %>%
   group_by(site_name) %>%
   nest() %>%
@@ -1796,7 +1796,7 @@ plot_grid(plotlist = list(stream_violin_plot, stream_lel_bystream_plot),
   
   data_iter <- water_iso %>%
     filter(site_name %in% lake_ts_index) %>%
-    filter(year == 2018)
+    filter(yr == 2018)
   iso_ts_plot_lake <- list()
   #title_iter <- ggdraw() + 
   #  draw_label("Lakes", x = 0, hjust = 0, size=14) +
@@ -1858,7 +1858,7 @@ plot_grid(plotlist = list(stream_violin_plot, stream_lel_bystream_plot),
   
   data_iter <- lake_e_i_fulldata_plot %>%
     filter(site_name %in% lake_ts_index) %>%
-    filter(year == 2018)
+    filter(yr == 2018)
   e_i_ts_plot_lake <- ggplot(data=data_iter) +
     theme_classic() +
     geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes
@@ -1969,7 +1969,7 @@ colnames(ylims) <- c("ymin", "ymax")
 for (k in 1:length(yr_index)) {
   for (j in 1:length(river_ts_index)) {
     data_iter <- water_iso %>%
-      filter(year == yr_index[k]) %>%
+      filter(yr == yr_index[k]) %>%
       filter(site_name %in% river_ts_index[[j]])
     data_iter$site_name <- factor(data_iter$site_name, levels = river_ts_index[[j]])
     iso_ts_plot_stream <- list()
@@ -2356,9 +2356,9 @@ stream_spatial_labels <- c("Pituffik: Mouth", "Pituffik: Snoutwash", "Pituffik: 
 stream_dxs_doy_plot <- ggplot() +
   theme_classic() +
   geom_point(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
-                 y=dxs*1000, color=site_name, shape=as.character(year)), data=stream_subset, alpha=0.6, size=2) +
+                 y=dxs*1000, color=site_name, shape=as.character(yr)), data=stream_subset, alpha=0.6, size=2) +
   geom_line(aes(x=as.Date(doy, origin = "2017-12-31"), # Day of Year all put on 2018 for plotting purposes,
-                y=dxs*1000, color=site_name, group=interaction(as.character(year), site_name)), data=stream_subset) +
+                y=dxs*1000, color=site_name, group=interaction(as.character(yr), site_name)), data=stream_subset) +
   scale_color_manual(values=colorset) +
   scale_y_continuous(name="dxs (‰)") +
   scale_x_date(name=NULL, position = "bottom", limits = as.Date(c("2018-06-10", "2018-08-25")),
