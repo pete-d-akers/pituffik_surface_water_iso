@@ -29,7 +29,7 @@ timing: A marker indicating samples that fell during one of three specific sampl
 main_lakes: A marker indicating whether a lake is a member of the main lakes region (1), if applicable.
 qc_flag: A marker indicating samples that were flagged (1) during quality checking for vial cracking and/or evaporative water loss.
 
-The file ptk_iso_wx_day.csv contains daily weather and water vapor isotope data taken at Pituffik Space Base from August 2017 through May 2020. Data previously published in Akers et al., 2020 (https://doi.org/10.5194/acp-20-13929-2020), and more information on data sourcing and collection can be found there. Data columns for this file are:
+The file pfk_iso_wx_day.csv contains daily weather and water vapor isotope data taken at Pituffik Space Base from August 2017 through May 2020. Data previously published in Akers et al., 2020 (https://doi.org/10.5194/acp-20-13929-2020), and more information on data sourcing and collection can be found there. Data columns for this file are:
 daybreak: The day that the rowdata covers.
 wind_az: Mean azimuth of wind, in degrees.
 wind_sp: Mean wind speed, in m/s.
@@ -73,5 +73,50 @@ vapor_pres: The mean vapor pressure during collection period, in kPa.
 type: Indicating that samples are GNIP for later comparison with Pituffik surface water data.
 qc_flag: Marker for values flagged during quality checking.
 
-The two files of 2018_daily_pet_pituffik.nc and 2019_daily_pet_pituffik.nc are potential evapotranspiration (PET) spatial data extracted for the Pituffik region from the global database provided by Singer et al., 2021 (https://doi.org/10.1038/s41597-021-01003-9). They are used by the R script to extract time series of PET for Pituffik.
+The file pituffik_lake_iso_inflow_bylake.csv contains inferred inflow source water isotopic values for select lakes based on modeling contained in the R code. Data columns for this file are:
+site_name: The common name for the site (i.e., the lake name).
+d18O_inflow: The inferred inflow source water oxygen stable isotopic ratio in delta notation. Multiply by 1000 to express in permil (‰).
+d18O_inflow_sd: One standard deviation of the inferred inflow source water oxygen stable isotopic ratio in delta notation. Multiply by 1000 to express in permil (‰).
+d2H_inflow: The inferred inflow source water hydrogen stable isotopic ratio in delta notation. Multiply by 1000 to express in permil (‰).
+d2H_inflow_sd: One standard deviation of the inferred inflow source water hydrogen stable isotopic ratio in delta notation. Multiply by 1000 to express in permil (‰).
+dxs_inflow: The inferred inflow source water deuterium excess, calculated as dxs = 8*d2H - d18O. Multiply by 1000 to express in permil (‰).
+dxs_inflow_sd: One standard deviation of the inferred inflow source water deuterium excess. Multiply by 1000 to express in permil (‰).
+freeze_frac: Modeled fraction of inferred inflow source water sourced from frozen season precipitation (Sep-May)
+freeze_frac_sd: One standard deviation of the frozen season modeled fraction.
+thaw_frac: Modeled fraction of inferred inflow source water sourced from thawed season precipitation (Jun-Aug)
+thaw_frac_sd: One standard deviation of the thawed season modeled fraction.
+
+The file pituffik_lake_iso_e_i.csv contains evaporation/inflow (E/I) ratios for selected lake samples based on modeling contained in the R code. The first 22 columns are pulled from pituffik_H2O_iso_2018_2019.csv for the lake samples included. Other data columns for this file are:
+yr: The year that the sampling took place, extracted from date.
+doy: The day of year that the sampling took place, extracted from date.
+E_I_d18O_bayes: E/I ratio caculated from d18O.
+E_I_d18O_1sd_bayes: One standard deviation of the E/I ratio caculated from d18O.
+E_I_d2H_bayes: E/I ratio caculated from d2H.
+E_I_d2H_1sd_bayes: One standard deviation of the E/I ratio caculated from d2H.
+E_I_dxs_bayes: E/I ratio caculated from dxs.
+E_I_dxs_1sd_bayes: One standard deviation of the E/I ratio caculated from dxs.
+
+The file pituffik_pet_1981_2023.csv contains daily potential evapotranspiration (PET) rates extracted for the Pituffik region from 1981 to 2023 from the global database provided by Singer et al., 2021 (https://doi.org/10.1038/s41597-021-01003-9). Data columns for this file are:
+pet: Daily potential evapotranspiration in mm / day.
+yr: Year that PET data falls within.
+doy: Day of year that PET falls on.
+date: Date of daily PET value.
+mo: Month that PET data falls within.
+sn: Season that PET data falls within.
+
+The file pituffik_USAF_wx_daily_QC.csv contains daily weather observations recorded by the United States Air Force at Thule Airport, Pituffik region, from 2000 to 2021. The data is used by the R code to caculate climate norms. Data columns fo this file are:
+date: Date of daily weather observations.
+tmax: Maximum air temperature measured by USAF at THU airport, in °C. Same as tmax_af in pfk_iso_wx_day.csv
+tmin: Minimum air temperature measured by USAF at THU airport, in °C. Same as tmin_af in pfk_iso_wx_day.csv
+tavg: Mean air temperature measured by USAF at THU airport, in °C. Same as tavg_af in pfk_iso_wx_day.csv
+tdew: Mean dew point temperature measured by USAF at THU airport, in °C. Same as tdew_af in pfk_iso_wx_day.csv
+wind_pk_az: Azimuth of maximum wind speed measured by USAF at THU airport, in degrees. Same as wind_pk_az_af in pfk_iso_wx_day.csv
+wind_pk_sp: Maximum wind speed measured by USAF at THU airport, in m/s. Same as wind_pk_sp_af in pfk_iso_wx_day.csv
+prcp: Liquid precipitation amount measured by USAF at THU airport, in mm. Same as prcp_H2O in pfk_iso_wx_day.csv
+prcp_snow: Precipitation amount of snow measured by USAF at THU airport, in mm. Same as prcp_snow in pfk_iso_wx_day.csv
+day: Day of month of weather observation.
+mo: Month of year of weather observation.
+yr: Year of weather observation.
+
+
 
