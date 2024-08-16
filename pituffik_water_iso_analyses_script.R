@@ -3,7 +3,11 @@
 #===============================================================================
 # This script is focused on the water isotopes of lakes and streams in Pituffik, Greenland, based
   # on samples taken in 2018 and 2019.
-# Written Pete D Akers, March 2021-August 2023, revised March-July 2024
+# Written Pete D Akers, March 2021-August 2023, revised March-July 2024.
+# Revision 16 Aug 2024 to improve freeze-thaw inflow mix model output. Mix model resorts
+#   data by first column, but names were pulled from presorted tibble. Not a problem for
+#   original code results here, as the tibble was already sorted by first column. But
+#   potentially an error if adapted for other data that is not sorted that way.
 
 # Loading required packages
 library(raster)
@@ -488,14 +492,14 @@ library(beepr)
 #             dxs_inflow_sd = sd(mapply(rnorm, n=100000, mean=d2H_inflow, sd=d2H_inflow_sd)-
 #                                  8*mapply(rnorm, n=100000, mean=d18O_inflow, sd=d18O_inflow_sd))) # Note that dxs sd is large
 # beep(4)
-#  
+# 
 # #==== Estimating E/I for select lakes with LELs (Gonfiantini 1986 model, following Gibson et al 2016)
 # # For each sampling date, calculate the PET-weighted mean tavg, rh, d18Oatm, d2Hatm, dxsatm from Akers et al 2020 data
 # lake_sample_isowx <- tibble(lake_iso_inflow %>% select(site_name, date)) %>% # Pulling out sampling dates for each lake
 #   add_column(pet_tavg = NA, pet_rh_ice = NA, pet_d18Oatm = NA, pet_d2Hatm = NA, pet_dxsatm = NA)
 # for(i in 1:nrow(lake_sample_isowx)) { # Looping for each lake isotope sample
 #   lake_sample_isowx[i,3:7] <- pfk_isowx_day %>%
-#     filter(sn=="sum") %>% 
+#     filter(sn=="sum") %>%
 #     filter(yr==year(lake_sample_isowx$date[i]) & date <= lake_sample_isowx$date[i]) %>% # Pulling only summer dates of same year up through sampling date
 #     mutate(dailyfrac_pet = (pet)/sum(pet)) %>% # Calculating the fraction of total PET per day
 #     mutate(pet_tavg = dailyfrac_pet*tavg, pet_rh_ice = dailyfrac_pet*rh_ice, # Caculating daily fractional contributions of select variable to the overall weighted mean
@@ -541,7 +545,7 @@ library(beepr)
 # E_I_d2H_bayes <- (iso_lake_d2H*1000 - iso_inflow_d2H*1000) / (m_d2H*(d2H_star-iso_lake_d2H*1000))
 # E_I_d2H_1sd_bayes <- abs(((iso_lake_d2H*1000 - (iso_inflow_d2H+iso_inflow_d2H_sd)*1000) / (m_d2H*(d2H_star-iso_lake_d2H*1000)))-E_I_d2H_bayes)
 # 
-# dxs_star <- d2H_star - d18O_star*8  
+# dxs_star <- d2H_star - d18O_star*8
 # iso_lake_dxs <- lake_iso_imbm %>% pull(dxs)
 # iso_inflow_dxs <- lake_iso_imbm %>% pull(dxs_inflow)
 # iso_inflow_dxs_sd <- lake_iso_imbm %>% pull(dxs_inflow_sd)
@@ -608,13 +612,13 @@ library(beepr)
 #   pfk_iso_inflow_freezethaw_mixmodel[i,4] <- pfk_iso_inflow_freezethaw_mixmodel_full[[i]][3,1]
 #   pfk_iso_inflow_freezethaw_mixmodel[i,5] <- pfk_iso_inflow_freezethaw_mixmodel_full[[i]][3,2]
 # }
-# names(pfk_iso_inflow_freezethaw_mixmodel_full) <- iso_inflow_bayesian %>% pull(site_name)
-# pfk_iso_inflow_freezethaw_mixmodel[,1] <- iso_inflow_bayesian %>% select(site_name)
+# names(pfk_iso_inflow_freezethaw_mixmodel_full) <- names(pfk_freezethaw_simmr_out$output)
+# pfk_iso_inflow_freezethaw_mixmodel[,1] <- names(pfk_freezethaw_simmr_out$output)
 # colnames(pfk_iso_inflow_freezethaw_mixmodel) <- c("site_name", "freeze_frac", "freeze_frac_sd", "thaw_frac", "thaw_frac_sd")
 # 
 # pfk_iso_inflow_freezethaw_mixmodel_round <- tibble(pfk_iso_inflow_freezethaw_mixmodel%>%select(site_name), #Rounding to 3 digits for output csv
 #                                                    round(pfk_iso_inflow_freezethaw_mixmodel%>%select(-site_name),3))
-# print(pfk_iso_inflow_freezethaw_mixmodel_round, n=nrow(lake_iso_inflow))
+# print(pfk_iso_inflow_freezethaw_mixmodel_round, n=nrow(pfk_iso_inflow_freezethaw_mixmodel_round))
 # iso_inflow_bayesian_round <- tibble(iso_inflow_bayesian%>%select(site_name), #Rounding to 4 digits for output csv
 #                                     round(iso_inflow_bayesian%>%select(-site_name),4))
 # pfk_iso_inflow <- inner_join(iso_inflow_bayesian_round, pfk_iso_inflow_freezethaw_mixmodel_round, by= "site_name")
