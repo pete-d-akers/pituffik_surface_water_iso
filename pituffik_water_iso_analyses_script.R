@@ -4,7 +4,7 @@
 # This script is focused on the water isotopes of lakes and streams in Pituffik, Greenland, based
   # on samples taken in 2018 and 2019.
 # Written Pete D Akers, March 2021-August 2023, revised March-July 2024.
-# Revision 16 Aug 2024 to improve freeze-thaw inflow mix model output. Mix model resorts
+# Revision 16 Aug 2024 to improve freeze-thaw inflow mix model output. Mix model re-sorts
 #   data by first column, but names were pulled from presorted tibble. Not a problem for
 #   original code results here, as the tibble was already sorted by first column. But
 #   potentially an error if adapted for other data that is not sorted that way.
@@ -491,6 +491,7 @@ library(beepr)
 #             dxs_inflow = mean(d2H_inflow-8*d18O_inflow),
 #             dxs_inflow_sd = sd(mapply(rnorm, n=100000, mean=d2H_inflow, sd=d2H_inflow_sd)-
 #                                  8*mapply(rnorm, n=100000, mean=d18O_inflow, sd=d18O_inflow_sd))) # Note that dxs sd is large
+# lake_iso_inflow <- inner_join(water_iso %>% select(sample_id, site_name, date, d18O, d2H, dxs), iso_inflow_bayesian, by="site_name")
 # beep(4)
 # 
 # #==== Estimating E/I for select lakes with LELs (Gonfiantini 1986 model, following Gibson et al 2016)
